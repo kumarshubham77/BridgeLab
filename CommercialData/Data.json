@@ -1,0 +1,35 @@
+{
+  "AccountList": [
+    {
+      "AccountName": "Shubham",
+      "ShareNumber": 0,
+      "Shareprice": 0.0
+    },
+    
+    {
+      "AccountName": "Qwerty",
+      "ShareNumber": 0,
+      "Shareprice": 0.0
+    },
+    {
+      "AccountName": "werty",
+      "ShareNumber": 0,
+      "Shareprice": 0.0
+    },
+    {
+      "AccountName": "Kumar",
+      "ShareNumber": 5,
+      "Shareprice": 10.0
+    },
+    {
+      "AccountName": "Shubhamk",
+      "ShareNumber": 0,
+      "Shareprice": 0.0
+    },
+    {
+      "AccountName": "wer",
+      "ShareNumber": 0,
+      "Shareprice": 0.0
+    }
+  ]
+}

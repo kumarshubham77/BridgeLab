@@ -1,0 +1,13 @@
+C:\Users\USER\source\repos\RestOOPs\bin\Debug\netcoreapp3.0\RestOOPs.exe
+C:\Users\USER\source\repos\RestOOPs\obj\Debug\netcoreapp3.0\RestOOPs.csprojAssemblyReference.cache
+C:\Users\USER\source\repos\RestOOPs\obj\Debug\netcoreapp3.0\RestOOPs.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\RestOOPs\obj\Debug\netcoreapp3.0\RestOOPs.AssemblyInfo.cs
+C:\Users\USER\source\repos\RestOOPs\bin\Debug\netcoreapp3.0\RestOOPs.deps.json
+C:\Users\USER\source\repos\RestOOPs\bin\Debug\netcoreapp3.0\RestOOPs.runtimeconfig.json
+C:\Users\USER\source\repos\RestOOPs\bin\Debug\netcoreapp3.0\RestOOPs.runtimeconfig.dev.json
+C:\Users\USER\source\repos\RestOOPs\bin\Debug\netcoreapp3.0\RestOOPs.dll
+C:\Users\USER\source\repos\RestOOPs\bin\Debug\netcoreapp3.0\RestOOPs.pdb
+C:\Users\USER\source\repos\RestOOPs\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\Users\USER\source\repos\RestOOPs\obj\Debug\netcoreapp3.0\RestOOPs.csproj.CopyComplete
+C:\Users\USER\source\repos\RestOOPs\obj\Debug\netcoreapp3.0\RestOOPs.dll
+C:\Users\USER\source\repos\RestOOPs\obj\Debug\netcoreapp3.0\RestOOPs.pdb
