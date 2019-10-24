@@ -1,0 +1,37 @@
+{
+  "AddressList": [
+    {
+      "Name": "Krishna",
+      "LastName": "Sagar",
+      "PhoneNumber": 9451934702,
+      "City": "Ghaziabad",
+      "State": "Delhi Ncr",
+      "Zip": 201002
+    },
+    
+    {
+      "Name": "sacgd",
+      "LastName": "hfgj",
+      "PhoneNumber": 534354354,
+      "City": "shdfjh",
+      "State": "fhgh",
+      "Zip": 3546
+    },
+    {
+      "Name": "Aishwarys",
+      "LastName": "sharma",
+      "PhoneNumber": 4645363,
+      "City": "blr",
+      "State": "blr",
+      "Zip": 46443
+    },
+    {
+      "Name": "Abc",
+      "LastName": "eee",
+      "PhoneNumber": 1111,
+      "City": "Blr",
+      "State": "blr",
+      "Zip": 55757
+    }
+  ]
+}
