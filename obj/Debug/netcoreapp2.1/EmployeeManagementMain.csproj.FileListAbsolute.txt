@@ -1,0 +1,16 @@
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\bin\Debug\netcoreapp2.1\appsetting.json
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\bin\Debug\netcoreapp2.1\EmployeeManagementMain.deps.json
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\bin\Debug\netcoreapp2.1\EmployeeManagementMain.runtimeconfig.json
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\bin\Debug\netcoreapp2.1\EmployeeManagementMain.runtimeconfig.dev.json
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\bin\Debug\netcoreapp2.1\EmployeeManagementMain.dll
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\bin\Debug\netcoreapp2.1\EmployeeManagementMain.pdb
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\obj\Debug\netcoreapp2.1\EmployeeManagementMain.csprojAssemblyReference.cache
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\obj\Debug\netcoreapp2.1\EmployeeManagementMain.RazorAssemblyInfo.cache
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\obj\Debug\netcoreapp2.1\EmployeeManagementMain.RazorAssemblyInfo.cs
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\obj\Debug\netcoreapp2.1\EmployeeManagementMain.AssemblyInfoInputs.cache
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\obj\Debug\netcoreapp2.1\EmployeeManagementMain.AssemblyInfo.cs
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\obj\Debug\netcoreapp2.1\EmployeeManagementMain.RazorTargetAssemblyInfo.cache
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\obj\Debug\netcoreapp2.1\EmployeeManagementMain.dll
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\obj\Debug\netcoreapp2.1\EmployeeManagementMain.pdb
+C:\Users\Bridgelabz\source\repos\EmployeeManagementMain\bin\Debug\netcoreapp2.1\libman.json
