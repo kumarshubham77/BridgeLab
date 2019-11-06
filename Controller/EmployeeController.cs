@@ -58,8 +58,13 @@ namespace EmployeeManagementMain.Controller
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Delete method will delete the user from the database. 
+        /// </summary>
+        /// <param name="employee">The employee.</param>
+        /// <returns></returns>
         [HttpDelete]
-        [Route("Delete")]
+        [Route("Delete")]//Delete will be passed as the POSTMAN URL.
         public IActionResult Delete(EmployeeModel employee)
         {
             try
@@ -71,8 +76,13 @@ namespace EmployeeManagementMain.Controller
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Updates the specified employee.
+        /// </summary>
+        /// <param name="employee">The employee.</param>
+        /// <returns></returns>
         [HttpPut]
-        [Route("Update")]
+        [Route("Update")]//Update will be passed to the POSTMAN URL.
         public IActionResult Update(EmployeeModel employee)
         {
             try
@@ -85,6 +95,10 @@ namespace EmployeeManagementMain.Controller
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Shows this instance.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("Show")]
         public IActionResult Show()
@@ -99,6 +113,11 @@ namespace EmployeeManagementMain.Controller
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Logins the specified employee.
+        /// </summary>
+        /// <param name="employee">The employee.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Login")]
         public IActionResult Login(EmployeeModel employee)

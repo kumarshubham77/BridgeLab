@@ -1,4 +1,10 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=Startup.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,11 +20,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EmployeeManagementMain
 {
+
     public class Startup
     {
 
         private readonly IConfiguration _config;
-
+        //Making of the Parameterized Constructor.
         public Startup(IConfiguration config)
         {
             _config = config;
@@ -30,7 +37,9 @@ namespace EmployeeManagementMain
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //Making singleton i.e., making only one object throughout.
             services.AddSingleton<IConfiguration>(_config);
+            //Transient i.e., Object will be created only if it neccessary.
             services.AddTransient<IRepository, EmployeeRepository>();
             services.AddTransient<IManager, EmployeeManager>();
         }
@@ -43,7 +52,7 @@ namespace EmployeeManagementMain
                 app.UseDeveloperExceptionPage();
             }
 
-
+            //For loading the static HTML Files.
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
