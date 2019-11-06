@@ -1,4 +1,10 @@
-﻿{
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=appsetting.json" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+{
   "Logging": {
     "LogLevel": {
       "Default": "Information",
