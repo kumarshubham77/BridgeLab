@@ -1,4 +1,10 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=AccountController.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -6,15 +12,21 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessManager.Interfaces;
+using Castle.DynamicProxy.Generators;
 using Common.Models.UserModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis;
 
 namespace FundooApi.Controllers
 {
+    /// <summary>
+    /// Calling IAccountManager & ApplicationSetting and making them as a Private.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -72,9 +84,15 @@ namespace FundooApi.Controllers
                         Expires = DateTime.UtcNow.AddDays(1),
                         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
                     };
+                    var cacheKey = login.Email;
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                     var token = tokenHandler.WriteToken(securityToken);
+                    //Introduction to Redis Cache.
+                    ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                    IDatabase database = connectionMulitplexer.GetDatabase();
+                    database.StringSet(cacheKey, token.ToString());
+                    database.StringGet(cacheKey);
                     return Ok(new { token });
                 }
                 else
@@ -102,5 +120,34 @@ namespace FundooApi.Controllers
                 result.LastName
             };
         }
+
+
+        //public async Task<string> LOG(LoginModel login)
+        //{
+        //    var result = await _manager.FindByEmailAsync(login.Email);
+        //    if (result != null && await this.CheckPasswordAsync(loginModel.EmailID, loginModel.PasswordM))
+        //    {
+        //        var SigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
+        //        var credentials = new SigningCredentials(SigningKey, SecurityAlgorithms.HmacSha256);
+        //        var token = new JwtSecurityToken(configuration["Jwt:Issuer"], configuration["Jwt:Issuer"],
+        //            expires: DateTime.Now.AddDays(1),
+        //            signingCredentials: credentials);
+        //        var cacheKey = loginModel.EmailID;
+        //        ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+        //        IDatabase database = connectionMultiplexer.GetDatabase();
+        //        var data = (new
+        //        {
+        //            token = new JwtSecurityTokenHandler().WriteToken(token),
+        //            experation = token.ValidTo
+        //        });
+        //        database.StringSet(cacheKey, data.ToString());
+        //        database.StringGet(cacheKey);
+        //        return data.ToString();
+        //    }
+        //    return null;
+        //}
+
+
+
     }
 }

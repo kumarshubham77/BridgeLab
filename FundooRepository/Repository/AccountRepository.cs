@@ -65,9 +65,11 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task LogIn(LoginModel login)
         {
+            // Comparing the Email and Database Login similar as the Password and storing it in a variable.
             var result = _context.users.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
             if (result != null)
             {
+
                 return Task.Run(() => _context.SaveChanges());
             }
             else
@@ -75,6 +77,18 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+
+        //public Task Loginto(LoginModel login)
+        //{
+        //    var result = _context.users.Where(i => i.Email == login.Email).FirstOrDefault();
+        //}
+
+
+        /// <summary>
+        /// Resets the password.
+        /// </summary>
+        /// <param name="reset">The reset.</param>
+        /// <returns></returns>
         public Task ResetPassword(ResetPasswordModel reset)
         {
             var result = _context.users.Where(i => i.Email == reset.Email && i.Password == reset.OldPassword).FirstOrDefault();
@@ -88,8 +102,12 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
-        
 
+        /// <summary>
+        /// Sending the users to reset their Password
+        /// </summary>
+        /// <param name="ToEmail">To email.</param>
+        /// <param name="UserName">Name of the user.</param>
         private void SendPasswordResetEmail(string ToEmail, string UserName)
         {
             // MailMessage class is present is System.Net.Mail namespace
@@ -103,6 +121,7 @@ namespace FundooRepository.Repository
             sbEmailBody.Append("<br/><br/>");
             sbEmailBody.Append("<b>BRIDGELABZ</b>");
             mailMessage.IsBodyHtml = true;
+            //Mentioning the Subject.
             mailMessage.Body = sbEmailBody.ToString();
             mailMessage.Subject = "Reset Your Password";
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
@@ -114,7 +133,11 @@ namespace FundooRepository.Repository
             smtpClient.EnableSsl = true;
             smtpClient.Send(mailMessage);
         }
-
+        /// <summary>
+        /// Forget Password.
+        /// </summary>
+        /// <param name="forgot">The forgot.</param>
+        /// <returns></returns>
         public Task Forgot(ForgotPassword forgot)
         {
             var result = _context.users.Where(i => i.Email == forgot.Email).FirstOrDefault();
@@ -128,6 +151,11 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+        /// <summary>
+        /// Finds the by email asynchronous.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         public Task<UserModel> FindByEmailAsync(string email)
         {
             var result = _context.users.Find(email);
