@@ -7,9 +7,6 @@
 using BusinessManager.Interfaces;
 using Common.Models.UserModels;
 using FundooRepository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessManager.Manager

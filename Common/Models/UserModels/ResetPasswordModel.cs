@@ -4,9 +4,6 @@
 // </copyright>
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Common.Models.UserModels
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BusinessManager.Interfaces;
+﻿using BusinessManager.Interfaces;
 using BusinessManager.Manager;
 using Common.Models.UserModels;
 using FundooRepository.Context;
@@ -12,14 +7,12 @@ using FundooRepository.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FundooApi
 {
@@ -41,6 +34,11 @@ namespace FundooApi
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<IAccountManager, AccountManager>();
+            services.AddTransient<INotesInterface, NotesRepository>();
+            services.AddTransient<INotesManager, NotesManager>();
+            services.AddTransient<ILabelInterface, LabelRepository>();
+            services.AddTransient<ILabelManager, Labelmanager>();
+           
 
 
 

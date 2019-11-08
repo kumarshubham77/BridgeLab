@@ -4,11 +4,10 @@
 // </copyright>
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
+using Common.Models.LabelModels;
+using Common.Models.NotesModels;
 using Common.Models.UserModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FundooRepository.Context
 {
@@ -34,5 +33,7 @@ namespace FundooRepository.Context
         /// The users.
         /// </value>
         public DbSet<UserModel> users { get; set; }
+        public DbSet<NotesModel> notes { get; set; }
+        public DbSet<LabelModel> label { get; set; }
     }
 }

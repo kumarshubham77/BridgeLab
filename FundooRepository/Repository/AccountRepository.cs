@@ -7,8 +7,6 @@
 using Common.Models.UserModels;
 using FundooRepository.Context;
 using FundooRepository.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -161,5 +159,6 @@ namespace FundooRepository.Repository
             var result = _context.users.Find(email);
             return Task.Run(()=>result);
         }
+
     }
 }
