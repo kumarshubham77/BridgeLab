@@ -1,4 +1,10 @@
-﻿using BusinessManager.Interfaces;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=Labelmanager.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+using BusinessManager.Interfaces;
 using Common.Models.LabelModels;
 using FundooRepository.Interfaces;
 using System.Collections.Generic;

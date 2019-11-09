@@ -1,4 +1,10 @@
-﻿using BusinessManager.Interfaces;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=Startup.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+using BusinessManager.Interfaces;
 using BusinessManager.Manager;
 using Common.Models.UserModels;
 using FundooRepository.Context;

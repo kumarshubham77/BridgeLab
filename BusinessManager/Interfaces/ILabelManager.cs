@@ -1,4 +1,10 @@
-﻿using Common.Models.LabelModels;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=ILabelManager.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+using Common.Models.LabelModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -1,4 +1,10 @@
-﻿using BusinessManager.Interfaces;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=LabelController.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+using BusinessManager.Interfaces;
 using Common.Models.LabelModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

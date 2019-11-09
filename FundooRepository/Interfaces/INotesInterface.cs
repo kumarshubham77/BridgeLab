@@ -1,4 +1,10 @@
-﻿using Common.Models.NotesModels;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=INotesInterface.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+using Common.Models.NotesModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

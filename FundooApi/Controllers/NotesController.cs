@@ -1,4 +1,10 @@
-﻿using BusinessManager.Interfaces;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=NotesController.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+using BusinessManager.Interfaces;
 using Common.Models.NotesModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

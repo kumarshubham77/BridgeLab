@@ -1,4 +1,10 @@
-﻿using Common.Models.LabelModels;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=LabelRepository.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Kumar Shubham"/>
+// --------------------------------------------------------------------------------------------------------------------
+using Common.Models.LabelModels;
 using FundooRepository.Context;
 using FundooRepository.Interfaces;
 using System.Collections.Generic;
