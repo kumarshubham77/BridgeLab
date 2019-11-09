@@ -19,5 +19,7 @@ namespace BusinessManager.Interfaces
         Task<string> ResetPassword(ResetPasswordModel reset);
         Task<string> ForgotP(ForgotPassword forgot);
         Task<UserModel> FindByEmailAsync(string email);
+        Task<string> LoginWithFacebook(LoginWithFacebookModel login);
+        Task<string> LoginWithGoogle(LoginWithGoogleModel login);
     }
 }

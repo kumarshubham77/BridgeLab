@@ -59,6 +59,7 @@ namespace Common.Models.NotesModels
         /// The color
         /// </summary>
         private string color;
+        //Declaring ID as a Primary Key.
         [Key]
         public int ID
         {
@@ -71,6 +72,7 @@ namespace Common.Models.NotesModels
                 this.id = value;
             }
         }
+        //Declaring Email as Foreign Key.
         [ForeignKey("UserModel")]
         public string Email
         {

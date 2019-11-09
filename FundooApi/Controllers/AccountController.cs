@@ -35,6 +35,12 @@ namespace FundooApi.Controllers
             _manager = manager;
             _appsetting = appsetting.Value;
         }
+        /// <summary>
+        /// Add the Specific User
+        /// passing The method Add with Post method in POSTMAN URL.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Add")]
         public async Task<IActionResult> Register(UserModel user)
@@ -42,6 +48,11 @@ namespace FundooApi.Controllers
             var result = await _manager.Registration(user);
             return Ok(new { result });
         }
+        /// <summary>
+        /// Logs the in.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("LogIn")]
         public async Task<IActionResult> LogIn(LoginModel login)
@@ -49,6 +60,11 @@ namespace FundooApi.Controllers
             var result = await _manager.LogIn(login);
             return Ok(new { result });
         }
+        /// <summary>
+        /// Resets the password.
+        /// </summary>
+        /// <param name="reset">The reset.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Reset")]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel reset)
@@ -56,6 +72,11 @@ namespace FundooApi.Controllers
             var result = await _manager.ResetPassword(reset);
             return Ok(new { result });
         }
+        /// <summary>
+        /// Forgots the specified forgot.
+        /// </summary>
+        /// <param name="forgot">The forgot.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Forgot")]
         public async Task<IActionResult> Forgot(ForgotPassword forgot)
@@ -63,6 +84,11 @@ namespace FundooApi.Controllers
             var result = await _manager.ForgotP(forgot);
             return Ok(new { result });
         }
+        /// <summary>
+        /// Logs the specified login.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("log")]
         public async Task<IActionResult> Log(LoginModel login)
@@ -85,7 +111,7 @@ namespace FundooApi.Controllers
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                     var token = tokenHandler.WriteToken(securityToken);
-                    //Introduction to Redis Cache.
+                    //Introduction to Redis Cache with Local IP i.e., 127.0.0.1:6379.
                     ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
                     IDatabase database = connectionMulitplexer.GetDatabase();
                     database.StringSet(cacheKey, token.ToString());
@@ -103,6 +129,11 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Gets the details
+        /// Only if the User is Authorized.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet,Authorize]
         
         [Route("reg")]
@@ -116,6 +147,30 @@ namespace FundooApi.Controllers
                 result.FirstName,
                 result.LastName
             };
+        }
+        /// <summary>
+        /// Logins the with facebook.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("LoginWithFacebook")]
+        public async Task<IActionResult> LoginWithFacebook(LoginWithFacebookModel login)
+        {
+            var result = await _manager.LoginWithFacebook(login);
+            return Ok(new { result });
+        }
+        /// <summary>
+        /// Logins the with google.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("LoginWithGoogle")]
+        public async Task<IActionResult> LoginWithGoogle(LoginWithGoogleModel login)
+        {
+            var result = await _manager.LoginWithGoogle(login);
+            return Ok(new { result });
         }
 
 

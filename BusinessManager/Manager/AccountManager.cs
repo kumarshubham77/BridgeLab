@@ -78,5 +78,25 @@ namespace BusinessManager.Manager
             var result = await _repository.FindByEmailAsync(email);
             return result;
         }
+        /// <summary>
+        /// Logins the with facebook.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
+        public async Task<string> LoginWithFacebook(LoginWithFacebookModel login)
+        {
+            await _repository.LoginWithFacebook(login);
+            return "Login Successfull";
+        }
+        /// <summary>
+        /// Logins the with google.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
+        public async Task<string> LoginWithGoogle(LoginWithGoogleModel login)
+        {
+            await _repository.LoginWithGoogle(login);
+            return "Login Successfull";
+        }
     }
 }

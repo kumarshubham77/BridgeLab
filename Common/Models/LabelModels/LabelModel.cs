@@ -9,11 +9,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common.Models.LabelModels
 {
+    /// <summary>
+    /// Creating class LabelModel.
+    /// </summary>
     public class LabelModel
     {
         private int id;
         private string email;
         private string label;
+        //Declaring ID as a Primary Key.
         [Key]
         public int ID
         {
@@ -26,6 +30,7 @@ namespace Common.Models.LabelModels
                 this.id = value;
             }
         }
+        //Declaring Email as Foreign Key of the UserModel Type.
         [ForeignKey("UserModel")]
         public string Email
         {
@@ -38,6 +43,7 @@ namespace Common.Models.LabelModels
                 this.email = value;
             }
         }
+        //Declaring Label for the Users to avail Advance Service or primary Service.
         public string Label
         {
             get

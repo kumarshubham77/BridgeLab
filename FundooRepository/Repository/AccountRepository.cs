@@ -159,6 +159,42 @@ namespace FundooRepository.Repository
             var result = _context.users.Find(email);
             return Task.Run(()=>result);
         }
+        /// <summary>
+        /// Logins the with facebook.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
+        public Task LoginWithFacebook(LoginWithFacebookModel login)
+        {
+            // Comparing the Email and Database Login similar as the Password and storing it in a variable.
+            var result = _context.users.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
+            if (result != null)
+            {
 
+                return Task.Run(() => _context.SaveChanges());
+            }
+            else
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// Logins the with google.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
+        public Task LoginWithGoogle(LoginWithGoogleModel login)
+        {
+            var result = _context.users.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
+            if (result != null)
+            {
+
+                return Task.Run(() => _context.SaveChanges());
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

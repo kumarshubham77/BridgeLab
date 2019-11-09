@@ -23,5 +23,7 @@ namespace FundooRepository.Interfaces
         Task ResetPassword(ResetPasswordModel reset);
         Task Forgot(ForgotPassword forgot);
         Task<UserModel> FindByEmailAsync(string email);
+        Task LoginWithFacebook(LoginWithFacebookModel login);
+        Task LoginWithGoogle(LoginWithGoogleModel login);
     }
 }

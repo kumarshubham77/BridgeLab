@@ -7,6 +7,9 @@
 
 namespace Common.Models.UserModels
 {
+    /// <summary>
+    /// Creating class ApplicationSetting containg public string.
+    /// </summary>
     public class ApplicationSetting
     {
         public string JWT_Secret { get; set; }
