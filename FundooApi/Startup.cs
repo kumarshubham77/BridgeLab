@@ -44,11 +44,23 @@ namespace FundooApi
             services.AddTransient<INotesManager, NotesManager>();
             services.AddTransient<ILabelInterface, LabelRepository>();
             services.AddTransient<ILabelManager, Labelmanager>();
-           
+
+            //Implementation of Swagger 
+            //services.AddSwaggerGen(c => {
+            //    c.SwaggerDoc("v1", new Info
+            //    {
+            //        Version = "v1",
+            //        Title = "FUNDOO NOTE API",
+            //        Description = "ASP.NET Core Web API"
+            //    });
+            //});
 
 
 
-           // var key = Encoding.UTF8.GetBytes(Configuration.GetSection("ApplicationSetting:JWT_Secret").ToString());
+
+
+
+            // var key = Encoding.UTF8.GetBytes(Configuration.GetSection("ApplicationSetting:JWT_Secret").ToString());
             //JwtAuthenticate
             //services.AddAuthentication(x => {
             //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -93,6 +105,10 @@ namespace FundooApi
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
-        }
+
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c => {
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "PRITAM");
+            }
     }
 }
