@@ -20,6 +20,12 @@ namespace FundooRepository.Repository
         {
             _context = context;
         }
+        /// <summary>
+        /// Creates the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="Email">The email.</param>
+        /// <returns></returns>
         public Task Create(LabelModel model, string Email)
         {
             model.Email = Email;
@@ -31,7 +37,12 @@ namespace FundooRepository.Repository
             _context.label.Add(note);
             return Task.Run(() => _context.SaveChanges());
         }
-
+        /// <summary>
+        /// Deletes the specified identifier.
+        /// </summary>
+        /// <param name="ID">The identifier.</param>
+        /// <param name="Email">The email.</param>
+        /// <returns></returns>
         public Task Delete(int ID, string Email)
         {
             var result = _context.label.Where(j => j.ID == ID).FirstOrDefault();
@@ -49,7 +60,11 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
-
+        /// <summary>
+        /// Shows the specified email.
+        /// </summary>
+        /// <param name="Email">The email.</param>
+        /// <returns></returns>
         public Task<List<LabelModel>> Show(string Email)
         {
             bool note = _context.label.Any(p => p.Email == Email);
@@ -62,7 +77,12 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
-
+        /// <summary>
+        /// Updates the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="Email">The email.</param>
+        /// <returns></returns>
         public Task Update(LabelModel model, string Email)
         {
            var result = _context.label.Where(j => j.ID == model.ID).FirstOrDefault();

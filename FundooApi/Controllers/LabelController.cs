@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 
 namespace FundooApi.Controllers
 {
+    /// <summary>
+    /// class LabelController implements ControllerBase.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
     [ApiController][Authorize]
     public class LabelController : ControllerBase
@@ -24,6 +28,11 @@ namespace FundooApi.Controllers
         {
             manager = emanager;
         }
+        /// <summary>
+        /// Creates the specified label.
+        /// </summary>
+        /// <param name="label">The label.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("AddLabel")]
         public async Task<IActionResult> Create(LabelModel label)
@@ -39,6 +48,11 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Updates the specified label.
+        /// </summary>
+        /// <param name="label">The label.</param>
+        /// <returns></returns>
         [HttpPut]
         [Route("LabelUpdate")]
         public async Task<IActionResult> Update(LabelModel label)
@@ -54,6 +68,11 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Deletes the specified identifier.
+        /// </summary>
+        /// <param name="ID">The identifier.</param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("LabelDelete")]
 
@@ -72,6 +91,10 @@ namespace FundooApi.Controllers
 
 
         }
+        /// <summary>
+        /// Shows this instance.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("LabelShow")]
         public async Task<IActionResult> Show()

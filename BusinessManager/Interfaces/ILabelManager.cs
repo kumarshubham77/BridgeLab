@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace BusinessManager.Interfaces
 {
+    /// <summary>
+    /// creating Interface ILabelManager
+    /// </summary>
     public interface ILabelManager
     {
         Task<string> Add(LabelModel notes, string Email);
