@@ -4,9 +4,12 @@
 // </copyright>
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Common.Models.NotesModels;
 using FundooRepository.Context;
 using FundooRepository.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -162,9 +165,9 @@ namespace FundooRepository.Repository
         public Task Pin(int ID, string Email)
         {
             var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
-            if(result != null)
+            if (result != null)
             {
-                if(result.Email.Equals(Email))
+                if (result.Email.Equals(Email))
                 {
                     result.IsPin = true;
                     return Task.Run(() => _context.SaveChanges());
@@ -179,5 +182,38 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+        public Task ImageUpload(int Id, IFormFile file, string email)
+        {
+            var path = file.OpenReadStream();
+            var File = file.FileName;
+            CloudinaryDotNet.Account account = new CloudinaryDotNet.Account("dalm6prqr", "742568932831953", "x9gQyQphOCQ0Tfp0ScFOYrj0DWM");
+            CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
+            var image = new ImageUploadParams()
+            {
+                File = new FileDescription(File)
+            };
+            var uploadResult = cloudinary.Upload(image);
+            if (uploadResult.Error != null)
+                throw new Exception(uploadResult.Error.Message);
+            var result = _context.notes.Where(i => i.ID == Id).FirstOrDefault();
+            if (result != null)
+            {
+                if (result.Email.Equals(email))
+                {
+                    result.Images = uploadResult.Uri.ToString();
+                    return Task.Run(() => _context.SaveChanges());
+
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
     }
 }

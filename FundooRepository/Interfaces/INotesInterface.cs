@@ -5,6 +5,7 @@
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
 using Common.Models.NotesModels;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,6 +25,6 @@ namespace FundooRepository.Interfaces
         Task Trash(int ID, string Email);
         //Task Reminder(NotesModel notes, string Email);
         Task Pin(int ID, string Email);
-
+        Task ImageUpload(int Id, IFormFile file, string email);
     }
 }

@@ -7,6 +7,7 @@
 using BusinessManager.Interfaces;
 using Common.Models.NotesModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -134,9 +135,9 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet]
+        [HttpPost]
         [Route("IsPin")]
-        public async Task<IAsyncResult> IsPin (int ID)
+        public async Task<IActionResult> Pin(int ID)
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
@@ -144,11 +145,25 @@ namespace FundooApi.Controllers
                 var result = await manager.Pin(ID, Email);
                 return Ok(new { result });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-
+        }
+        [HttpPost]
+        [Route("Image")]
+        public async Task<IActionResult> ImageUpload(int Id,IFormFile file)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.ImageUpload(Id,file,Email);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

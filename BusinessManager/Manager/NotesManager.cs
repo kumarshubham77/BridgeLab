@@ -7,6 +7,7 @@
 using BusinessManager.Interfaces;
 using Common.Models.NotesModels;
 using FundooRepository.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -72,7 +73,11 @@ namespace BusinessManager.Manager
             await notes.Pin(ID, Email);
             return "Pinned Successfully";
         }
+        public async Task<string> ImageUpload(int Id, IFormFile file, string email)
+        {
+            await notes.ImageUpload(Id,file,email);
+            return "Pinned Successfully";
+        }
 
-        
     }
 }

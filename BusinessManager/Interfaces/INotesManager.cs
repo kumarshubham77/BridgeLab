@@ -5,6 +5,7 @@
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
 using Common.Models.NotesModels;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -21,5 +22,6 @@ namespace BusinessManager.Interfaces
         Task<string> Trash(int ID, string Email);
         //Task<string> Reminder(NotesModel notes, string Email);
         Task<string> Pin(int ID, string Email);
+        Task<string> ImageUpload(int Id, IFormFile file, string email);
     }
 }
