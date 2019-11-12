@@ -47,5 +47,24 @@ namespace BusinessManager.Manager
             await notes.Update(note, Email);
             return "Updated Successfully";
         }
+
+
+        public async Task<string> Archive(int ID, string Email)
+        {
+            await notes.Archive(ID, Email);
+            return "Archieved Successfully";
+        }
+
+        public async Task<string> UnArchive(int ID, string Email)
+        {
+            await notes.UnArchive(ID, Email);
+            return "UnArchieved Successfull";
+        }
+
+        public async Task<string> Trash(int ID, string Email)
+        {
+            await notes.Trash(ID, Email);
+            return "Gone To the Garbage Bin";
+        }
     }
 }

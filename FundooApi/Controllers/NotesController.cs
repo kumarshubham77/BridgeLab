@@ -32,6 +32,7 @@ namespace FundooApi.Controllers
         {
             try
             {
+                //After decoding the resultant token it will store the email into the string variable Email. 
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
                 var result = await manager.Add(notes, Email);
                 return Ok(new { result });
@@ -83,6 +84,52 @@ namespace FundooApi.Controllers
                 return Ok(new { result });
             }
             catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
+        [Route("Archive")]
+        public async Task<IActionResult> Archive(int ID)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.Archive(ID, Email);
+                return Ok(new { result });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("UnArchive")]
+        public async Task<IActionResult> UnArchive(int ID)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.UnArchive(ID, Email);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
+        [Route("Trash")]
+        public async Task<IActionResult> Trash (int ID)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.Trash(ID, Email);
+                return Ok(new { result });
+            }
+            catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }

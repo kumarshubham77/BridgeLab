@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
 
 namespace FundooApi
@@ -46,14 +47,15 @@ namespace FundooApi
             services.AddTransient<ILabelManager, Labelmanager>();
 
             //Implementation of Swagger 
-            //services.AddSwaggerGen(c => {
-            //    c.SwaggerDoc("v1", new Info
-            //    {
-            //        Version = "v1",
-            //        Title = "FUNDOO NOTE API",
-            //        Description = "ASP.NET Core Web API"
-            //    });
-            //});
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "FUNDOO NOTE API",
+                    Description = "ASP.NET Core Web API"
+                });
+            });
 
 
 
@@ -106,9 +108,15 @@ namespace FundooApi
             app.UseHttpsRedirection();
             app.UseMvc();
 
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c => {
-            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "PRITAM");
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SHUBHAM");
+            });
+            app.UseCors(x => x
+               .AllowAnyOrigin()
+               .AllowAnyHeader().AllowAnyMethod()
+           );
+        }
     }
 }

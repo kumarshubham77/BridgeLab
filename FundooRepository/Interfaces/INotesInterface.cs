@@ -18,5 +18,9 @@ namespace FundooRepository.Interfaces
         Task<List<NotesModel>> Show(string Email);
         //bool Login(NotesModel notes);
         Task Delete(int ID, string Email);
+        Task Archive(int ID, string Email);
+        Task UnArchive(int ID, string Email);
+        Task Trash(int ID, string Email);
+
     }
 }

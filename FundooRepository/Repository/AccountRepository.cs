@@ -130,6 +130,7 @@ namespace FundooRepository.Repository
             };
             smtpClient.EnableSsl = true;
             smtpClient.Send(mailMessage);
+            
         }
         /// <summary>
         /// Forget Password.

@@ -112,10 +112,10 @@ namespace FundooApi.Controllers
                     var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                     var token = tokenHandler.WriteToken(securityToken);
                     //Introduction to Redis Cache with Local IP i.e., 127.0.0.1:6379.
-                    ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
-                    IDatabase database = connectionMulitplexer.GetDatabase();
-                    database.StringSet(cacheKey, token.ToString());
-                    database.StringGet(cacheKey);
+                    //ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                    //IDatabase database = connectionMulitplexer.GetDatabase();
+                    //database.StringSet(cacheKey, token.ToString());
+                    //database.StringGet(cacheKey);
                     return Ok(new { token });
                 }
                 else

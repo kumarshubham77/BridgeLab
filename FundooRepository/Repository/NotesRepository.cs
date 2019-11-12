@@ -88,5 +88,71 @@ namespace FundooRepository.Repository
             }
         }
 
+        public Task Archive(int ID, string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
+            if (result.Email.Equals(Email))
+            {
+                if(result!= null)
+                {
+                    result.IsArchive = true;
+                    return Task.Run(() => _context.SaveChanges());
+
+                }
+                else
+                {
+                    return null;
+                }
+
+                
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Task UnArchive(int ID, string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
+            if (result.Email.Equals(Email))
+            {
+                if (result != null)
+                {
+                    result.IsArchive = false;
+                    return Task.Run(() => _context.SaveChanges());
+
+                }
+                else
+                {
+                    return null;
+                }
+
+
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Task Trash(int ID, string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
+            if(result != null)
+            {
+                if(result.Email.Equals(Email))
+                {
+                    result.IsTrash = true;
+                    return Task.Run(() => _context.SaveChanges());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
