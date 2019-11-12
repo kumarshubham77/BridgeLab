@@ -23,5 +23,6 @@ namespace BusinessManager.Interfaces
         //Task<string> Reminder(NotesModel notes, string Email);
         Task<string> Pin(int ID, string Email);
         Task<string> ImageUpload(int Id, IFormFile file, string email);
+        Task<string> Reminder(NotesModel notes, string Email);
     }
 }

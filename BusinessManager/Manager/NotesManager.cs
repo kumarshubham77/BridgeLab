@@ -79,5 +79,10 @@ namespace BusinessManager.Manager
             return "Pinned Successfully";
         }
 
+        //public async Task<string> Reminder(NotesModel notes, string Email)
+        //{
+        //    await notes.Reminder(notes, Email);
+        //    return "Reminder";
+        //}
     }
 }

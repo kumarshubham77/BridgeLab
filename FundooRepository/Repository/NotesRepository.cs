@@ -40,7 +40,17 @@ namespace FundooRepository.Repository
             return Task.Run(() => _context.SaveChanges());
            
        }
-        
+        public Task Remind(NotesModel notes, string Email)
+        {
+            notes.Email = Email;
+            var note = new NotesModel()
+            {
+                Reminder = notes.Reminder
+            };
+            _context.notes.Add(note);
+            return Task.Run(() => _context.SaveChanges());
+        }
+
         public Task Delete(int ID, string Email)
         {
             var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
@@ -182,6 +192,7 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+        
         public Task ImageUpload(int Id, IFormFile file, string email)
         {
             var path = file.OpenReadStream();
@@ -215,5 +226,6 @@ namespace FundooRepository.Repository
             }
         }
 
+        
     }
 }

@@ -26,5 +26,6 @@ namespace FundooRepository.Interfaces
         //Task Reminder(NotesModel notes, string Email);
         Task Pin(int ID, string Email);
         Task ImageUpload(int Id, IFormFile file, string email);
+        Task Remind(NotesModel notes, string Email);
     }
 }
