@@ -134,5 +134,21 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet]
+        [Route("IsPin")]
+        public async Task<IAsyncResult> IsPin (int ID)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.Pin(ID, Email);
+                return Ok(new { result });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
     }
 }

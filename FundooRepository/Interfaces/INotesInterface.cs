@@ -12,6 +12,7 @@ namespace FundooRepository.Interfaces
 {
     public interface INotesInterface
     {
+
         Task Create(NotesModel model, string Email);
         Task Update(NotesModel notes,string Email);
         
@@ -21,6 +22,8 @@ namespace FundooRepository.Interfaces
         Task Archive(int ID, string Email);
         Task UnArchive(int ID, string Email);
         Task Trash(int ID, string Email);
+        //Task Reminder(NotesModel notes, string Email);
+        Task Pin(int ID, string Email);
 
     }
 }

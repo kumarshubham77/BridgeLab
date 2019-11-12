@@ -66,5 +66,13 @@ namespace BusinessManager.Manager
             await notes.Trash(ID, Email);
             return "Gone To the Garbage Bin";
         }
+
+        public async Task<string> Pin(int ID, string Email)
+        {
+            await notes.Pin(ID, Email);
+            return "Pinned Successfully";
+        }
+
+        
     }
 }

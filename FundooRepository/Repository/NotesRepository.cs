@@ -7,6 +7,7 @@
 using Common.Models.NotesModels;
 using FundooRepository.Context;
 using FundooRepository.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +29,8 @@ namespace FundooRepository.Repository
             {
                 Email = model.Email,
                 Title = model.Title,
-                Description = model.Description
+                Description = model.Description,
+                CreatedDate = DateTime.Now
 
             };
             _context.notes.Add(note);
@@ -65,7 +67,9 @@ namespace FundooRepository.Repository
                 {
                     result.Title = notes.Title;
                     result.Description = notes.Description;
+                    result.ModifiedDate = DateTime.Now;
                     _context.notes.Update(result);
+
                 }
                 return Task.Run(() => _context.SaveChanges());
             }
@@ -142,6 +146,27 @@ namespace FundooRepository.Repository
                 if(result.Email.Equals(Email))
                 {
                     result.IsTrash = true;
+                    return Task.Run(() => _context.SaveChanges());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Task Pin(int ID, string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
+            if(result != null)
+            {
+                if(result.Email.Equals(Email))
+                {
+                    result.IsPin = true;
                     return Task.Run(() => _context.SaveChanges());
                 }
                 else
