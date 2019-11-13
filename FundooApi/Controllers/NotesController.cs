@@ -196,6 +196,21 @@ namespace FundooApi.Controllers
             }
         }
         [HttpPost]
+        [Route("ProfilePic")]
+        public async Task<IActionResult> ProfilePicUpload(int Id,IFormFile file)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.ProfilePictureUP(Id, file, Email);
+                return Ok(new { result });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
         [Route("Reminder")]
         public async Task<IActionResult> Reminder (NotesModel model)
         {
@@ -206,6 +221,21 @@ namespace FundooApi.Controllers
                 return Ok(new { result });
             }
             catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
+        [Route("Color")]
+        public async Task<IActionResult> Color(NotesModel model)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.Colour(model, Email);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

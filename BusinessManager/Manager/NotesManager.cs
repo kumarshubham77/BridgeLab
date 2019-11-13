@@ -96,6 +96,18 @@ namespace BusinessManager.Manager
             return "Reminder Sets.";
         }
 
+        public async Task<string> Colour(NotesModel model, string Email)
+        {
+            await notes.Color(model, Email);
+            return "Colour Sets Now";
+        }
+
+        public async Task<string> ProfilePictureUP(int ID, IFormFile file, string email)
+        {
+            await notes.ProfilePicture(ID, file, email);
+            return "Profile photo Added Successfully";
+        }
+
 
 
         //public async Task<string> Reminder(NotesModel notes, string Email)
