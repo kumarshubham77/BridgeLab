@@ -67,6 +67,11 @@ namespace BusinessManager.Manager
             await notes.Trash(ID, Email);
             return "Gone To the Garbage Bin";
         }
+        public async Task<string> UnTrash(int ID, string Email)
+        {
+            await notes.UnTrash(ID, Email);
+            return "UnTrash Succesfull";
+        }
 
         public async Task<string> Pin(int ID, string Email)
         {
@@ -76,8 +81,22 @@ namespace BusinessManager.Manager
         public async Task<string> ImageUpload(int Id, IFormFile file, string email)
         {
             await notes.ImageUpload(Id,file,email);
-            return "Pinned Successfully";
+            return "Uploading Image in Cloudinary Success";
         }
+
+        public async Task<string> UnPin(int ID, string Email)
+        {
+            await notes.UnPin(ID, Email);
+            return "UnPinned Successfull";
+        }
+
+        public async Task<string> Remindr(NotesModel model, string Email)
+        {
+            await notes.Remind(model, Email);
+            return "Reminder Sets.";
+        }
+
+
 
         //public async Task<string> Reminder(NotesModel notes, string Email)
         //{

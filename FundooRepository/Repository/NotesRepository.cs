@@ -40,16 +40,16 @@ namespace FundooRepository.Repository
             return Task.Run(() => _context.SaveChanges());
            
        }
-        public Task Remind(NotesModel notes, string Email)
-        {
-            notes.Email = Email;
-            var note = new NotesModel()
-            {
-                Reminder = notes.Reminder
-            };
-            _context.notes.Add(note);
-            return Task.Run(() => _context.SaveChanges());
-        }
+        //public Task Remind(NotesModel notes, string Email)
+        //{
+        //    notes.Email = Email;
+        //    var note = new NotesModel()
+        //    {
+        //        Reminder = notes.Reminder
+        //    };
+        //    _context.notes.Add(note);
+        //    return Task.Run(() => _context.SaveChanges());
+        //}
 
         public Task Delete(int ID, string Email)
         {
@@ -171,6 +171,26 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+        public Task UnTrash(int ID,string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
+            if(result != null)
+            {
+                if(result.Email.Equals(Email))
+                {
+                    result.IsTrash = false;
+                    return Task.Run(() => _context.SaveChanges());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public Task Pin(int ID, string Email)
         {
@@ -226,6 +246,46 @@ namespace FundooRepository.Repository
             }
         }
 
-        
+        public Task UnPin(int ID, string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
+            if (result != null)
+            {
+                if (result.Email.Equals(Email))
+                {
+                    result.IsPin = false;
+                    return Task.Run(() => _context.SaveChanges());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Task Remind(NotesModel model, string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == model.ID).FirstOrDefault();
+            if(result != null)
+            {
+                if(result.Email.Equals(Email))
+                {
+                    result.Reminder = model.Reminder;
+                    return Task.Run(() => _context.SaveChanges());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

@@ -136,6 +136,21 @@ namespace FundooApi.Controllers
             }
         }
         [HttpPost]
+        [Route("UnTrash")]
+        public async Task<IActionResult> UnTrash(int ID)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.UnTrash(ID, Email);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
         [Route("IsPin")]
         public async Task<IActionResult> Pin(int ID)
         {
@@ -151,6 +166,21 @@ namespace FundooApi.Controllers
             }
         }
         [HttpPost]
+        [Route("UnPin")]
+        public async Task<IActionResult> UnPin(int ID)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.UnPin(ID, Email);
+                return Ok(new { result });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
         [Route("Image")]
         public async Task<IActionResult> ImageUpload(int Id,IFormFile file)
         {
@@ -161,6 +191,21 @@ namespace FundooApi.Controllers
                 return Ok(new { result });
             }
             catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
+        [Route("Reminder")]
+        public async Task<IActionResult> Reminder (NotesModel model)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.Remindr(model, Email);
+                return Ok(new { result });
+            }
+            catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }

@@ -23,9 +23,11 @@ namespace FundooRepository.Interfaces
         Task Archive(int ID, string Email);
         Task UnArchive(int ID, string Email);
         Task Trash(int ID, string Email);
+        Task UnTrash(int ID, string Email);
         //Task Reminder(NotesModel notes, string Email);
         Task Pin(int ID, string Email);
+        Task UnPin(int ID, string Email);
         Task ImageUpload(int Id, IFormFile file, string email);
-        Task Remind(NotesModel notes, string Email);
+        Task Remind(NotesModel model, string Email);
     }
 }
