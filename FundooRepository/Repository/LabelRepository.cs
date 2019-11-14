@@ -15,8 +15,8 @@ namespace FundooRepository.Repository
 {
     public class LabelRepository : ILabelInterface
     {
-        private readonly UserContext _context;
-        public LabelRepository(UserContext context)
+        private readonly UserContexts _context;
+        public LabelRepository(UserContexts context)
         {
             _context = context;
         }
@@ -34,7 +34,7 @@ namespace FundooRepository.Repository
                 Email = model.Email,
                 Label = model.Label
             };
-            _context.label.Add(note);
+            _context.labels.Add(note);
             return Task.Run(() => _context.SaveChanges());
         }
         /// <summary>
@@ -45,13 +45,13 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task Delete(int ID, string Email)
         {
-            var result = _context.label.Where(j => j.ID == ID).FirstOrDefault();
+            var result = _context.labels.Where(j => j.ID == ID).FirstOrDefault();
             if (result.Email.Equals(Email))
             {
 
                 if (result != null)
                 {
-                    _context.label.Remove(result);
+                    _context.labels.Remove(result);
                 }
                 return Task.Run(() => _context.SaveChanges());
             }
@@ -67,10 +67,10 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task<List<LabelModel>> Show(string Email)
         {
-            bool note = _context.label.Any(p => p.Email == Email);
+            bool note = _context.labels.Any(p => p.Email == Email);
             if (note)
             {
-                return Task.Run(() => _context.label.Where(p => p.Email == Email).ToList());
+                return Task.Run(() => _context.labels.Where(p => p.Email == Email).ToList());
             }
             else
             {
@@ -85,13 +85,13 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task Update(LabelModel model, string Email)
         {
-           var result = _context.label.Where(j => j.ID == model.ID).FirstOrDefault();
+            var result = _context.labels.Where(j => j.ID == model.ID).FirstOrDefault();
             if (result.Email.Equals(Email))
             {
                 if (result != null)
                 {
                     result.Label = model.Label;
-                    _context.label.Update(result);
+                    _context.labels.Update(result);
                 }
                 return Task.Run(() => _context.SaveChanges());
             }

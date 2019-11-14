@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FundooRepository.Migrations
 {
-    [DbContext(typeof(UserContext))]
-    [Migration("20191113062124_ProilePicture")]
-    partial class ProilePicture
+    [DbContext(typeof(UserContexts))]
+    [Migration("20191114125239_collaborators")]
+    partial class collaborators
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,23 @@ namespace FundooRepository.Migrations
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Common.Models.Collaborator.CollaboratorModels", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Noteid");
+
+                    b.Property<string>("ReceiverEmail");
+
+                    b.Property<string>("SenderEmail");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("collaborator");
+                });
 
             modelBuilder.Entity("Common.Models.LabelModels.LabelModel", b =>
                 {
@@ -33,7 +50,7 @@ namespace FundooRepository.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("label");
+                    b.ToTable("labels");
                 });
 
             modelBuilder.Entity("Common.Models.NotesModels.NotesModel", b =>
@@ -41,8 +58,6 @@ namespace FundooRepository.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AddProfilePicture");
 
                     b.Property<string>("Color");
 
@@ -84,9 +99,11 @@ namespace FundooRepository.Migrations
 
                     b.Property<string>("Password");
 
+                    b.Property<string>("ProfilePicture");
+
                     b.HasKey("Email");
 
-                    b.ToTable("users");
+                    b.ToTable("user");
                 });
 #pragma warning restore 612, 618
         }

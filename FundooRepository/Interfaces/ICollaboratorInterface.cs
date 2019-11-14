@@ -8,7 +8,7 @@ namespace FundooRepository.Interfaces
 {
     public interface ICollaboratorInterface
     {
-        Task AddCollabrator(CollaboratorModel model, string Email);
-        Task RemoveCollabrator(CollaboratorModel model, string Email);
+        Task AddCollabrator(CollaboratorModels model, string Email);
+        Task RemoveCollabrator(CollaboratorModels model, string Email);
     }
 }

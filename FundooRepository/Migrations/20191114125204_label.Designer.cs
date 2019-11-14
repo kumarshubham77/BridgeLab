@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FundooRepository.Migrations
 {
-    [DbContext(typeof(UserContext))]
-    [Migration("20191108090551_label")]
+    [DbContext(typeof(UserContexts))]
+    [Migration("20191114125204_label")]
     partial class label
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace FundooRepository.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("label");
+                    b.ToTable("labels");
                 });
 
             modelBuilder.Entity("Common.Models.NotesModels.NotesModel", b =>
@@ -82,9 +82,11 @@ namespace FundooRepository.Migrations
 
                     b.Property<string>("Password");
 
+                    b.Property<string>("ProfilePicture");
+
                     b.HasKey("Email");
 
-                    b.ToTable("users");
+                    b.ToTable("user");
                 });
 #pragma warning restore 612, 618
         }

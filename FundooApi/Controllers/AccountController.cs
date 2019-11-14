@@ -30,7 +30,7 @@ namespace FundooApi.Controllers
     {
         private readonly IAccountManager _manager;
         private readonly ApplicationSetting _appsetting;
-        public AccountController(IAccountManager manager,IOptions<ApplicationSetting> appsetting)
+        public AccountController(IAccountManager manager, IOptions<ApplicationSetting> appsetting)
         {
             _manager = manager;
             _appsetting = appsetting.Value;
@@ -134,13 +134,13 @@ namespace FundooApi.Controllers
         /// Only if the User is Authorized.
         /// </summary>
         /// <returns></returns>
-        [HttpGet,Authorize]
-        
+        [HttpGet, Authorize]
+
         [Route("reg")]
         public async Task<object> GetDetails()
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
-            var result =await _manager.FindByEmailAsync(Email);
+            var result = await _manager.FindByEmailAsync(Email);
             return new
             {
                 result.Email,

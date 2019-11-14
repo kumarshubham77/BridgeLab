@@ -1,9 +1,9 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file=AccountManager.cs" company="Bridgelabz">
-//   Copyright © 2019 Company="BridgeLabz"
+﻿ //--------------------------------------------------------------------------------------------------------------------
+// <copyright file = AccountManager.cs" company="Bridgelabz">
+  // Copyright © 2019 Company="BridgeLabz"
 // </copyright>
-// <creator name="Kumar Shubham"/>
-// --------------------------------------------------------------------------------------------------------------------
+// <creator name = "Kumar Shubham" />
+ //--------------------------------------------------------------------------------------------------------------------
 using BusinessManager.Interfaces;
 using Common.Models.UserModels;
 using FundooRepository.Interfaces;
@@ -11,28 +11,28 @@ using System.Threading.Tasks;
 
 namespace BusinessManager.Manager
 {
-    /// <summary>
+   /// <summary>
     /// Creating a class AccountManager that will inherit the interface class IAccountManager
     /// </summary>
-    /// <seealso cref="BusinessManager.Interfaces.IAccountManager" />
-    public class AccountManager:IAccountManager
+    /// <seealso cref = "BusinessManager.Interfaces.IAccountManager" />
+    public class AccountManager : IAccountManager
     {
-        //calling Interface IAccountRepository but making it private.
+        ///calling Interface IAccountRepository but making it private.
         private readonly IAccountRepository _repository;
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccountManager"/> class.
-        /// Creating a parametrized constructor and passing the IAccountRepository as a parameter. 
-        /// </summary>
-        /// <param name="repository">The repository.</param>
+        ///<summary>
+        /// Initializes a new instance of the<see cref="AccountManager"/> class.
+        ///Creating a parametrized constructor and passing the IAccountRepository as a parameter.
+        ///</summary>
+        /// <param name = "repository" > The repository.</param>
         public AccountManager(IAccountRepository repository)
         {
             _repository = repository;
         }
-        /// <summary>
-        /// Registrations the specified user.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        /// <returns></returns>
+        //// <summary>
+        //// Registrations the specified user.
+        //// </summary>
+        //// <param name = "user" > The user.</param>
+        //// <returns></returns>
         public async Task<string> Registration(UserModel user)
         {
             await _repository.Create(user);
@@ -41,7 +41,7 @@ namespace BusinessManager.Manager
         /// <summary>
         /// Logs the in.
         /// </summary>
-        /// <param name="login">The login.</param>
+        /// <param name = "login" > The login.</param>
         /// <returns></returns>
         public async Task<string> LogIn(LoginModel login)
         {
@@ -61,7 +61,7 @@ namespace BusinessManager.Manager
         /// <summary>
         /// Forgots the password.
         /// </summary>
-        /// <param name="forgot">The forgot.</param>
+        /// <param name = "forgot" > The forgot.</param>
         /// <returns></returns>
         public async Task<string> ForgotP(ForgotPassword forgot)
         {
@@ -71,17 +71,17 @@ namespace BusinessManager.Manager
         /// <summary>
         /// Finds the by email asynchronous.
         /// </summary>
-        /// <param name="email">The email.</param>
+        /// <param name = "email" > The email.</param>
         /// <returns></returns>
         public async Task<UserModel> FindByEmailAsync(string email)
         {
             var result = await _repository.FindByEmailAsync(email);
             return result;
         }
-        /// <summary>
+        // / <summary>
         /// Logins the with facebook.
-        /// </summary>
-        /// <param name="login">The login.</param>
+        // / </summary>
+        /// <param name = "login" > The login.</param>
         /// <returns></returns>
         public async Task<string> LoginWithFacebook(LoginWithFacebookModel login)
         {
@@ -91,7 +91,7 @@ namespace BusinessManager.Manager
         /// <summary>
         /// Logins the with google.
         /// </summary>
-        /// <param name="login">The login.</param>
+        /// <param name = "login" > The login.</param>
         /// <returns></returns>
         public async Task<string> LoginWithGoogle(LoginWithGoogleModel login)
         {

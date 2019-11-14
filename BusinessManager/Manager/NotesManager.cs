@@ -15,8 +15,8 @@ namespace BusinessManager.Manager
 {
     public class NotesManager : INotesManager
     {
-        
-        
+
+
         private readonly INotesInterface notes;
         public NotesManager(INotesInterface inotes)
         {
@@ -29,7 +29,7 @@ namespace BusinessManager.Manager
             return "Added Successfully";
         }
 
-        public async Task<string> Del(int ID , string Email)
+        public async Task<string> Del(int ID, string Email)
         {
             await notes.Delete(ID, Email);
             return "Deleted Successfully";
@@ -37,10 +37,10 @@ namespace BusinessManager.Manager
 
         public async Task<List<NotesModel>> Show(string Email)
         {
-            
-            var result= await notes.Show(Email);
+
+            var result = await notes.Show(Email);
             return result;
-             
+
         }
 
         public async Task<string> Update(NotesModel note, string Email)
@@ -80,7 +80,7 @@ namespace BusinessManager.Manager
         }
         public async Task<string> ImageUpload(int Id, IFormFile file, string email)
         {
-            await notes.ImageUpload(Id,file,email);
+            await notes.ImageUpload(Id, file, email);
             return "Uploading Image in Cloudinary Success";
         }
 

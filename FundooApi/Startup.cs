@@ -36,7 +36,7 @@ namespace FundooApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ApplicationSetting>(Configuration.GetSection("ApplicationSetting"));
-            services.AddDbContextPool<UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDBConncetion")));
+            services.AddDbContextPool<UserContexts>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDBConncetion")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<IAccountRepository, AccountRepository>();
@@ -45,6 +45,8 @@ namespace FundooApi
             services.AddTransient<INotesManager, NotesManager>();
             services.AddTransient<ILabelInterface, LabelRepository>();
             services.AddTransient<ILabelManager, Labelmanager>();
+            services.AddTransient<ICollaboratorInterface, CollaboratorRepository>();
+            services.AddTransient<ICollaboratorManager, CollaboratorManager>();
 
             //Implementation of Swagger 
             services.AddSwaggerGen(c =>

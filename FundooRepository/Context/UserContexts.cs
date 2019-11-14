@@ -19,10 +19,10 @@ namespace FundooRepository.Context
     /// DbSet<TEntity> properties for each entity in the model.
     /// </summary>
     /// <seealso cref="Microsoft.EntityFrameworkCore.DbContext" />
-    public class UserContext:DbContext
+    public class UserContexts:DbContext
     {
 
-        public UserContext(DbContextOptions<UserContext> options):base(options)
+        public UserContexts(DbContextOptions<UserContexts> options):base(options)
         {
 
         }
@@ -33,9 +33,11 @@ namespace FundooRepository.Context
         /// <value>
         /// The users.
         /// </value>
-        public DbSet<UserModel> users { get; set; }
-        public DbSet<NotesModel> notes { get; set; }
-        public DbSet<LabelModel> label { get; set; }
-        public DbSet<CollaboratorModel> collaborators { get; set; }
+        //public DbSet<UserModel> users { get; set; }
+       public DbSet<NotesModel> notes { get; set; }
+       public DbSet<LabelModel> labels { get; set; }
+       public DbSet<CollaboratorModels> collaborator { get; set; }
+        public DbSet<UserModel> user { get; set; }
+       
     }
 }

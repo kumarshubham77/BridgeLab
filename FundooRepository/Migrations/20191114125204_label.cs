@@ -8,7 +8,7 @@ namespace FundooRepository.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "label",
+                name: "labels",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
@@ -18,14 +18,14 @@ namespace FundooRepository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_label", x => x.ID);
+                    table.PrimaryKey("PK_labels", x => x.ID);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "label");
+                name: "labels");
         }
     }
 }

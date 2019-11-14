@@ -19,14 +19,14 @@ namespace FundooRepository.Repository
 {
     public class NotesRepository : INotesInterface
     {
-        
-        private readonly  UserContext _context;
-        public NotesRepository(UserContext context)
+
+        private readonly UserContexts _context;
+        public NotesRepository(UserContexts context)
         {
             _context = context;
         }
-       public Task Create(NotesModel model, string Email)
-       {
+        public Task Create(NotesModel model, string Email)
+        {
             model.Email = Email;
             var note = new NotesModel()
             {
@@ -38,8 +38,8 @@ namespace FundooRepository.Repository
             };
             _context.notes.Add(note);
             return Task.Run(() => _context.SaveChanges());
-           
-       }
+
+        }
         //public Task Remind(NotesModel notes, string Email)
         //{
         //    notes.Email = Email;
@@ -54,14 +54,14 @@ namespace FundooRepository.Repository
         public Task Delete(int ID, string Email)
         {
             var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
-            if(result.Email.Equals(Email))
-            { 
-                     
+            if (result.Email.Equals(Email))
+            {
+
                 if (result != null)
                 {
                     _context.notes.Remove(result);
                 }
-                return Task.Run(()=> _context.SaveChanges());
+                return Task.Run(() => _context.SaveChanges());
             }
             else
             {
@@ -69,14 +69,14 @@ namespace FundooRepository.Repository
             }
         }
 
-        
+
 
         public Task Update(NotesModel notes, string Email)
         {
             var result = _context.notes.Where(j => j.ID == notes.ID).FirstOrDefault();
-            if(result.Email.Equals(Email))
+            if (result.Email.Equals(Email))
             {
-                if(result!=null)
+                if (result != null)
                 {
                     result.Title = notes.Title;
                     result.Description = notes.Description;
@@ -95,9 +95,9 @@ namespace FundooRepository.Repository
         public Task<List<NotesModel>> Show(string Email)
         {
             bool note = _context.notes.Any(p => p.Email == Email);
-            if(note)
+            if (note)
             {
-                return Task.Run(()=>_context.notes.Where(p => (p.Email == Email)).ToList());
+                return Task.Run(() => _context.notes.Where(p => (p.Email == Email)).ToList());
             }
             else
             {
@@ -110,7 +110,7 @@ namespace FundooRepository.Repository
             var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
             if (result.Email.Equals(Email))
             {
-                if(result!= null)
+                if (result != null)
                 {
                     result.IsArchive = true;
                     return Task.Run(() => _context.SaveChanges());
@@ -121,7 +121,7 @@ namespace FundooRepository.Repository
                     return null;
                 }
 
-                
+
             }
             else
             {
@@ -154,9 +154,9 @@ namespace FundooRepository.Repository
         public Task Trash(int ID, string Email)
         {
             var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
-            if(result != null)
+            if (result != null)
             {
-                if(result.Email.Equals(Email))
+                if (result.Email.Equals(Email))
                 {
                     result.IsTrash = true;
                     return Task.Run(() => _context.SaveChanges());
@@ -171,12 +171,12 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
-        public Task UnTrash(int ID,string Email)
+        public Task UnTrash(int ID, string Email)
         {
             var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
-            if(result != null)
+            if (result != null)
             {
-                if(result.Email.Equals(Email))
+                if (result.Email.Equals(Email))
                 {
                     result.IsTrash = false;
                     return Task.Run(() => _context.SaveChanges());
@@ -212,7 +212,7 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
-        
+
         public Task ImageUpload(int Id, IFormFile file, string email)
         {
             var path = file.OpenReadStream();
@@ -221,7 +221,7 @@ namespace FundooRepository.Repository
             CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
             var image = new ImageUploadParams()
             {
-                File = new FileDescription(File,path)
+                File = new FileDescription(File, path)
             };
             var uploadResult = cloudinary.Upload(image);
             if (uploadResult.Error != null)
@@ -301,9 +301,9 @@ namespace FundooRepository.Repository
         public Task Remind(NotesModel model, string Email)
         {
             var result = _context.notes.Where(j => j.ID == model.ID).FirstOrDefault();
-            if(result != null)
+            if (result != null)
             {
-                if(result.Email.Equals(Email))
+                if (result.Email.Equals(Email))
                 {
                     result.Reminder = model.Reminder;
                     return Task.Run(() => _context.SaveChanges());
@@ -321,9 +321,9 @@ namespace FundooRepository.Repository
         public Task RemoveReminder(NotesModel model, string Email)
         {
             var result = _context.notes.Where(j => j.ID == model.ID).FirstOrDefault();
-            if(result != null)
+            if (result != null)
             {
-                if(result.Email.Equals(Email))
+                if (result.Email.Equals(Email))
                 {
                     result.Reminder = null;
                     return Task.Run(() => _context.SaveChanges());
@@ -342,9 +342,9 @@ namespace FundooRepository.Repository
         public Task Color(NotesModel model, string Email)
         {
             var result = _context.notes.Where(j => j.ID == model.ID).FirstOrDefault();
-            if(result != null)
+            if (result != null)
             {
-                if(result.Email.Equals(Email))
+                if (result.Email.Equals(Email))
                 {
                     result.Color = model.Color;
                     return Task.Run(() => _context.SaveChanges());
@@ -360,6 +360,6 @@ namespace FundooRepository.Repository
             }
         }
 
-        
+
     }
 }

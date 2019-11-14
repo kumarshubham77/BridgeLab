@@ -6,14 +6,14 @@ using System.Text;
 
 namespace Common.Models.Collaborator
 {
-    public class CollaboratorModel
+    public class CollaboratorModels
     {
-        private string id;
+        private int id;
         private string senderemail;
         private string noteid;
         private string receiveremail;
         [Key]
-        public string ID
+        public int ID
         {
             get
             {

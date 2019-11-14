@@ -19,7 +19,8 @@ namespace FundooApi.Controllers
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
-    [ApiController][Authorize]
+    [ApiController]
+    [Authorize]
     public class LabelController : ControllerBase
     {
         private readonly ILabelManager manager;

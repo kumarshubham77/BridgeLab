@@ -18,10 +18,11 @@ namespace FundooApi.Controllers
 {
 
     [Route("api/[controller]")]
-    [ApiController][Authorize]
+    [ApiController]
+    [Authorize]
     public class NotesController : ControllerBase
     {
-       
+
         private readonly INotesManager manager;
         public NotesController(INotesManager emanager)
         {
@@ -53,12 +54,13 @@ namespace FundooApi.Controllers
             {
                 var result = await manager.Del(ID, Email);
                 return Ok(new { result });
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
 
-           
+
         }
         [HttpPut]
         [Route("Update")]
@@ -69,7 +71,8 @@ namespace FundooApi.Controllers
             {
                 var result = await manager.Update(note, Email);
                 return Ok(new { result });
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -99,7 +102,7 @@ namespace FundooApi.Controllers
                 var result = await manager.Archive(ID, Email);
                 return Ok(new { result });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -122,7 +125,7 @@ namespace FundooApi.Controllers
         }
         [HttpPost]
         [Route("Trash")]
-        public async Task<IActionResult> Trash (int ID)
+        public async Task<IActionResult> Trash(int ID)
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
@@ -130,7 +133,7 @@ namespace FundooApi.Controllers
                 var result = await manager.Trash(ID, Email);
                 return Ok(new { result });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -175,19 +178,19 @@ namespace FundooApi.Controllers
                 var result = await manager.UnPin(ID, Email);
                 return Ok(new { result });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
         [HttpPost]
         [Route("Image")]
-        public async Task<IActionResult> ImageUpload(int Id,IFormFile file)
+        public async Task<IActionResult> ImageUpload(int Id, IFormFile file)
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
-                var result = await manager.ImageUpload(Id,file,Email);
+                var result = await manager.ImageUpload(Id, file, Email);
                 return Ok(new { result });
             }
             catch (Exception ex)
@@ -212,7 +215,7 @@ namespace FundooApi.Controllers
         //}
         [HttpPost]
         [Route("Reminder")]
-        public async Task<IActionResult> Reminder (NotesModel model)
+        public async Task<IActionResult> Reminder(NotesModel model)
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
@@ -220,7 +223,7 @@ namespace FundooApi.Controllers
                 var result = await manager.Remindr(model, Email);
                 return Ok(new { result });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

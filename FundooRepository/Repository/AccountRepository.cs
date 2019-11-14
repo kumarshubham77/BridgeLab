@@ -21,14 +21,14 @@ namespace FundooRepository.Repository
     public class AccountRepository : IAccountRepository
     {
         //Making the UserContext private and passing a name along with the readonly.
-        private readonly UserContext _context;
+        private readonly UserContexts _context;
         /// <summary>
         /// To make it accessible Creating a public Constructor passing UserContext as a Parameter
         /// now assigning _context to newly created context.
         /// Initializes a new instance of the <see cref="AccountRepository"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public AccountRepository(UserContext context)
+        public AccountRepository(UserContexts context)
         {
             _context = context;
         }
@@ -44,14 +44,14 @@ namespace FundooRepository.Repository
             UserModel userm = new UserModel()
             {
                 //Initializing every property declared in the UserModel class.
-                FirstName =user.FirstName,
-                LastName=user.LastName,
-                Email=user.Email,
-                Password=user.Password,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Password = user.Password,
                 CardType = user.CardType
             };
             //Adding each values with all the properties to the database.
-            _context.users.Add(userm);
+            _context.user.Add(userm);
             //Run the following qwery and return as an Task type.
             return Task.Run(() => _context.SaveChanges());
         }
@@ -64,7 +64,7 @@ namespace FundooRepository.Repository
         public Task LogIn(LoginModel login)
         {
             // Comparing the Email and Database Login similar as the Password and storing it in a variable.
-            var result = _context.users.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
+            var result = _context.user.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
             if (result != null)
             {
 
@@ -89,7 +89,7 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task ResetPassword(ResetPasswordModel reset)
         {
-            var result = _context.users.Where(i => i.Email == reset.Email && i.Password == reset.OldPassword).FirstOrDefault();
+            var result = _context.user.Where(i => i.Email == reset.Email && i.Password == reset.OldPassword).FirstOrDefault();
             if (result != null)
             {
                 result.Password = reset.NewPassword;
@@ -130,7 +130,7 @@ namespace FundooRepository.Repository
             };
             smtpClient.EnableSsl = true;
             smtpClient.Send(mailMessage);
-            
+
         }
         /// <summary>
         /// Forget Password.
@@ -139,7 +139,7 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task Forgot(ForgotPassword forgot)
         {
-            var result = _context.users.Where(i => i.Email == forgot.Email).FirstOrDefault();
+            var result = _context.user.Where(i => i.Email == forgot.Email).FirstOrDefault();
             if (result != null)
             {
                 SendPasswordResetEmail(forgot.Email, result.FirstName);
@@ -157,8 +157,8 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task<UserModel> FindByEmailAsync(string email)
         {
-            var result = _context.users.Find(email);
-            return Task.Run(()=>result);
+            var result = _context.user.Find(email);
+            return Task.Run(() => result);
         }
         /// <summary>
         /// Logins the with facebook.
@@ -168,7 +168,7 @@ namespace FundooRepository.Repository
         public Task LoginWithFacebook(LoginWithFacebookModel login)
         {
             // Comparing the Email and Database Login similar as the Password and storing it in a variable.
-            var result = _context.users.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
+            var result = _context.user.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
             if (result != null)
             {
 
@@ -186,7 +186,7 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task LoginWithGoogle(LoginWithGoogleModel login)
         {
-            var result = _context.users.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
+            var result = _context.user.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
             if (result != null)
             {
 

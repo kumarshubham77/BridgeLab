@@ -12,7 +12,7 @@ namespace BusinessManager.Interfaces
 {
     /// <summary>
     /// creating Interface ILabelManager
-    /// </summary>
+    /// </summary>s
     public interface ILabelManager
     {
         Task<string> Add(LabelModel notes, string Email);

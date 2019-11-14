@@ -67,6 +67,6 @@ namespace BusinessManager.Manager
             return "Update Successfull";
         }
 
-        
+
     }
 }
