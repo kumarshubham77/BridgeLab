@@ -195,21 +195,21 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost]
-        [Route("ProfilePic")]
-        public async Task<IActionResult> ProfilePicUpload(int Id,IFormFile file)
-        {
-            string Email = User.Claims.First(c => c.Type == "Email").Value;
-            try
-            {
-                var result = await manager.ProfilePictureUP(Id, file, Email);
-                return Ok(new { result });
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //[HttpPost]
+        //[Route("ProfilePic")]
+        //public async Task<IActionResult> ProfilePicUpload(int Id,IFormFile file)
+        //{
+        //    string Email = User.Claims.First(c => c.Type == "Email").Value;
+        //    try
+        //    {
+        //        var result = await manager.ProfilePictureUP(Id, file, Email);
+        //        return Ok(new { result });
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
         [HttpPost]
         [Route("Reminder")]
         public async Task<IActionResult> Reminder (NotesModel model)
@@ -221,6 +221,21 @@ namespace FundooApi.Controllers
                 return Ok(new { result });
             }
             catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
+        [Route("RemoveReminder")]
+        public async Task<IActionResult> RemoveReminder(NotesModel model)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.RemReminder(model, Email);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

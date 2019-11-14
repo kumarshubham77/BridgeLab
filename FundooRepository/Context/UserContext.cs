@@ -4,6 +4,7 @@
 // </copyright>
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
+using Common.Models.Collaborator;
 using Common.Models.LabelModels;
 using Common.Models.NotesModels;
 using Common.Models.UserModels;
@@ -35,5 +36,6 @@ namespace FundooRepository.Context
         public DbSet<UserModel> users { get; set; }
         public DbSet<NotesModel> notes { get; set; }
         public DbSet<LabelModel> label { get; set; }
+        public DbSet<CollaboratorModel> collaborators { get; set; }
     }
 }

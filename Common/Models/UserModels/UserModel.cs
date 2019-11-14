@@ -19,8 +19,20 @@ namespace Common.Models.UserModels
         private string email;
         private string password;
         private string cardType;
+        private string profilePicture;
         //Making get set of each of the following declared top items
         //Just to get access.
+        public string ProfilePicture
+        {
+            get
+            {
+                return this.profilePicture;
+            }
+            set
+            {
+                this.profilePicture = value;
+            }
+        }
         public string FirstName
         {
             get

@@ -27,6 +27,8 @@ namespace BusinessManager.Interfaces
         Task<string> ImageUpload(int Id, IFormFile file, string email);
         Task<string> Remindr(NotesModel notes, string Email);
         Task<string> Colour(NotesModel model, string Email);
-        Task<string> ProfilePictureUP(int Id, IFormFile file, string email);
+        //Task<string> ProfilePictureUP(int Id, IFormFile file, string email);
+        Task<string> RemReminder(NotesModel model, string Email);
+
     }
 }

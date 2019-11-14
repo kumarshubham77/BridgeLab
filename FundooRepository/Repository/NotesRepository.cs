@@ -97,7 +97,7 @@ namespace FundooRepository.Repository
             bool note = _context.notes.Any(p => p.Email == Email);
             if(note)
             {
-                return Task.Run(()=>_context.notes.Where(p => p.Email == Email).ToList());
+                return Task.Run(()=>_context.notes.Where(p => (p.Email == Email)).ToList());
             }
             else
             {
@@ -221,38 +221,6 @@ namespace FundooRepository.Repository
             CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
             var image = new ImageUploadParams()
             {
-                File = new FileDescription(File)
-            };
-            var uploadResult = cloudinary.Upload(image);
-            if (uploadResult.Error != null)
-                throw new Exception(uploadResult.Error.Message);
-            var result = _context.notes.Where(i => i.ID == Id).FirstOrDefault();
-            if (result != null)
-            {
-                if (result.Email.Equals(email))
-                {
-                    result.Images = uploadResult.Uri.ToString();
-                    return Task.Run(() => _context.SaveChanges());
-
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-        public Task ProfilePicture(int Id, IFormFile file, string email)
-        {
-            var path = file.OpenReadStream();
-            var File = file.FileName;
-            CloudinaryDotNet.Account account = new CloudinaryDotNet.Account("dalm6prqr", "742568932831953", "x9gQyQphOCQ0Tfp0ScFOYrj0DWM");
-            CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
-            var image = new ImageUploadParams()
-            {
                 File = new FileDescription(File,path)
             };
             var uploadResult = cloudinary.Upload(image);
@@ -277,6 +245,38 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+        //public Task ProfilePicture(int Id, IFormFile file, string email)
+        //{
+        //    var path = file.OpenReadStream();
+        //    var File = file.FileName;
+        //    CloudinaryDotNet.Account account = new CloudinaryDotNet.Account("dalm6prqr", "742568932831953", "x9gQyQphOCQ0Tfp0ScFOYrj0DWM");
+        //    CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
+        //    var image = new ImageUploadParams()
+        //    {
+        //        File = new FileDescription(File,path) 
+        //    };
+        //    var uploadResult = cloudinary.Upload(image);
+        //    if (uploadResult.Error != null)
+        //        throw new Exception(uploadResult.Error.Message);
+        //    var result = _context.notes.Where(i => i.ID == Id).FirstOrDefault();
+        //    if (result != null)
+        //    {
+        //        if (result.Email.Equals(email))
+        //        {
+        //            result.Images = uploadResult.Uri.ToString();
+        //            return Task.Run(() => _context.SaveChanges());
+
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
         public Task UnPin(int ID, string Email)
         {
             var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
@@ -306,6 +306,26 @@ namespace FundooRepository.Repository
                 if(result.Email.Equals(Email))
                 {
                     result.Reminder = model.Reminder;
+                    return Task.Run(() => _context.SaveChanges());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Task RemoveReminder(NotesModel model, string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == model.ID).FirstOrDefault();
+            if(result != null)
+            {
+                if(result.Email.Equals(Email))
+                {
+                    result.Reminder = null;
                     return Task.Run(() => _context.SaveChanges());
                 }
                 else

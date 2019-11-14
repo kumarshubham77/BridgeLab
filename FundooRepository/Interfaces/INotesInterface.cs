@@ -29,7 +29,8 @@ namespace FundooRepository.Interfaces
         Task UnPin(int ID, string Email);
         Task ImageUpload(int Id, IFormFile file, string email);
         Task Remind(NotesModel model, string Email);
+        Task RemoveReminder(NotesModel model, string Email);
         Task Color(NotesModel model, string Email);
-        Task ProfilePicture(int Id, IFormFile file, string email);
+        //Task ProfilePicture(int Id, IFormFile file, string email);
     }
 }

@@ -60,10 +60,10 @@ namespace Common.Models.NotesModels
         /// </summary>
         private string color;
         /// <summary>
-        /// The add profile picture
+        /// The add image
         /// </summary>
-        private string addProfilePicture;
-        //Declaring ID as a Primary Key.
+        ///private string addImage;
+       
         [Key]
         public int ID
         {
@@ -199,16 +199,16 @@ namespace Common.Models.NotesModels
                 this.color = value;
             }
         }
-        public string AddProfilePicture
-        {
-            get
-            {
-                return this.addProfilePicture;
-            }
-            set
-            {
-                this.addProfilePicture = value;
-            }
-        }
+        //public string AddImage
+        //{
+        //    get
+        //    {
+        //        return this.addImage;
+        //    }
+        //    set
+        //    {
+        //        this.addImage = value;
+        //    }
+        //}
     }
 }

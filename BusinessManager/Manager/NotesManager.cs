@@ -102,10 +102,16 @@ namespace BusinessManager.Manager
             return "Colour Sets Now";
         }
 
-        public async Task<string> ProfilePictureUP(int ID, IFormFile file, string email)
+        //public async Task<string> ProfilePictureUP(int ID, IFormFile file, string email)
+        //{
+        //    await notes.ProfilePicture(ID, file, email);
+        //    return "Profile photo Added Successfully";
+        //}
+
+        public async Task<string> RemReminder(NotesModel model, string Email)
         {
-            await notes.ProfilePicture(ID, file, email);
-            return "Profile photo Added Successfully";
+            await notes.RemoveReminder(model, Email);
+            return "Removed Reminder";
         }
 
 
