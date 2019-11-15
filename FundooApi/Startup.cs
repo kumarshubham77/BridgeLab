@@ -19,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Collections.Generic;
 using System.Text;
 
 namespace FundooApi
@@ -57,6 +58,18 @@ namespace FundooApi
                     Title = "FUNDOO NOTE API",
                     Description = "ASP.NET Core Web API"
                 });
+                var security = new Dictionary<string, IEnumerable<string>>
+               {
+                   {"Bearer",new string[0]}
+               };
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description = "JWt Authorization header using the bearer scheme",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
+                c.AddSecurityRequirement(security);
             });
 
 

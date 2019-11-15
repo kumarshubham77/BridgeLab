@@ -35,6 +35,7 @@ namespace FundooRepository.Repository
                 Description = model.Description,
                 CreatedDate = DateTime.Now
 
+
             };
             _context.notes.Add(note);
             return Task.Run(() => _context.SaveChanges());
@@ -359,7 +360,44 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+        public Task PutIndexValue(NotesModel model, string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == model.ID).FirstOrDefault();
+            if(result != null)
+            {
+                if(result.Email.Equals(Email))
+                {
+                    result.IndexValue = model.IndexValue;
+                    return Task.Run(() => _context.SaveChanges());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Task DragandDrop(NotesModel model, string Email, int IndexValue)
+        {
+            //var result = _context.notes.Where(j => j.ID == model.ID).FirstOrDefault();
+            //if(result != null)
+            //{
+            //    if(result.Email.Equals(Email))
+            //    {
 
+            //    }
+            //}
+            return null;
+        }
 
+        
+
+        //public Task DragandDrop(NotesModel model, string Email)
+        //{
+
+        //}
     }
 }

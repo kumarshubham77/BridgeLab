@@ -32,5 +32,7 @@ namespace FundooRepository.Interfaces
         Task RemoveReminder(NotesModel model, string Email);
         Task Color(NotesModel model, string Email);
         //Task ProfilePicture(int Id, IFormFile file, string email);
+        Task PutIndexValue(NotesModel model, string Email);
+        //Task DragandDrop(NotesModel model, string Email);
     }
 }

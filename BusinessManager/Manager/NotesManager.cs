@@ -114,6 +114,12 @@ namespace BusinessManager.Manager
             return "Removed Reminder";
         }
 
+        public async Task<string> PuttingIndexValue(NotesModel model, string Email)
+        {
+            await notes.PutIndexValue(model, Email);
+            return "Index Value Added";
+        }
+
 
 
         //public async Task<string> Reminder(NotesModel notes, string Email)

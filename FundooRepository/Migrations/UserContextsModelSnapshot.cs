@@ -67,6 +67,8 @@ namespace FundooRepository.Migrations
 
                     b.Property<string>("Images");
 
+                    b.Property<int>("IndexValue");
+
                     b.Property<bool>("IsArchive");
 
                     b.Property<bool>("IsPin");
