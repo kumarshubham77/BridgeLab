@@ -35,5 +35,20 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPost]
+        [Route("RemoveCollaborator")]
+        public async Task<IActionResult> RemoveCollaborator(CollaboratorModels model)
+        {
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                var result = await manager.RCollaborator(model, Email);
+                return Ok(new { result });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

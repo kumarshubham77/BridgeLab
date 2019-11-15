@@ -46,6 +46,15 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+        public Task RemoveCollabrator(CollaboratorModels model, string Email)
+        {
+            var result = _context.collaborator.Where(i => i.Noteid == model.Noteid && i.ReceiverEmail == model.ReceiverEmail).FirstOrDefault();
+            if(result != null)
+            {
+                _context.collaborator.Remove(result);
+            }
+            return Task.Run(() => _context.SaveChanges());
+        }
         public Task<bool> Add(CollaboratorModels model, string email)
         {
             var data = new CollaboratorModels()
@@ -58,9 +67,6 @@ namespace FundooRepository.Repository
             return Task.Run(() => true);
         }
 
-        public Task RemoveCollabrator(CollaboratorModels model, string Email)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

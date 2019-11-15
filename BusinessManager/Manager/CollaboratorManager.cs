@@ -17,5 +17,11 @@ namespace BusinessManager.Manager
             await collab.AddCollabrator(model, Email);
             return "Added Collaborator";
         }
+
+        public async Task<string> RCollaborator(CollaboratorModels model, string Email)
+        {
+            await collab.RemoveCollabrator(model, Email);
+            return "Removed Collaborator";
+        }
     }
 }
