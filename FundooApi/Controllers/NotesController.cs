@@ -92,6 +92,23 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("Displays")]
+        public async Task<IActionResult> Displays(string Search)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.DisplayM(Email,Search);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("Archive")]
         public async Task<IActionResult> Archive(int ID)
@@ -266,6 +283,21 @@ namespace FundooApi.Controllers
             try
             {
                 var result = await manager.PuttingIndexValue(model, Email);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
+        [Route("Drag")]
+        public async Task<IActionResult> DragAndDrop(int drag,int drop)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.DragAndDrop(drag,drop,Email);
                 return Ok(new { result });
             }
             catch (Exception ex)

@@ -6,9 +6,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 using BusinessManager.Interfaces;
 using BusinessManager.Manager;
+using Common.Models.NotesModels;
 using Common.Models.UserModels;
 using FundooRepository.Context;
 using FundooRepository.Interfaces;
+using FundooRepository.Interfaces.RedisCache;
 using FundooRepository.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -36,6 +38,8 @@ namespace FundooApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RedisSetting>(Configuration.GetSection("RedisSetting"));
+
             services.Configure<ApplicationSetting>(Configuration.GetSection("ApplicationSetting"));
             services.AddDbContextPool<UserContexts>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDBConncetion")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -48,6 +52,7 @@ namespace FundooApi
             services.AddTransient<ILabelManager, Labelmanager>();
             services.AddTransient<ICollaboratorInterface, CollaboratorRepository>();
             services.AddTransient<ICollaboratorManager, CollaboratorManager>();
+            services.AddTransient<ICacheProvider, RedisCacheProvider>();
 
             //Implementation of Swagger 
             services.AddSwaggerGen(c =>
