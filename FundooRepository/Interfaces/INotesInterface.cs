@@ -137,6 +137,7 @@ namespace FundooRepository.Interfaces
         /// <param name="Search">The search.</param>
         /// <returns></returns>
         Task<List<NotesModel>> Display(string Email, string Search);
+        Task DeleteElementByID(int ID, string Email);
         //Task DragandDrop(NotesModel model, string Email);
     }
 }

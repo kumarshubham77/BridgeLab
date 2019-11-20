@@ -53,6 +53,8 @@ namespace FundooApi
             services.AddTransient<ICollaboratorInterface, CollaboratorRepository>();
             services.AddTransient<ICollaboratorManager, CollaboratorManager>();
             services.AddTransient<ICacheProvider, RedisCacheProvider>();
+            services.AddTransient<IAdminInterface, AdminRepository>();
+            services.AddTransient<IAdminManager, AdminManager>();
 
             //Implementation of Swagger 
             services.AddSwaggerGen(c =>

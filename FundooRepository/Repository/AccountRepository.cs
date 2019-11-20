@@ -4,11 +4,16 @@
 // </copyright>
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
+using Common.Models.AdminModels;
 using Common.Models.UserModels;
 using FundooRepository.Context;
 using FundooRepository.Interfaces;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,15 +27,17 @@ namespace FundooRepository.Repository
     {
         //Making the UserContext private and passing a name along with the readonly.
         private readonly UserContexts _context;
+        private readonly IAdminInterface _admin;
         /// <summary>
         /// To make it accessible Creating a public Constructor passing UserContext as a Parameter
         /// now assigning _context to newly created context.
         /// Initializes a new instance of the <see cref="AccountRepository"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public AccountRepository(UserContexts context)
+        public AccountRepository(UserContexts context,IAdminInterface admin)
         {
             _context = context;
+            _admin = admin;
         }
         /// <summary>
         /// Creates the specified user.
@@ -61,14 +68,40 @@ namespace FundooRepository.Repository
         /// </summary>
         /// <param name="login">The login.</param>
         /// <returns></returns>
-        public Task LogIn(LoginModel login)
+        public async Task<string> LogIn(LoginModel login)
         {
             // Comparing the Email and Database Login similar as the Password and storing it in a variable.
             var result = _context.user.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
             if (result != null)
             {
+               
+               
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(new Claim[]
+                        {
+                           new Claim("Email", result.Email)
+                        }),
+                        Expires = DateTime.UtcNow.AddDays(1),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var cacheKey = login.Email;
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    var token = tokenHandler.WriteToken(securityToken);
 
-                return Task.Run(() => _context.SaveChanges());
+                    AdminUserDetails add = new AdminUserDetails()
+                     {
+                    UserEmailId = result.Email,
+                    LogInTime = DateTime.Now.ToString(),
+                    Services = result.CardType
+
+
+
+                     };
+                _context.adminuserdetails.Add(add);
+                _context.SaveChanges();
+                return await Task.Run(() => token);
             }
             else
             {

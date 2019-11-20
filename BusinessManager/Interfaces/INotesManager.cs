@@ -140,5 +140,7 @@ namespace BusinessManager.Interfaces
         /// <returns></returns>
         Task<List<NotesModel>> DisplayM( string Email, string Search);
 
+        Task<string> DeleteElementbyId(int ID, string Email);
+
     }
 }

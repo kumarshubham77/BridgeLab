@@ -50,6 +50,7 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task Create(NotesModel model, string Email)
         {
+            var result = _context.user.Where(i=>i.Email==Email).FirstOrDefault();
             model.Email = Email;
             var note = new NotesModel()
             {
@@ -62,6 +63,7 @@ namespace FundooRepository.Repository
 
             };
             _context.notes.Add(note);
+            result.TotalNotes++;
             return Task.Run(() => _context.SaveChanges());
 
         }
@@ -144,7 +146,7 @@ namespace FundooRepository.Repository
             //    return null;
             //}
             SetValue(email);
-            var result = Test_GetValue();
+            var result = GetValue(email);
             return Task.Run(()=>result);
         }
         /// <summary>
@@ -154,11 +156,11 @@ namespace FundooRepository.Repository
         public void SetValue(string email)
         {
             var result = _context.notes.Where(i => i.Email == email).ToList();
-            _cacheProvider.Set("Notes", result);
+            _cacheProvider.Set(email, result);
         }
-        public List<NotesModel> Test_GetValue()
+        public List<NotesModel> GetValue(string email)
         {
-            var contacts = _cacheProvider.Get<List<NotesModel>>("Notes");
+            var contacts = _cacheProvider.Get<List<NotesModel>>(email);
             return contacts;
 
         }
@@ -401,11 +403,34 @@ namespace FundooRepository.Repository
                 {
                     return null;
                 }
+                
             }
             else
             {
                 return null;
             }
+        }
+        public Task DeleteElementByID(int ID, string Email)
+        {
+            var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
+            if(result != null)
+            {
+                if(result.Email.Equals(Email))
+                {
+                    _context.notes.Remove(result);
+                    return Task.Run(() => _context.SaveChanges());
+                }
+                else
+                {
+                    return null;
+                }
+                
+            }
+            else
+            {
+                return null;
+            }
+            
         }
         /// <summary>
         /// Reminds the specified model.
@@ -602,6 +627,8 @@ namespace FundooRepository.Repository
         }
 
         
+
+
 
         //public Task DragandDrop(NotesModel model, string Email)
         //{

@@ -19,7 +19,7 @@ namespace FundooRepository.Interfaces
         //does not return a value and usually executes Asynchronously(Occuring at the same time).
         //Passing the Models according the Task performed.
         Task Create(UserModel user);
-        Task LogIn(LoginModel login);
+        Task<string> LogIn(LoginModel login);
         Task ResetPassword(ResetPasswordModel reset);
         Task Forgot(ForgotPassword forgot);
         Task<UserModel> FindByEmailAsync(string email);

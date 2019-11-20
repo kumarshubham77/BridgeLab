@@ -19,6 +19,49 @@ namespace FundooRepository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Common.Models.AdminModels.AdminModel", b =>
+                {
+                    b.Property<int>("AdminID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.HasKey("AdminID");
+
+                    b.ToTable("admin");
+                });
+
+            modelBuilder.Entity("Common.Models.AdminModels.AdminUserDetails", b =>
+                {
+                    b.Property<int>("Sno")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LogInTime")
+                        .IsRequired();
+
+                    b.Property<string>("Services")
+                        .IsRequired();
+
+                    b.Property<string>("UserEmailId")
+                        .IsRequired();
+
+                    b.HasKey("Sno");
+
+                    b.ToTable("adminuserdetails");
+                });
+
             modelBuilder.Entity("Common.Models.Collaborator.CollaboratorModels", b =>
                 {
                     b.Property<int>("ID")
@@ -95,11 +138,19 @@ namespace FundooRepository.Migrations
 
                     b.Property<string>("FirstName");
 
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<string>("LastName");
 
                     b.Property<string>("Password");
 
                     b.Property<string>("ProfilePicture");
+
+                    b.Property<string>("Status");
+
+                    b.Property<int>("TotalNotes");
 
                     b.HasKey("Email");
 

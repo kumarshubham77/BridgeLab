@@ -45,8 +45,8 @@ namespace BusinessManager.Manager
         /// <returns></returns>
         public async Task<string> LogIn(LoginModel login)
         {
-            await _repository.LogIn(login);
-            return "Login Successfull";
+            var Token = await _repository.LogIn(login);
+            return Token;
         }
         /// <summary>
         /// Resets the password.

@@ -108,6 +108,21 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpDelete]
+        [Route("DeleteElementByID")]
+        public async Task<IActionResult> DeleteElementByID (int ID)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                var result = await manager.DeleteElementbyId(ID,Email);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpPost]
         [Route("Archive")]

@@ -55,10 +55,17 @@ namespace FundooApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("LogIn")]
-        public async Task<IActionResult> LogIn(LoginModel login)
+        public async Task<Object> LogIn(LoginModel login)
         {
-            var result = await _manager.LogIn(login);
-            return Ok(new { result });
+            try
+            {
+                var result = await _manager.LogIn(login);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         /// <summary>
         /// Resets the password.

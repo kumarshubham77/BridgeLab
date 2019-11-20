@@ -220,7 +220,13 @@ namespace BusinessManager.Manager
             return "Index Value Added";
         }
 
-        
+        public async Task<string> DeleteElementbyId(int ID, string Email)
+        {
+            await notes.DeleteElementByID(ID, Email);
+            return "Successfully Deleted that Particualr ID Database";
+        }
+
+
 
         //public async Task<string> Reminder(NotesModel notes, string Email)
         //{
