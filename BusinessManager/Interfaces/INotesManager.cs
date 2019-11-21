@@ -71,6 +71,8 @@ namespace BusinessManager.Interfaces
         /// <param name="Email">The email.</param>
         /// <returns></returns>
         Task<string> UnTrash(int ID, string Email);
+        Task<string> Deleteall(string Email);
+        Task<string> Recoverall(string Email, NotesModel[] ID);
 
         //Task<string> Reminder(NotesModel notes, string Email);        
         /// <summary>

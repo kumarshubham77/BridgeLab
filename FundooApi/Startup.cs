@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -79,7 +80,12 @@ namespace FundooApi
                 c.AddSecurityRequirement(security);
             });
 
-
+            services.AddMvc(options =>
+            {
+                options.ReturnHttpNotAcceptable = true;
+              ///  options.RespectBrowserAcceptHeader = true;                //options.RespectBrowserAcceptHeader = true;
+                options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+            });
 
 
 

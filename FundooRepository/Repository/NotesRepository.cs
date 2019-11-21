@@ -564,7 +564,7 @@ namespace FundooRepository.Repository
         public int AddIndexValue(string email)
         {
             var result = _context.notes.Where(i => i.Email == email).ToArray();
-            if (result != null)
+            if (result.Length!=0)
             {
                 int max = result[0].IndexValue;
                 for (int i = 0; i < result.Length; i++)
@@ -626,7 +626,39 @@ namespace FundooRepository.Repository
             }
         }
 
-        
+        public Task DeleteAll(string Email)
+        {
+            var result = _context.notes.Where(j => j.Email == Email && j.IsTrash == true).ToList();
+            if(result.Count != 0)
+            {
+                _context.notes.RemoveRange(result);
+                return Task.Run(() => _context.SaveChanges());
+            }
+            return null;
+        }
+
+        public Task RecoverAll(string Email, NotesModel[] ID)
+        {
+            var result = _context.notes.Where(i => i.Email == Email && i.IsTrash == true).ToList();
+            if(result != null)
+            {
+                foreach(var list in result)
+                {
+                    for (int i = 0; i < ID.Length; i++)
+                    {
+                        if (list.ID == ID[i].ID)
+                        {
+                            list.IsTrash = false;
+                            _context.notes.Update(list);
+                        }
+                    }
+                }
+                return Task.Run(() => _context.SaveChanges());
+            }
+            return null;
+        }
+
+
 
 
 

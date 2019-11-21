@@ -133,6 +133,16 @@ namespace BusinessManager.Manager
             await notes.UnTrash(ID, Email);
             return "UnTrash Succesfull";
         }
+        public async Task<string> Deleteall(string Email)
+        {
+            await notes.DeleteAll(Email);
+            return "Deleted all Trash";
+        }
+        public async Task<string> Recoverall (string Email, NotesModel[] ID)
+        {
+            await notes.RecoverAll(Email,ID);
+            return "Recovered";
+        }
         /// <summary>
         /// Pins the specified identifier.
         /// </summary>
@@ -225,6 +235,8 @@ namespace BusinessManager.Manager
             await notes.DeleteElementByID(ID, Email);
             return "Successfully Deleted that Particualr ID Database";
         }
+
+        
 
 
 

@@ -138,6 +138,8 @@ namespace FundooRepository.Interfaces
         /// <returns></returns>
         Task<List<NotesModel>> Display(string Email, string Search);
         Task DeleteElementByID(int ID, string Email);
+        Task DeleteAll(string Email);
+        Task RecoverAll(string Email, NotesModel[] ID);
         //Task DragandDrop(NotesModel model, string Email);
     }
 }

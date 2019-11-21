@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -79,17 +80,17 @@ namespace FundooApi.Controllers
         }
         [HttpGet]
         [Route("Show")]
-        public async Task<IActionResult> Show()
+        public async Task<List<NotesModel>> Show()
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
                 var result = await manager.Show(Email);
-                return Ok(new { result });
+                return result; 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex.Message);
+                return null;
             }
         }
 
@@ -185,6 +186,40 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPost]
+        [Route("DeleteAllTrash")]
+        public async Task<IActionResult> DeleteAllTrash(string Email)
+        {
+            try
+            {
+                string email = User.Claims.First(c => c.Type == "Email").Value;
+                var result = await manager.Deleteall(email);
+                return Ok(new { result });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("RecoverAllTrash")]
+        public async Task<IActionResult> RecoverAllTrash([FromBody]NotesModel[] ID)
+        {
+           
+            try
+            {
+                string email = User.Claims.First(c => c.Type == "Email").Value;
+               var result = await manager.Recoverall(email,ID);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         [HttpPost]
         [Route("IsPin")]
         public async Task<IActionResult> Pin(int ID)
