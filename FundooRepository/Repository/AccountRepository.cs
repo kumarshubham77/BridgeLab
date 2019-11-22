@@ -8,6 +8,7 @@ using Common.Models.AdminModels;
 using Common.Models.UserModels;
 using FundooRepository.Context;
 using FundooRepository.Interfaces;
+using FundooRepository.Interfaces.RedisCache;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -28,16 +29,18 @@ namespace FundooRepository.Repository
         //Making the UserContext private and passing a name along with the readonly.
         private readonly UserContexts _context;
         private readonly IAdminInterface _admin;
+        private readonly ICacheProvider cacheProvider;
         /// <summary>
         /// To make it accessible Creating a public Constructor passing UserContext as a Parameter
         /// now assigning _context to newly created context.
         /// Initializes a new instance of the <see cref="AccountRepository"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public AccountRepository(UserContexts context,IAdminInterface admin)
+        public AccountRepository(UserContexts context,IAdminInterface admin, ICacheProvider cache)
         {
             _context = context;
             _admin = admin;
+            cacheProvider = cache;
         }
         /// <summary>
         /// Creates the specified user.
@@ -101,11 +104,23 @@ namespace FundooRepository.Repository
                      };
                 _context.adminuserdetails.Add(add);
                 _context.SaveChanges();
+                var key = result.ID.ToString() + "-" + result.ID;
+                SetValuess(login.Email, key);
                 return await Task.Run(() => token);
+
+                
             }
             else
             {
                 return null;
+            }
+        }
+        public void SetValuess(string Email, string key)
+        {
+            var result = _context.notes.Where(i => i.Email == Email).ToList();
+            if (result.Count != 0)
+            {
+                cacheProvider.Set(key, result);
             }
         }
 

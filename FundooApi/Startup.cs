@@ -79,11 +79,11 @@ namespace FundooApi
                 });
                 c.AddSecurityRequirement(security);
             });
-
+            //Implementation of Content-Negotiator.
             services.AddMvc(options =>
             {
                 options.ReturnHttpNotAcceptable = true;
-              ///  options.RespectBrowserAcceptHeader = true;                //options.RespectBrowserAcceptHeader = true;
+              ///  options.RespectBrowserAcceptHeader = true;                
                 options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
             });
 
