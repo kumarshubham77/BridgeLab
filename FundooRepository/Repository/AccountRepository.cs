@@ -104,7 +104,7 @@ namespace FundooRepository.Repository
                      };
                 _context.adminuserdetails.Add(add);
                 _context.SaveChanges();
-                var key = result.ID.ToString() + "-" + result.ID;
+                var key = result.ID.ToString() + "-" + result.Email;
                 SetValuess(login.Email, key);
                 return await Task.Run(() => token);
 
