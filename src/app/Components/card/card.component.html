@@ -1,0 +1,44 @@
+<div>
+<mat-card class ="header" *ngIf="head">
+  <div class="Headerone">
+  <b style="margin-left: 180px;"> Card Seclector. Please Select any Card to Register.</b></div>
+</mat-card>
+<div class ="firstcard">
+<mat-card class="front" *ngIf="!cardone">
+  <p><b>&nbsp;Price :</b>&nbsp;$ 49<u>&nbsp;&nbsp;per Month</u>
+    <br><br>
+    <b style="color:crimson;"><u>Basic Service</u></b>
+    <br>
+    <br>
+    --> Basic Services Provided
+    <br>
+    --> You can add only add Title and Description only. 
+    <br>
+    <br>
+    <button mat-button color="accent" class="buttonfirst" (click)="basic()">Click Here !</button>
+  
+  </p>
+</mat-card>
+<mat-card class="front" style="margin-left: 33px;" *ngIf="!cardtwo">
+    <p><b>&nbsp;Price :</b>&nbsp;$ 99<u>&nbsp;&nbsp;per Month</u>
+    <br><br>
+    <b style="color:crimson;"><u>Advacnced Service</u></b>
+    <br>
+    <br>
+    --> Advanced Services Provided
+    <br>
+    --> You can use full features associated with the Advanced Service option. 
+    <br>
+    
+    <button mat-button color="accent" class="buttonfirst" (click)="advance()">Click Here !</button>
+    </p>
+</mat-card>
+</div>
+<div class ="secondcard">
+    <mat-card class="back" *ngIf="!cardone">
+        <!-- <button mat-button color="accent" class="buttonfirst">Click Here !</button> -->
+    </mat-card>
+    <mat-card class="back" *ngIf="!cardtwo">
+    </mat-card>
+    </div>
+  </div>
