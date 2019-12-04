@@ -4,12 +4,40 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Components/login/login.component';
 import { CardComponent } from './Components/card/card.component';
 import { DashboradComponent } from './Components/dashborad/dashborad.component';
+import { ForgotComponent } from './Components/forgot/forgot.component';
+import { ResetComponent } from './Components/reset/reset.component';
+
 
 const routes: Routes = [
-  { path: 'register', component: RegistrationComponent },
-  { path : '', component: LoginComponent},
-  {path: 'card', component :CardComponent},
-  {path: 'dashboard', component :DashboradComponent}
+  {
+    path:'', 
+    redirectTo:'/card',
+    pathMatch:'full'
+  },
+  {
+    path: 'card',
+     component :CardComponent
+    },
+  { 
+    path: 'register',
+    component: RegistrationComponent 
+  },  
+  { 
+    path:'login', 
+    component: LoginComponent
+  },  
+  {
+    path: 'dashboard', 
+    component :DashboradComponent
+  },
+  {
+    path: 'forgot',
+    component :ForgotComponent
+  },
+  {
+    path: 'reset',
+    component :ResetComponent
+  }
   
 ];
 @NgModule({

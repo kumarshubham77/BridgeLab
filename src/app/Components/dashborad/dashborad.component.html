@@ -1,6 +1,82 @@
 <div>
-  <mat-card>
+    <div>
+      <mat-toolbar class="toolbar">
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>
+            menue
+          </mat-icon>
+        </button>
+        <div>
+          <img class="image" src =" ..\assets\gusion.jpg">
+        </div>
+        <div class="title">
+          Fundoo Keep
+        </div>
+        <button mat-button [matMenuTriggerFor]="menu" class="drop">Menu</button>
     
-      <!-- <input type="image" src="C:\Users\Bridgelabz\Downloads\icon.png" /> -->
-  </mat-card>
+        <mat-menu #menu="matMenu">
+    <!-- <button mat-menu-item></button> -->
+    <button mat-menu-item>LogOut</button>
+    </mat-menu>
+         </mat-toolbar>
+     
+      
+      
+    </div>
+   
+   <mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <div class="paddingnote">
+        <div class="options">
+        <div
+        (click)="ff()"
+        >
+          <i class="material-icons">lightbulb_outline</i>
+          Notes
+          
+          </div>
+          <!-- <button mat-button class="button">Notes</button> -->
+        </div>
+        <div class="options">
+          <i class="material-icons-outlined">notifications_none</i>
+          <button mat-button class="button">Reminders</button>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="options2">
+          <div *ngFor="let onelabel of label">
+            <div fxLayout="row">
+              <img src="../../../assets/labels.svg">
+          
+          </div>
+        </div>
+        <div class="row">
+          <i class="material-icons-outlined" mat-icon-button matTooltip="Label">edit</i>
+          <button mat-button class="button" (click)="openLabel()">Edit labels</button>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div class="options">
+        <i class="material-icons-outlined">archive</i>
+        <button mat-button class="button">Archive</button>
+      </div>
+      <div class="options">
+        <i class="material-icons-outlined">delete</i>
+        <button mat-button class="button">Trash</button>
+      </div>
 </div>
+
+ <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+
+</button> 
+
+</mat-drawer>
+<mat-drawer-content>
+  <app-notes> </app-notes>
+  <router-outlet></router-outlet>
+</mat-drawer-content>
+</mat-drawer-container>
+    
+ </div>
+  

@@ -1,0 +1,22 @@
+
+  <div class="login_contain">
+      <mat-card class="contain">
+        <form [formGroup]='forgotUser'>
+        <div class="heading3"><u>Enter Email Here :</u></div>
+           <div class="ForEmail"> 
+              <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="Email"required formControlName="email">
+                  <button class="button"(click)="onclick()">Send</button>
+              <mat-error *ngIf="forgotUser.get('email').hasError('required')">
+                Enter Email.
+              </mat-error>
+              <mat-error *ngIf="forgotUser.get('email').hasError('email')">
+                Enter Valid Email.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          </form>
+          </mat-card>
+          </div>
+          

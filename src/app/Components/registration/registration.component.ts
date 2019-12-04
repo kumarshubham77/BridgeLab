@@ -9,13 +9,17 @@ import { MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  loginUser: FormGroup;
+
+  register: FormGroup;
+  service:string;  
   form: NgForm;
-  card;
+  cardtype=JSON.parse(localStorage.getItem('userData'));
   constructor(private userService : UserServiceService,public snackBar:MatSnackBar,private route:Router) { }
 
   ngOnInit() {
-    this.loginUser = new FormGroup({
+    this.service = localStorage.getItem('serviceName');
+    console.log("service-->",this.service);   
+    this.register = new FormGroup({
       firstName: new FormControl('', [Validators.pattern('^[a-zA-Z]{4,15}'), Validators.required]),
       lastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{4,15}')]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -23,18 +27,19 @@ export class RegistrationComponent implements OnInit {
       confirmPassword: new FormControl('', [Validators.required])
     });
   }
+
   onSubmit() {
     try{
-      console.log("Password--->",this.loginUser.controls.password.value);
-      console.log("Confirm Password--->",this.loginUser.controls.confirmPassword.value);
-      if(this.loginUser.controls.password.value===this.loginUser.controls.confirmPassword.value)
+      console.log("Password--->",this.register.controls.password.value);
+      console.log("Confirm Password--->",this.register.controls.confirmPassword.value);
+      if(this.register.controls.password.value===this.register.controls.confirmPassword.value)
       {
       const data = {
-        "FirstName":this.loginUser.controls.firstName.value,
-        "LastName": this.loginUser.controls.lastName.value,
-        "Email" : this.loginUser.controls.email.value,
+        "FirstName":this.register.controls.firstName.value,
+        "LastName": this.register.controls.lastName.value,
+        "Email" : this.register.controls.email.value,
         // "service":"advance",
-        "Password" : this.loginUser.controls.password.value
+        "Password" : this.register.controls.password.value
       }
       this.userService.registerUser(data).subscribe( response => {
         console.log('dataa from back end',response);
@@ -56,8 +61,15 @@ export class RegistrationComponent implements OnInit {
       this.snackBar.open("Registration fail....."," ",{duration : 2000});   
     }    
   }
-  
-  receiveMessage($event) {
-    this.card = $event
+
+  onService()
+  {
+    this.route.navigate(['/card']);    
   }
+  
+  // CardComponent(event) {
+  //   this.card = event
+  //   console.log("event",event);
+    
+  // }
 }

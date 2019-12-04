@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashborad.component.scss']
 })
 export class DashboradComponent implements OnInit {
+open = false;
 
   constructor() { }
 
   ngOnInit() {
   }
-
+DrawerOpen()
+{
+  this.open =!this.open;
+  console.log("gfjhgsdfj", this.open)
+}
 }

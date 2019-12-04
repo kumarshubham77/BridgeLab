@@ -33,6 +33,10 @@ name = new FormControl('');
     this.router.navigate(['/dashboard']);
     })
   }
+  onforgot()
+  {
+     this.router.navigate(['/forgot']);
+  }
   onFacebook()
   {
     let socialPlatformProvider;
@@ -55,4 +59,6 @@ name = new FormControl('');
       });
     });
   }
+  
+  
 } 

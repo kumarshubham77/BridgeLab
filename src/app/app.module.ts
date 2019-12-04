@@ -14,10 +14,22 @@ import { CardComponent } from './Components/card/card.component';
 import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './Components/login/login.component';
 import { DashboradComponent } from './Components/dashborad/dashborad.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import {SocialLoginModule,
   AuthServiceConfig,
   GoogleLoginProvider,
   FacebookLoginProvider,} from "angular-6-social-login";
+import { ForgotComponent } from './Components/forgot/forgot.component';
+import { ResetComponent } from './Components/reset/reset.component';
+import { NotesComponent } from './Components/notes/notes.component';
+
+
+
   let config = new AuthServiceConfig([
     {
       id: GoogleLoginProvider.PROVIDER_ID,
@@ -38,7 +50,11 @@ import {SocialLoginModule,
     RegistrationComponent,
     CardComponent,
     LoginComponent,
-    DashboradComponent
+    DashboradComponent,
+    ForgotComponent,
+    ResetComponent,
+    NotesComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -52,7 +68,13 @@ import {SocialLoginModule,
     HttpClientModule,
     MatSnackBarModule,
     MatButtonModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    FlexLayoutModule
   ],
   providers: [{
     provide: AuthServiceConfig,

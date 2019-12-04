@@ -1,0 +1,32 @@
+<div class="reset_container">
+    <mat-card class="container">
+      <form [formGroup]='resetUser'>
+        
+        <div class="Heading">Fundoo</div>
+         
+    
+        <div class="heading3">Reset Your Fundoo Account</div>
+        <div class="forpassword">
+            <mat-form-field appearance="outline" class="matfield">
+              <mat-label>Password</mat-label>
+              <input matInput placeholder="Password" required formControlName="password">
+              <mat-error *ngIf="resetUser.get('password').hasError('required')">
+                Enter Password min 6 character.
+              </mat-error>
+            </mat-form-field>
+          
+              <mat-form-field appearance="outline" class="matfield">
+                <mat-label>ConfirmPassword</mat-label>
+                <input matInput placeholder="Password" required formControlName="confirm">
+                <mat-error *ngIf="resetUser.get('confirm').hasError('required')">
+                  Enter Password min 6 character.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="button">
+              <button mat-button>Submit</button>
+            </div>
+            </form>
+            </mat-card>
+            </div>
+            

@@ -1,25 +1,11 @@
-<div style="margin-top : 20px;">
+<div class="login_container">
   <mat-card class="container">
     <form [formGroup]='loginUser'>
-      <div style="display: flex; justify-content: center;
-      /* align-items: center; */
-      font-size: 27px;
-      margin-top: -27px;">
-        <p style="color: blue;">F</p>
-        <p style="color: red;">U</p>
-        <p style="color:orange;">N</p>
-        <p style="color: blue;">D</p>
-        <p style="color : green">O</p>
-        <p style="color: red;">O</p>
-        &nbsp;&nbsp;
-        <p style="color: blue;">L</p>
-        <p style="color: red;">O</p>
-        <p style="color:orange;">G</p>
-        <p style="color: blue;">I</p>
-        <p style="color : green">N</p>
-      </div>
-      <h3 class="heading3" style="align-items: center; margin-left: 4em;">Login to Your Fundoo Account</h3>
-
+      
+      <div class="Heading">Fundoo</div>
+       
+  
+      <div class="heading3">Login to Your Fundoo Account</div>
        <div class="ForEmail"> 
         <mat-form-field appearance="outline" class="matfield">
           <mat-label>Username</mat-label>
@@ -32,6 +18,8 @@
           </mat-error>
         </mat-form-field>
       </div>
+
+
       <div class="forpassword">
         <mat-form-field appearance="outline" class="matfield">
           <mat-label>Password</mat-label>
@@ -41,20 +29,36 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <div>
+
+
+
+      <div >
+      <div class="log_For">
+          <div>
+              <button class="button" type="submit" style="vertical-align:middle" (click)="onforgot()">FogotPassword</button>
+            </div>
         <div>
           <button class="button" type="submit" style="vertical-align:middle" (click)="onSubmit()">LOGIN</button>
         </div>
-        <br>
-        <br>
-        <button class="loginBtn loginBtn--facebook" (click)="onFacebook()">
+    
+    </div>
+
+    <div class="social_Login">
+    <div class="loginBtn loginBtn--facebook" (click)="onFacebook()">
+        Login with Facebook
+
+        <!-- <button class="loginBtn loginBtn--facebook" (click)="onFacebook()">
           Login with Facebook
-        </button>
-        <div>
-          <button class="loginBtn loginBtn--google"(click)="onGoogle()">
+        </button> -->
+      </div>
+        <div class="loginBtn loginBtn--google"(click)="onGoogle()">
+          <!-- <button class="loginBtn loginBtn--google"(click)="onGoogle()">
             Login with Google
-          </button>
+          </button> -->
+          Login with Google
         </div>
+      </div>
+
       </div> 
     </form>
   </mat-card>

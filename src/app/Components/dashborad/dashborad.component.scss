@@ -1,13 +1,64 @@
-.button5 {padding: 16px;}
-.button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+.main-content
+{
   
+  padding:20px;
+}
+mat-sidenav
+{
+  //margin-top: 8em;
+  background-color: silver;
+  width:260px;
+  padding:15px
+}
+.toolbar-spacer
+{
+  flex: 1 1 auto;
+}
+.toolbar
+{
+  background-color:cadetblue;
+}
+.image
+{
+  margin-left: 8px;
+  height: 41px;
+  width: 40px;
+  margin-top: 12px;
+}
+.Iconlist
+{
+margin-top: 1em;
+}
+.firsticon
+{
+  padding: 5px;
+}
+.secondicon
+{
+  @extend .firsticon;
+}
+.thirdicon
+{
+  @extend .firsticon;
+}
+.forthicon
+{
+  @extend .firsticon;
+}
+.fifthicon
+{
+  @extend .firsticon;
+}
+.title
+{
+  margin-left: 8px;
+  color: azure;
+}
+.widespace
+{
+  height: 30px;
+}
+.drop
+{
+  margin-left: 800px;
+}

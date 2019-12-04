@@ -1,28 +1,27 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  head = true;
- cardone=false;
- cardtwo = false;
+
+ button="click here";
+ button1="click here";
   @Output() messageEvent = new EventEmitter<string>();
-  constructor() { }
+  constructor( private router : Router) { }
 
   ngOnInit() {
   }
 basic() {
-  this.head = false;
-  this.cardtwo = true;
-  this.messageEvent.emit('Basic')
+  this.button="BASIC";
+  localStorage.setItem('serviceName',(this.button));
+  this.router.navigate(['/register']);
 }
 advance() {
-  this.head = false;
-  this.cardone=true;
- 
-  this.messageEvent.emit('Advance')
+  this.button1="ADVANCE";
+  localStorage.setItem('serviceName',(this.button1));
+  this.router.navigate(['/register']);
 }
 }

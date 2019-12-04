@@ -1,18 +1,30 @@
+.login_container{
+  display: flex;
+  justify-content: center;
+  margin-top: 55px;
+}
+
+.Heading
+{
+  font-size: 20px;
+    justify-content: center;
+    display: flex;
+    color: red;
+}
 .container
 {
-    margin-top: 50px;
-    /* margin-left: 50px; */
-    width: 400px;
-    margin: auto;
-    height: 500px;
+ 
+  padding: 60px;
+
 }
 .heading3
 {
     font-family: cursive;
-    margin-top: -10px;
-    font-weight: 200;
+ 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    // display: flex;
+    // justify-content: space-between;
 }
 .Insidetop
 {
@@ -43,28 +55,15 @@
     width: 100%;
 }
 .button {
-    display: inline-block;
-    border-radius: 4px;
-    background-color:lightblue;
-    border: none;
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 15px;
-    padding: 20px;
-    padding-top: -10px;
-    width: 200px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 0px 0px 5px 0px;
-
-
-    margin-left: 100px;
-    /* vertical-align: middle; */
-    size: 50p;
-    height: 50px;
-    border-block-end-width: initial;
-    /* text-align: center; */
-    margin-top: 30px;
+  border: none;
+  padding: 15px;
+  color: seagreen;
+  }
+  .log_For{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+    margin-bottom: 18px;
   }
   
   .button span {
@@ -151,6 +150,7 @@
   .loginBtn--google {
     /*font-family: "Roboto", Roboto, arial, sans-serif;*/
     background: #DD4B39;
+    width: 13em;
   }
   .loginBtn--google:before {
     border-right: #BB3F30 1px solid;
@@ -159,4 +159,6 @@
   .loginBtn--google:hover,
   .loginBtn--google:focus {
     background: #E74B37;
+
   }
+  
