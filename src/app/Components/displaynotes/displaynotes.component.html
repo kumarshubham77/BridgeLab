@@ -1,0 +1,18 @@
+<div fxLayout="row wrap"fxLayout="row" fxLayoutGap="20px" >
+    <div *ngFor="let note of allNotesData">
+    <mat-card style="border-radius: 10px 10px 10px 10px;">
+        <div>
+            {{note.title}}
+        </div>
+
+        <div>
+            {{note.description}}
+        </div>
+
+        <div>
+                <app-iconlist></app-iconlist>
+        </div>
+    </mat-card>
+    </div>
+
+</div>

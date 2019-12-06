@@ -1,0 +1,9 @@
+@mixin input 
+{
+  border:none;
+  outline:none;;   
+}
+.text
+{
+    @include input;
+}

@@ -1,0 +1,15 @@
+img{
+    color: #202124;
+    opacity: .71;
+    height: 22px;
+    width: 22px;
+    padding-right: 15px;
+}
+
+@media screen and (max-width : 600px){
+    img{
+        height: 15px;
+        width: 15px;
+        padding-right: 10px;
+    }
+}

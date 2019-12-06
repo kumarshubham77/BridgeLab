@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {SocialLoginModule,
   AuthServiceConfig,
   GoogleLoginProvider,
@@ -27,6 +28,9 @@ import {SocialLoginModule,
 import { ForgotComponent } from './Components/forgot/forgot.component';
 import { ResetComponent } from './Components/reset/reset.component';
 import { NotesComponent } from './Components/notes/notes.component';
+import { CreatenoteComponent } from './Components/createnote/createnote.component';
+import { IconlistComponent } from './Components/iconlist/iconlist.component';
+import { DisplaynotesComponent } from './Components/displaynotes/displaynotes.component';
 
 
 
@@ -54,6 +58,9 @@ import { NotesComponent } from './Components/notes/notes.component';
     ForgotComponent,
     ResetComponent,
     NotesComponent,
+    CreatenoteComponent,
+    IconlistComponent,
+    DisplaynotesComponent
     
   ],
   imports: [
@@ -74,7 +81,8 @@ import { NotesComponent } from './Components/notes/notes.component';
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTooltipModule
   ],
   providers: [{
     provide: AuthServiceConfig,

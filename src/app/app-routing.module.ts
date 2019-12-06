@@ -6,7 +6,8 @@ import { CardComponent } from './Components/card/card.component';
 import { DashboradComponent } from './Components/dashborad/dashborad.component';
 import { ForgotComponent } from './Components/forgot/forgot.component';
 import { ResetComponent } from './Components/reset/reset.component';
-
+import { NotesComponent } from './Components/notes/notes.component';
+import { CreatenoteComponent } from './Components/createnote/createnote.component';
 
 const routes: Routes = [
   {
@@ -27,18 +28,32 @@ const routes: Routes = [
     component: LoginComponent
   },  
   {
-    path: 'dashboard', 
-    component :DashboradComponent
-  },
-  {
     path: 'forgot',
     component :ForgotComponent
   },
   {
     path: 'reset',
     component :ResetComponent
+  },
+  {
+    path: 'dashboard', 
+    component: DashboradComponent,
+    children: [
+      { 
+        path:'', redirectTo:'notes', pathMatch:'full' 
+      },
+      { 
+        path: 'notes', 
+        component: NotesComponent 
+      },
+      { 
+        path: 'createNote', 
+        component: CreatenoteComponent 
+      }
+      
+    ]
+    
   }
-  
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

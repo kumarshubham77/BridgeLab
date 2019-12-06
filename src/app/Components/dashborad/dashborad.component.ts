@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashborad',
@@ -6,15 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashborad.component.scss']
 })
 export class DashboradComponent implements OnInit {
-open = false;
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
 
-  constructor() { }
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher ,private route: Router) { 
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   ngOnInit() {
   }
-DrawerOpen()
-{
-  this.open =!this.open;
-  console.log("gfjhgsdfj", this.open)
-}
+  
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+  onNotes()
+  {
+    this.route.navigate(['/createNote']);
+  }
+
 }

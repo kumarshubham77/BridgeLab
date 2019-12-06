@@ -18,13 +18,14 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.service = localStorage.getItem('serviceName');
-    console.log("service-->",this.service);   
+    console.log("service",this.service);   
     this.register = new FormGroup({
       firstName: new FormControl('', [Validators.pattern('^[a-zA-Z]{4,15}'), Validators.required]),
       lastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{4,15}')]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{6,15}')]),
-      confirmPassword: new FormControl('', [Validators.required])
+      confirmPassword: new FormControl('', [Validators.required]),
+      cardtype: new FormControl(),
     });
   }
 
@@ -39,7 +40,8 @@ export class RegistrationComponent implements OnInit {
         "LastName": this.register.controls.lastName.value,
         "Email" : this.register.controls.email.value,
         // "service":"advance",
-        "Password" : this.register.controls.password.value
+        "Password" : this.register.controls.password.value,
+        "CardType" :localStorage.getItem('serviceName')
       }
       this.userService.registerUser(data).subscribe( response => {
         console.log('dataa from back end',response);

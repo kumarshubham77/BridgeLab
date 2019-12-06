@@ -1,82 +1,49 @@
-<div>
-    <div>
-      <mat-toolbar class="toolbar">
-        <button mat-icon-button (click)="drawer.toggle()">
-          <mat-icon>
-            menue
-          </mat-icon>
-        </button>
-        <div>
-          <img class="image" src =" ..\assets\gusion.jpg">
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1>FundooNotes</h1>
+    </mat-toolbar>
+
+    <!-- <mat-divider></mat-divider> -->
+  
+    <mat-sidenav-container class="example-sidenav-container"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+                           
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" style="width: 23%;">
+  
+        <div  fxLayout="row" class="notesclass" (click)="onNotes" >
+          <img src="../../../assets/notes.svg" style="margin-left: 10px; ">
+          <span class="spannotes" style="padding: 10px;">Notes</span>
         </div>
-        <div class="title">
-          Fundoo Keep
-        </div>
-        <button mat-button [matMenuTriggerFor]="menu" class="drop">Menu</button>
-    
-        <mat-menu #menu="matMenu">
-    <!-- <button mat-menu-item></button> -->
-    <button mat-menu-item>LogOut</button>
-    </mat-menu>
-         </mat-toolbar>
-     
-      
-      
-    </div>
-   
-   <mat-drawer-container class="example-container">
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-      <div class="paddingnote">
-        <div class="options">
-        <div
-        (click)="ff()"
-        >
-          <i class="material-icons">lightbulb_outline</i>
-          Notes
-          
-          </div>
-          <!-- <button mat-button class="button">Notes</button> -->
-        </div>
-        <div class="options">
-          <i class="material-icons-outlined">notifications_none</i>
-          <button mat-button class="button">Reminders</button>
+        <!-- <mat-divider></mat-divider> -->
+        <div  fxLayout="row" class="reminderclass" (click)="onReminder" >
+          <img src="../../../assets/reminder.svg" style="margin-left: 10px; ">
+          <span class="spanreminder" style="padding: 10px;">Reminder</span>
         </div>
         <mat-divider></mat-divider>
-        <div class="options2">
-          <div *ngFor="let onelabel of label">
-            <div fxLayout="row">
-              <img src="../../../assets/labels.svg">
-          
-          </div>
+        <div  fxLayout="row" class="material-icons-outlined" (click)="onLabel" >
+            <!-- <img src="../../../assets/reminder.svg" style="margin-left: 10px; "> -->
+            <span class="spanlabel" style="padding: 10px;">edit</span>
+            <button mat-button>Edit Label</button>
+
         </div>
-        <div class="row">
-          <i class="material-icons-outlined" mat-icon-button matTooltip="Label">edit</i>
-          <button mat-button class="button" (click)="openLabel()">Edit labels</button>
+        <mat-divider></mat-divider>
+        <div  fxLayout="row" class="archiveclass" (click)="onArchive" >
+            <img src="../../../assets/archive.svg" style="margin-left: 10px; ">
+            <span class="spanarchive" style="padding: 10px;">Archive</span>
+            <!-- <button mat-button>Edit Label</button> -->
         </div>
-      </div>
+        <div  fxLayout="row" class="material-icons-outlined" (click)="onDelete" >
+            <!-- <img src="../../../assets/reminder.svg" style="margin-left: 10px; "> -->
+            <span class="spanlabel" style="padding: 10px;">delete</span>
+            <button mat-button>Trash</button>
+        </div>
 
-      <mat-divider></mat-divider>
-      <div class="options">
-        <i class="material-icons-outlined">archive</i>
-        <button mat-button class="button">Archive</button>
-      </div>
-      <div class="options">
-        <i class="material-icons-outlined">delete</i>
-        <button mat-button class="button">Trash</button>
-      </div>
-</div>
-
- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-
-</button> 
-
-</mat-drawer>
-<mat-drawer-content>
-  <app-notes> </app-notes>
-  <router-outlet></router-outlet>
-</mat-drawer-content>
-</mat-drawer-container>
-    
- </div>
+      </mat-sidenav>
   
+      <mat-sidenav-content>
+          <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
