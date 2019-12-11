@@ -1,11 +1,9 @@
 <div  fxLayoutAlign="center center" style="margin:2%">
-
     <div *ngIf="!popUp" (click)="popUp = true" fxFlex='50'>
         <mat-card fxFlex="100" style="border-radius: 20px;height:67px;">
           <div fxLayoutAlign="start center">Take a note...</div>
         </mat-card>
       </div>
-
       <div fxLayout="column" *ngIf="popUp" fxFlex='50' fxFlex.xs='75'>
         <mat-card  style="border-radius: 10px;">
           <div fxLayout="column">

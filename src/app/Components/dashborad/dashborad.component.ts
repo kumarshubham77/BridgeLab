@@ -23,9 +23,6 @@ export class DashboradComponent implements OnInit {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-  onNotes()
-  {
-    this.route.navigate(['/createNote']);
-  }
+  
 
 }

@@ -1,3 +1,6 @@
 
+
 <app-createnote></app-createnote>
-<app-displaynotes [allNotesData]="allNotes"></app-displaynotes>
+<div class="dashboard_MAin">
+<app-displaynotes [allNotesData]="allNotes" (noteEvent)="getAllNOtes()"></app-displaynotes>
+</div>

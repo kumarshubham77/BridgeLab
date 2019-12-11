@@ -1,21 +1,40 @@
 <div fxLayout="row">
-    <div matTooltip="Reminder">
+    <div *ngIf="!hiddenIcon" matTooltip="Reminder" [matMenuTriggerFor]="popup">
       <img src="../../../assets/reminder.svg">
+      <mat-menu #popup="matMenu">
+        <button mat-menu-item class="menuebut" (click)="onLater()">Set later Today</button>
+        <button mat-menu-item class="menuebut" (click)="onTommorow()">Tommrow</button>
+        <button mat-menu-item class="menuebut" (click)="onNext()">Next week</button>
+      </mat-menu>
     </div>
     <div  matTooltip="Collaborator">
-        <img src="../../../assets/collaborator.svg">
+        <img *ngIf="!hiddenIcon" src="../../../assets/collaborator.svg">
     </div>
-    <div  matTooltip="Colorplate">
-        <img src="../../../assets/colorplate.svg">   
+    <div  matTooltip="Colorplate" [matMenuTriggerFor]="colors">
+        <img *ngIf="!hiddenIcon" src="../../../assets/colorplate.svg">
+        <mat-menu #colors="matMenu" yPosition="above" [overlapTrigger]="false"> 
+            <div fxLayout="row wrap" style="width:80%">
+                <div (click)="onColor(singleColor.color)" *ngFor="let singleColor of colorsArr" 
+                [ngStyle]="{'background':singleColor.color}"
+                class="color">        
+                </div>
+            </div>
+          </mat-menu>   
     </div>
-    <div  matTooltip="Image">
-        <img src="../../../assets/image.svg">
+    <div  matTooltip="Image" (click)="onArchive()">
+        <img *ngIf="!hiddenIcon" src="../../../assets/image.svg">
     </div>
-    <div  matTooltip="Archive">
-        <img src="../../../assets/archive.svg">
+    <div  matTooltip="Archive" (click)="onArchive()">
+        <img *ngIf="!hiddenIcon" src="../../../assets/archive.svg">
     </div>
-    <div  matTooltip="More">
+    <div  matTooltip="More" [matMenuTriggerFor]="menu">
         <img src="../../../assets/more.svg">
+        <mat-menu #menu="matMenu">
+            <button *ngIf="!hiddenIcon" mat-menu-item class="menuebut" (click)="onDelete()">Delete Note</button>
+            <button *ngIf="!hiddenIcon" mat-menu-item class="menuebut">Add Label</button>
+            <button *ngIf="hiddenIcon" mat-menu-item class="menuebut" (click)="restore()">Restore</button>
+            <button *ngIf="hiddenIcon" mat-menu-item class="menuebut" (click)="deleteForever()">Delete Forever</button>
+          </mat-menu>
     </div>
   </div>
   

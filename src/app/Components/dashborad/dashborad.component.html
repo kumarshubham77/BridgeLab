@@ -2,6 +2,9 @@
     <mat-toolbar class="example-toolbar">
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1>FundooNotes</h1>
+      <mat-card fxFlex = "65" class="matcardone">
+        
+      </mat-card>
     </mat-toolbar>
 
     <!-- <mat-divider></mat-divider> -->
@@ -9,32 +12,37 @@
     <mat-sidenav-container class="example-sidenav-container"
                            [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
                            
-      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                    [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" style="width: 23%;">
   
-        <div  fxLayout="row" class="notesclass" (click)="onNotes" >
-          <img src="../../../assets/notes.svg" style="margin-left: 10px; ">
-          <span class="spannotes" style="padding: 10px;">Notes</span>
-        </div>
+    
+    
+    <div  fxLayout="row" class="notesclass" routerLink="notes" >
+      <img src="../../../assets/notes.svg" style="margin-left: 10px; ">
+        <button mat-button>Notes</button>
+    </div>
+
+
+
         <!-- <mat-divider></mat-divider> -->
-        <div  fxLayout="row" class="reminderclass" (click)="onReminder" >
-          <img src="../../../assets/reminder.svg" style="margin-left: 10px; ">
-          <span class="spanreminder" style="padding: 10px;">Reminder</span>
-        </div>
-        <mat-divider></mat-divider>
+    <div  fxLayout="row" class="reminderclass" (click)="onReminder" routerLink="reminder" >
+      <img src="../../../assets/reminder.svg" style="margin-left: 10px; ">
+        <button mat-button>Reminder</button>
+    </div>
+      <mat-divider></mat-divider>
         <div  fxLayout="row" class="material-icons-outlined" (click)="onLabel" >
             <!-- <img src="../../../assets/reminder.svg" style="margin-left: 10px; "> -->
-            <span class="spanlabel" style="padding: 10px;">edit</span>
-            <button mat-button>Edit Label</button>
+          <span class="spanlabel" style="padding: 10px;">edit</span>
+          <button mat-button>Edit Label</button>
 
         </div>
         <mat-divider></mat-divider>
-        <div  fxLayout="row" class="archiveclass" (click)="onArchive" >
+        <div  fxLayout="row" class="archiveclass" (click)="onArchive"  routerLink="archive">
             <img src="../../../assets/archive.svg" style="margin-left: 10px; ">
-            <span class="spanarchive" style="padding: 10px;">Archive</span>
+            <button mat-button>Archive</button>
             <!-- <button mat-button>Edit Label</button> -->
         </div>
-        <div  fxLayout="row" class="material-icons-outlined" (click)="onDelete" >
+        <div  fxLayout="row" class="material-icons-outlined" (click)="onDelete" routerLink="trash">
             <!-- <img src="../../../assets/reminder.svg" style="margin-left: 10px; "> -->
             <span class="spanlabel" style="padding: 10px;">delete</span>
             <button mat-button>Trash</button>

@@ -21,6 +21,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
 import {SocialLoginModule,
   AuthServiceConfig,
   GoogleLoginProvider,
@@ -31,6 +32,11 @@ import { NotesComponent } from './Components/notes/notes.component';
 import { CreatenoteComponent } from './Components/createnote/createnote.component';
 import { IconlistComponent } from './Components/iconlist/iconlist.component';
 import { DisplaynotesComponent } from './Components/displaynotes/displaynotes.component';
+import { EditComponent } from './Components/edit/edit.component';
+import { ArchiveComponent } from './Components/archive/archive.component';
+import { TrashComponent } from './Components/trash/trash.component';
+import { ReminderComponent } from './Components/reminder/reminder.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
@@ -60,7 +66,11 @@ import { DisplaynotesComponent } from './Components/displaynotes/displaynotes.co
     NotesComponent,
     CreatenoteComponent,
     IconlistComponent,
-    DisplaynotesComponent
+    DisplaynotesComponent,
+    EditComponent,
+    ArchiveComponent,
+    TrashComponent,
+    ReminderComponent
     
   ],
   imports: [
@@ -82,8 +92,11 @@ import { DisplaynotesComponent } from './Components/displaynotes/displaynotes.co
     MatToolbarModule,
     MatMenuModule,
     FlexLayoutModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule,
+    MatChipsModule
   ],
+  entryComponents:[EditComponent],
   providers: [{
     provide: AuthServiceConfig,
     useFactory: provideConfig
