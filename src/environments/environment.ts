@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
  baseUrl : 'https://localhost:44338/api/Account',
- baseUrl1 : 'https://localhost:44338/api/Notes'
+ baseUrl1 : 'https://localhost:44338/api/Notes',
+ baseUrl2 : 'https://localhost:44338/api/Collaborator'
 };
 
 /*
@@ -16,3 +17,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+

@@ -2,9 +2,11 @@
     <mat-toolbar class="example-toolbar">
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1>FundooNotes</h1>
-      <mat-card fxFlex = "65" class="matcardone">
-        
+      <mat-card fxFlex = "65" class="matcardone" >
       </mat-card>
+      <img src="../../../assets/refresh.svg" style="margin-left: 20px;" (click)="onRefresh()">
+      <img src="../../../assets/listview.svg" style="margin-left: 20px;"(click)="onListView()">
+      <img src="../../../assets/settings.svg" style="margin-left: 20px;"(click)="onSettings()">
     </mat-toolbar>
 
     <!-- <mat-divider></mat-divider> -->

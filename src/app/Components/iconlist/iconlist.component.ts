@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NotesService } from 'src/app/services/notesServices/notes.service';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { MatDialog } from '@angular/material';
 // import { EventEmitter } from 'events';
 
 @Component({
@@ -15,7 +17,7 @@ export class IconlistComponent implements OnInit {
   
   token=JSON.parse(localStorage.getItem('userData'));
 
-  constructor(private notesService: NotesService) { }
+  constructor(private notesService: NotesService,public dialog: MatDialog) { }
 
   ngOnInit() {    
   }
@@ -45,6 +47,7 @@ export class IconlistComponent implements OnInit {
     d.setHours(20,0,0);
     this.notesService.notesReminder(d.toString(),this.card.id,this.token.result).subscribe( response => {
       console.log('dataa from back end',response);
+      this.event.emit([]);
     })
   }
   onTommorow()
@@ -54,6 +57,7 @@ export class IconlistComponent implements OnInit {
     d.setHours(8,0,0);
     this.notesService.notesReminder(d.toString(),this.card.id,this.token.result).subscribe( response => {
       console.log('dataa from back end',response);
+      this.event.emit([]);
     })
   }
   onNext()
@@ -63,6 +67,7 @@ export class IconlistComponent implements OnInit {
     d.setHours(8,0,0);
     this.notesService.notesReminder(d.toString(),this.card.id,this.token.result).subscribe( response => {
       console.log('dataa from back end',response);
+      this.event.emit([]);
     })
   }
   colorsArr: any[] = [
@@ -135,6 +140,17 @@ export class IconlistComponent implements OnInit {
     }catch(error){
       console.log(error);
     }
+  }
+  onCollaborator()
+  {
+    var note=this.card
+    console.log("collablist",note)
+    const dialogref=this.dialog.open(CollaboratorComponent, {
+      data:{note}
+      
+    });
+    this.event.emit([]);
+
   }
   
 }

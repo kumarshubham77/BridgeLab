@@ -37,6 +37,8 @@ import { ArchiveComponent } from './Components/archive/archive.component';
 import { TrashComponent } from './Components/trash/trash.component';
 import { ReminderComponent } from './Components/reminder/reminder.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
+import { LabelComponent } from './Components/label/label.component';
 
 
 
@@ -70,7 +72,9 @@ import {MatChipsModule} from '@angular/material/chips';
     EditComponent,
     ArchiveComponent,
     TrashComponent,
-    ReminderComponent
+    ReminderComponent,
+    CollaboratorComponent,
+    LabelComponent
     
   ],
   imports: [

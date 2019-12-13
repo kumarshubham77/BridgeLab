@@ -7,7 +7,7 @@
         <button mat-menu-item class="menuebut" (click)="onNext()">Next week</button>
       </mat-menu>
     </div>
-    <div  matTooltip="Collaborator">
+    <div  matTooltip="Collaborator" (click)="onCollaborator()">
         <img *ngIf="!hiddenIcon" src="../../../assets/collaborator.svg">
     </div>
     <div  matTooltip="Colorplate" [matMenuTriggerFor]="colors">
@@ -31,10 +31,15 @@
         <img src="../../../assets/more.svg">
         <mat-menu #menu="matMenu">
             <button *ngIf="!hiddenIcon" mat-menu-item class="menuebut" (click)="onDelete()">Delete Note</button>
-            <button *ngIf="!hiddenIcon" mat-menu-item class="menuebut">Add Label</button>
+            <button *ngIf="!hiddenIcon" mat-menu-item class="menuebut" [matMenuTriggerFor]="label">Add Label</button>
             <button *ngIf="hiddenIcon" mat-menu-item class="menuebut" (click)="restore()">Restore</button>
             <button *ngIf="hiddenIcon" mat-menu-item class="menuebut" (click)="deleteForever()">Delete Forever</button>
           </mat-menu>
+          <mat-menu #label="matMenu">
+            <small>Label Note </small><br>
+            <input type="text" placeholder="Enter Label Name">
+              
+            </mat-menu>
     </div>
   </div>
   

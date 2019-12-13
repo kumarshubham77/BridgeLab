@@ -55,5 +55,9 @@ export class UserServiceService {
         "CardType" : user.Card
       }
   }
+  getUserdata(token)
+  {
+    return this.http.get(this.rootUrl + '/jwtgetToken',{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) } );
+  }
 }
 

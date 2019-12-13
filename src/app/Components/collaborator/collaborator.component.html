@@ -1,0 +1,41 @@
+<div fxFlex="column" style="height:250px;width: 450px;">
+  <div><h4 style="margin-top: 10px;">Collaborator</h4></div>
+  <mat-divider></mat-divider>
+
+  <div style="margin:2%">
+      <mat-chip style="border-radius: 50%;">
+        <img class="collImage" mat-card-avatar src="../../../assets/collab.svg">      
+      </mat-chip>
+      <div fxFlex="column">
+          {{userName}} (Owner)
+          <div>{{email}}</div>
+        </div>
+  </div>
+  
+
+  <div style="margin:2%" *ngFor="let user of collabArr">
+      <mat-chip style="border-radius: 50%;">
+          <img  class="collImage" mat-card-avatar src="../../../assets/collab.svg">      
+        </mat-chip>
+        <div fxFlex="column">
+            <div>{{user.receiverEmail}} 
+              <mat-chip>
+                <mat-icon matChipRemove (click)="removeCollaborator(user.receiverEmail)">cancel</mat-icon>
+              </mat-chip>
+            </div>
+        </div>
+  </div>
+
+  <div style="margin:2%">
+      <mat-chip style="border-radius: 50%;">
+          <img class="collImage" mat-card-avatar src="../../../assets/collab.svg">      
+        </mat-chip>
+        <div >
+            <input style="border:none;outline: none;margin:5%;" matInput  type="text" placeholder="Person or email to share with" [(ngModel)]="receiverEmail">
+        </div>
+        <div>
+            <button type="submit" (click)="onAddCollab()" mat-button>SAVE</button>
+          </div>
+  </div>
+</div>
+	

@@ -11,6 +11,7 @@ import { CreatenoteComponent } from './Components/createnote/createnote.componen
 import { ArchiveComponent } from './Components/archive/archive.component';
 import { TrashComponent } from './Components/trash/trash.component';
 import { ReminderComponent } from './Components/reminder/reminder.component';
+import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
 const routes: Routes = [
   {
     path:'', 
@@ -63,6 +64,10 @@ const routes: Routes = [
       {
         path :'reminder',
         component: ReminderComponent
+      },
+      {
+        path :'collaborator',
+        component : CollaboratorComponent
       }
       
       

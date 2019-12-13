@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { EditComponent } from '../edit/edit.component';
 import { NotesService } from 'src/app/services/notesServices/notes.service';
+import { DataService } from 'src/app/services/dataService/data.service';
 // import { EventEmitter } from 'events';
 
 @Component({
@@ -15,9 +16,11 @@ export class DisplaynotesComponent implements OnInit {
   @Input() hiddenIcon : boolean;
   @Output() noteEvent = new EventEmitter()
   @Input() card;
+  view :string;
+  flag : true;
   @Output() event = new EventEmitter();
   token=JSON.parse(localStorage.getItem('userData'));
-  constructor(public dialog: MatDialog,private notesService: NotesService) { }
+  constructor(public dialog: MatDialog,private notesService: NotesService,private dataservice: DataService) { }
 
   ngOnInit() {
   }
@@ -35,7 +38,7 @@ export class DisplaynotesComponent implements OnInit {
     
       this.notesService.removereminder(data.id,this.token.result).subscribe( response => {
         console.log('Reminder Removed.',response);
-        this.event.emit([]);
+        this.noteEvent.emit([]);
       })
 
     }catch(error){
