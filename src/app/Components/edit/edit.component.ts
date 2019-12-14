@@ -33,7 +33,7 @@ export class EditComponent implements OnInit {
     console.log("note id",this.note.id);
     this.noteService.notesUpdate(this.note.id,title,description,this.token.result).subscribe( response => {
       console.log('dataa from back end',response);
-      this.dataService.changeMessage([]);
+     
       this.dialogRef.close();
     })
   }

@@ -17,12 +17,17 @@ export class DisplaynotesComponent implements OnInit {
   @Output() noteEvent = new EventEmitter()
   @Input() card;
   view :string;
-  flag : true;
+  flag = true;
   @Output() event = new EventEmitter();
   token=JSON.parse(localStorage.getItem('userData'));
   constructor(public dialog: MatDialog,private notesService: NotesService,private dataservice: DataService) { }
 
   ngOnInit() {
+    this.dataservice.currentMessage.subscribe(data=>
+      {
+        this.view = data ? 'row wrap' : 'column';
+        this.flag=data;
+      })
   }
   openDialog(note: any)
   {

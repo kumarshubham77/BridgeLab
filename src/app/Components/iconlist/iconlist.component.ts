@@ -60,6 +60,7 @@ export class IconlistComponent implements OnInit {
       this.event.emit([]);
     })
   }
+ 
   onNext()
   {
     var d=new Date();
@@ -151,6 +152,10 @@ export class IconlistComponent implements OnInit {
     });
     this.event.emit([]);
 
+  }
+  onLabel()
+  {
+    
   }
   
 }

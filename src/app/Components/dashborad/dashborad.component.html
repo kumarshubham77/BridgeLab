@@ -5,7 +5,8 @@
       <mat-card fxFlex = "65" class="matcardone" >
       </mat-card>
       <img src="../../../assets/refresh.svg" style="margin-left: 20px;" (click)="onRefresh()">
-      <img src="../../../assets/listview.svg" style="margin-left: 20px;"(click)="onListView()">
+      <button *ngIf='view'><img src="../../../assets/listview.svg" style="margin-left: 20px;" (click)="onChangeview()"></button>
+      <button *ngIf='!view'><img src="../../../assets/gridview.svg" style="margin-left: 20px;" (click)="onChangeview()"></button>
       <img src="../../../assets/settings.svg" style="margin-left: 20px;"(click)="onSettings()">
     </mat-toolbar>
 
@@ -32,7 +33,7 @@
         <button mat-button>Reminder</button>
     </div>
       <mat-divider></mat-divider>
-        <div  fxLayout="row" class="material-icons-outlined" (click)="onLabel" >
+        <div  fxLayout="row" class="material-icons-outlined" (click)="onLabel()" >
             <!-- <img src="../../../assets/reminder.svg" style="margin-left: 10px; "> -->
           <span class="spanlabel" style="padding: 10px;">edit</span>
           <button mat-button>Edit Label</button>

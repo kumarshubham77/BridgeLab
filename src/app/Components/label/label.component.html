@@ -1,3 +1,41 @@
-<p>
-  label works!
-</p>
+<div fxFlex = "column" style="height: 400px;width: 300px;">
+    Edit label
+    <div>
+        <mat-chip-list>
+            <mat-chip style="border-radius: 50%;"(click)="cancel()">
+                <img src="../../../assets/cancel.svg"matTooltip="Cancel">
+            </mat-chip>
+            <input type="text" placeholder="Create New Label" [(ngModel)]="label" >
+            <mat-chip style="border-radius: 50%;"(click)="makeLabel()">
+                <img src="../../../assets/right.svg" matTooltip="Add">
+            </mat-chip>
+        </mat-chip-list>
+        <div style="margin:2%" *ngFor="let singellabel of labelArr">
+        
+            <div>
+                {{singellabel.label}}
+            </div>
+
+        
+        </div>
+        
+        
+    </div>
+</div>
+<!-- <div>
+    <mat-card>
+      <div >
+        <input matInput  type="text" placeholder="create new label" [(ngModel)]="label">
+      </div>
+      <div style="margin:2%" *ngFor="let singellabel of labelArr">
+          <div fxFlex="column">
+            <div>
+              {{singellabel.label}}
+            </div>
+          </div>
+      </div>
+      <div>
+        <button (click)="onAddLabel()">Done</button> 
+      </div>
+    </mat-card>
+  </div> -->

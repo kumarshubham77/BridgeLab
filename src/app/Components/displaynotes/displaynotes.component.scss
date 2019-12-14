@@ -1,41 +1,38 @@
-.getAllNotes{
-    width: 70em;
-    height: auto;
+// .getAllNotes{
+//     width: 70em;
+//     height: auto;
+// }
+// .tile{
+//     padding: 10px;
+//   }
+//  }
+  
+.getNotesMat{
+  margin: 10px;
+  width: 160px;
+  border-radius: 18px;
+  box-shadow: -2px 1px 8px 1px;
 }
 .tile{
-    padding: 10px;
-  }
-//   .chu{
-//       visibility: hidden;
-//   }
-//   .chu:hover.chuchu{
-//       visibility: visible;
-//   }
-  
-// .getNotesMat{
-//   margin: 10px;
-//   width: 160px;
-//   border-radius: 18px;
-//   box-shadow: -2px 1px 8px 1px;
-// }
-// .word{
-//   word-break: break-all;
-// }
-// //Grid and List view css
-// .abc
-// {
-//   width:160px
-// }
-// .xyz
-// {
-//   width:500px
-// }
-// //icons hover css
-// #Hidden {
-//   margin-top: 3%;
-//   visibility: hidden
-// }
-// #DivForHoverItem:hover #Hidden {
-//   visibility: visible;
-// }
+  word-break: break-all;
+}
 
+
+//icons hover css
+#Hidden {
+  margin-top: 3%;
+  visibility: hidden
+}
+#DivForHoverItem:hover #Hidden {
+  visibility: visible;
+}
+
+//Grid and List view css
+.qwerty
+{
+  width:200px;
+}
+.qwerty2
+{
+  width:200px;
+}

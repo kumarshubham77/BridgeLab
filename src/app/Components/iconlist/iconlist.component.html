@@ -31,13 +31,22 @@
         <img src="../../../assets/more.svg">
         <mat-menu #menu="matMenu">
             <button *ngIf="!hiddenIcon" mat-menu-item class="menuebut" (click)="onDelete()">Delete Note</button>
-            <button *ngIf="!hiddenIcon" mat-menu-item class="menuebut" [matMenuTriggerFor]="label">Add Label</button>
+            <button *ngIf="!hiddenIcon" mat-menu-item class="menuebut" [matMenuTriggerFor]="label" (click)="onLabel()">Add Label</button>
             <button *ngIf="hiddenIcon" mat-menu-item class="menuebut" (click)="restore()">Restore</button>
             <button *ngIf="hiddenIcon" mat-menu-item class="menuebut" (click)="deleteForever()">Delete Forever</button>
           </mat-menu>
           <mat-menu #label="matMenu">
             <small>Label Note </small><br>
             <input type="text" placeholder="Enter Label Name">
+            <div>
+              <mat-divider></mat-divider>
+              <div>
+                <img src="../../../assets/add.svg">
+              <input type="text" placeholder="Enter Label">
+              <button type="button" value="submit"(click)="addLabel()">Click</button>
+
+              </div>
+            </div>
               
             </mat-menu>
     </div>

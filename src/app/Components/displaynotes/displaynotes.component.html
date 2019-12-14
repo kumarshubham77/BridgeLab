@@ -1,16 +1,18 @@
-<div class="getAllNotes" fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center center">
-    <div *ngFor="let note of allNotesData" >
-    <mat-card style="border-radius: 10px 10px 10px 10px;margin: 15px; padding: 20px; width: 206px;" [ngStyle]="{'background':note.color}">
-       
-       
-        <div  >
-        <div class="tile"(click)="openDialog(note)">
-            {{note.title}}
-        </div>
+<div class="getAllNotes" fxLayout="{{view}}" fxFlexOffset="15" >
 
-        <div class="tile"(click)="openDialog(note)">
-            {{note.description}}
-        </div>
+    <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}"
+    [ngClass]="{'qwerty':flag,'qwerty2':!flag}"  *ngFor="let note of allNotesData">
+       
+       
+        <div  (click)="openDialog(note)">
+            <div class="tile">
+                {{note.title}}
+            </div>
+
+            <div class="tile">
+                {{note.description}}
+            </div>
+       
         <div *ngIf="note.reminder">
             <mat-chip-list class = "chip" >
                 <mat-chip style="background-color:rgba(0,0,0,0.1); margin-bottom: 2%;">
@@ -20,15 +22,15 @@
             </mat-chip-list>
 
         </div>
-
+    </div>
 
         <div class="chu">
                 <app-iconlist [hiddenIcon]=hiddenIcon [card]="note" (event)=listenEvent()>  </app-iconlist>
         </div>
-    </div>
+  
 
 
     </mat-card>
-    </div>
+   
 
 </div>

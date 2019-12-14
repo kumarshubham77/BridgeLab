@@ -12,6 +12,7 @@ import { ArchiveComponent } from './Components/archive/archive.component';
 import { TrashComponent } from './Components/trash/trash.component';
 import { ReminderComponent } from './Components/reminder/reminder.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
+import { LabelComponent } from './Components/label/label.component';
 const routes: Routes = [
   {
     path:'', 
@@ -68,6 +69,10 @@ const routes: Routes = [
       {
         path :'collaborator',
         component : CollaboratorComponent
+      },
+      {
+        path :'label',
+        component : LabelComponent
       }
       
       
