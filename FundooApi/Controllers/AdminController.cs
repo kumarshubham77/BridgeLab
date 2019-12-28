@@ -33,5 +33,38 @@ namespace FundooApi.Controllers
             bool result = admin.Logging(Email,Password);
             return Ok(new { result }); 
         }
+        [HttpGet]
+        [Route("userstatistic")]
+        public async Task<IActionResult> UserStatistic()
+        {
+            try
+            {
+                var result = await admin.DisplayUserStats();
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// UserDetails controller
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("userdetails")]
+        public async Task<IActionResult> UserDetails()
+        {
+            try
+            {
+                var result = await admin.DisplayUserDetails();
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

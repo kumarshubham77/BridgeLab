@@ -5,6 +5,7 @@
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
 using Common.Models.NotesModels;
+using Common.Models.NotesViewModel;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace FundooRepository.Interfaces
         /// </summary>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        Task<List<NotesModel>> Show(string Email);
+        List<NotesViewModel> Show(string Email);
         //bool Login(NotesModel notes);        
         /// <summary>
         /// Deletes the specified identifier.
@@ -78,6 +79,14 @@ namespace FundooRepository.Interfaces
         /// <param name="Email">The email.</param>
         /// <returns></returns>
         Task Pin(int ID, string Email);
+
+        /// <summary>
+        /// Uns the pin.
+        /// </summary>
+        /// <param name="Email">The email.</param>
+        /// <returns></returns>
+        List<NotesModel> GetAllPins(string Email);
+        List<NotesModel> GetAllUNPins(string Email);
         /// <summary>
         /// Uns the pin.
         /// </summary>
@@ -92,21 +101,21 @@ namespace FundooRepository.Interfaces
         /// <param name="file">The file.</param>
         /// <param name="email">The email.</param>
         /// <returns></returns>
-        Task ImageUpload(int Id, IFormFile file, string email);
+        Task<NotesModel> ImageUpload(int Id,IFormFile file, string email);
         /// <summary>
         /// Reminds the specified model.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        Task Remind(NotesModel model, string Email);
+        Task Remind(string Email, int ID, string Reminder);
         /// <summary>
         /// Removes the reminder.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        Task RemoveReminder(NotesModel model, string Email);
+        Task RemoveReminder(int ID, string Email);
         /// <summary>
         /// Colors the specified model.
         /// </summary>

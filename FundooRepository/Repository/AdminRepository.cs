@@ -106,5 +106,22 @@ namespace FundooRepository.Repository
 
 
         //}
+
+
+        public Task<List<AdminUserDetails>> DisplayUserDetails()
+        {
+            return Task.Run(() => _context.adminuserdetails.ToList());
+        }
+
+        /// <summary>
+        /// DisplayUsers method for displaying the user details
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<UserModel>> DisplayUsers()
+        {
+            return Task.Run(() => _context.user.ToList());
+        }
+
+        
     }
 }

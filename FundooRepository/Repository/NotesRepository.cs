@@ -7,6 +7,7 @@
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Common.Models.NotesModels;
+using Common.Models.NotesViewModel;
 using FundooRepository.Context;
 using FundooRepository.Interfaces;
 using FundooRepository.Interfaces.RedisCache;
@@ -133,7 +134,8 @@ namespace FundooRepository.Repository
         /// </summary>
         /// <param name="email">The email.</param>
         /// <returns></returns>
-        public Task<List<NotesModel>> Show(string email)
+        public List<NotesViewModel> Show(string email)
+        
         {
             //bool note = _context.notes.Any(p => p.Email == email);
             //if (note)
@@ -145,9 +147,38 @@ namespace FundooRepository.Repository
             //{
             //    return null;
             //}
-            SetValue(email);
-            var result = GetValue(email);
-            return Task.Run(()=>result);
+            var result = (from notes in _context.notes
+                          where notes.Email == email
+
+                          select new NotesViewModel
+
+                          {
+                              ID = notes.ID,
+                              Email = notes.Email,
+                              Title = notes.Title,
+                              Description = notes.Description,
+                              CreatedDate = notes.CreatedDate,
+                              ModifiedDate = notes.ModifiedDate,
+                              Reminder = notes.Reminder,
+                              Images = notes.Images,
+                              IsArchive = notes.IsArchive,
+                              IsTrash = notes.IsTrash,
+                              IsPin = notes.IsPin,
+                              Color = notes.Color,
+                              IndexValue = notes.IndexValue,
+                              Labels = _context.labels.Where(i => i.ID == notes.ID).ToList(),
+                              Collaborators = (_context.collaborator.Where(i => i.Noteid == notes.ID.ToString() && i.SenderEmail == email).ToList())
+                          }
+                          ).OrderBy(notes => notes.IndexValue).ToList();
+                      
+
+            return result;
+
+
+
+            //SetValue(email);
+            //var result = GetValue(email);
+            //return Task.Run(()=>result);
         }
         /// <summary>
         /// Sets the value.
@@ -311,6 +342,25 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+       
+        public List<NotesModel> GetAllPins(string Email)
+        {
+            bool note = _context.user.Any(p => p.Email == Email);
+            if (note)
+            {
+                return _context.notes.Where(p => (p.Email == Email) && (p.IsPin == true)).ToList();
+            }
+            return null;
+        }
+        public List<NotesModel> GetAllUNPins(string Email)
+        {
+            bool note = _context.user.Any(p => p.Email == Email);
+            if (note)
+            {
+                return _context.notes.Where(p => (p.Email == Email) && (p.IsPin == false)).ToList();
+            }
+            return null;
+        }
         /// <summary>
         /// Images the upload.
         /// </summary>
@@ -319,7 +369,7 @@ namespace FundooRepository.Repository
         /// <param name="email">The email.</param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public Task ImageUpload(int Id, IFormFile file, string email)
+        public Task<NotesModel> ImageUpload(int Id,IFormFile file, string email)
         {
             var path = file.OpenReadStream();
             var File = file.FileName;
@@ -338,7 +388,8 @@ namespace FundooRepository.Repository
                 if (result.Email.Equals(email))
                 {
                     result.Images = uploadResult.Uri.ToString();
-                    return Task.Run(() => _context.SaveChanges());
+                    _context.SaveChanges();
+                    return Task.Run(() => result);
 
                 }
                 else
@@ -438,14 +489,15 @@ namespace FundooRepository.Repository
         /// <param name="model">The model.</param>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        public Task Remind(NotesModel model, string Email)
+        public Task Remind(string Email, int ID,string Reminder)
         {
-            var result = _context.notes.Where(j => j.ID == model.ID).FirstOrDefault();
+            var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
             if (result != null)
             {
                 if (result.Email.Equals(Email))
                 {
-                    result.Reminder = model.Reminder;
+                    result.Reminder = Reminder;
+                    _context.notes.Update(result);
                     return Task.Run(() => _context.SaveChanges());
                 }
                 else
@@ -465,9 +517,9 @@ namespace FundooRepository.Repository
         /// <param name="model">The model.</param>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        public Task RemoveReminder(NotesModel model, string Email)
+        public Task RemoveReminder(int ID, string Email)
         {
-            var result = _context.notes.Where(j => j.ID == model.ID).FirstOrDefault();
+            var result = _context.notes.Where(j => j.ID == ID).FirstOrDefault();
             if (result != null)
             {
                 if (result.Email.Equals(Email))

@@ -4,11 +4,14 @@
 // </copyright>
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Common.Models.AdminModels;
 using Common.Models.UserModels;
 using FundooRepository.Context;
 using FundooRepository.Interfaces;
 using FundooRepository.Interfaces.RedisCache;
+using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -135,12 +138,13 @@ namespace FundooRepository.Repository
         /// </summary>
         /// <param name="reset">The reset.</param>
         /// <returns></returns>
-        public Task ResetPassword(ResetPasswordModel reset)
+        public Task ResetPassword(string Email,ResetPasswordModel reset)
         {
-            var result = _context.user.Where(i => i.Email == reset.Email && i.Password == reset.OldPassword).FirstOrDefault();
+            var result = _context.user.Where(i => i.Email == Email).FirstOrDefault();
             if (result != null)
             {
                 result.Password = reset.NewPassword;
+                _context.user.Update(result).Property(x => x.ID).IsModified = false;
                 return Task.Run(() => _context.SaveChanges());
             }
             else
@@ -163,7 +167,7 @@ namespace FundooRepository.Repository
             sbEmailBody.Append("Dear " + UserName + ",<br/><br/>");
             sbEmailBody.Append("Please click on the following link to reset your password");
             sbEmailBody.Append("<br/>");
-            sbEmailBody.Append("http://localhost/WebApplication1/Registration/ChangePassword.aspx?uid=");
+            sbEmailBody.Append("http://localhost:4200/reset");
             sbEmailBody.Append("<br/><br/>");
             sbEmailBody.Append("<b>BRIDGELABZ</b>");
             mailMessage.IsBodyHtml = true;
@@ -174,7 +178,7 @@ namespace FundooRepository.Repository
             smtpClient.Credentials = new System.Net.NetworkCredential()
             {
                 UserName = "shubham870940@gmail.com",
-                Password = "Your Password"
+                Password = "mostwanted123"
             };
             smtpClient.EnableSsl = true;
             smtpClient.Send(mailMessage);
@@ -185,13 +189,58 @@ namespace FundooRepository.Repository
         /// </summary>
         /// <param name="forgot">The forgot.</param>
         /// <returns></returns>
-        public Task Forgot(ForgotPassword forgot)
+        public Task<string> Forgot(ForgotPassword forgot)
         {
             var result = _context.user.Where(i => i.Email == forgot.Email).FirstOrDefault();
             if (result != null)
             {
                 SendPasswordResetEmail(forgot.Email, result.FirstName);
-                return Task.Run(() => _context.SaveChanges());
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                          {
+                           new Claim("Email", result.Email)
+                          }),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                var token = tokenHandler.WriteToken(securityToken);
+               return Task.Run(() => token);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Task<UserModel> ProfilePicture(IFormFile file, string email)
+        {
+            var path = file.OpenReadStream();
+            var File = file.FileName;
+            CloudinaryDotNet.Account account = new CloudinaryDotNet.Account("dalm6prqr", "742568932831953", "x9gQyQphOCQ0Tfp0ScFOYrj0DWM");
+            CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
+            var image = new ImageUploadParams()
+            {
+                File = new FileDescription(File, path)
+            };
+            var uploadResult = cloudinary.Upload(image);
+            if (uploadResult.Error != null)
+                throw new Exception(uploadResult.Error.Message);
+            var result = _context.user.Where(i => i.Email == email).FirstOrDefault();
+            if (result != null)
+            {
+                if (result.Email.Equals(email))
+                {
+                    result.ProfilePicture = uploadResult.Uri.ToString();
+                    _context.SaveChanges();
+                    return Task.Run(() => result);
+
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
@@ -219,7 +268,6 @@ namespace FundooRepository.Repository
             var result = _context.user.Where(i => i.Email == login.Email && i.Password == login.Password).FirstOrDefault();
             if (result != null)
             {
-
                 return Task.Run(() => _context.SaveChanges());
             }
             else
@@ -245,5 +293,6 @@ namespace FundooRepository.Repository
                 return null;
             }
         }
+
     }
 }

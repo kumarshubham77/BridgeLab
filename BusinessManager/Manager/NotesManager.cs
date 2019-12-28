@@ -6,6 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 using BusinessManager.Interfaces;
 using Common.Models.NotesModels;
+using Common.Models.NotesViewModel;
 using FundooRepository.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
@@ -59,11 +60,10 @@ namespace BusinessManager.Manager
         /// </summary>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        public async Task<List<NotesModel>> Show(string Email)
+        public List<NotesViewModel> Show(string Email)
         {
 
-            var result = await notes.Show(Email);
-            return result;
+            return notes.Show(Email);
 
         }
         /// <summary>
@@ -154,6 +154,17 @@ namespace BusinessManager.Manager
             await notes.Pin(ID, Email);
             return "Pinned Successfully";
         }
+        public List<NotesModel> GetAllUnPin(string Email)
+        {
+            var result = notes.GetAllUNPins(Email);
+            return result;
+        }
+
+        public List<NotesModel> GetAllPin(string Email)
+        {
+            var result = notes.GetAllPins(Email);
+            return result;
+        }
         /// <summary>
         /// Images the upload.
         /// </summary>
@@ -161,10 +172,10 @@ namespace BusinessManager.Manager
         /// <param name="file">The file.</param>
         /// <param name="email">The email.</param>
         /// <returns></returns>
-        public async Task<string> ImageUpload(int Id, IFormFile file, string email)
+        public async Task<NotesModel> ImageUpload(int Id,IFormFile file, string email)
         {
-            await notes.ImageUpload(Id, file, email);
-            return "Uploading Image in Cloudinary Success";
+           var result = await notes.ImageUpload(Id, file, email);
+            return result;
         }
 
         public async Task<string> UnPin(int ID, string Email)
@@ -178,9 +189,9 @@ namespace BusinessManager.Manager
         /// <param name="model">The model.</param>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        public async Task<string> Remindr(NotesModel model, string Email)
+        public async Task<string> Remindr(string Email, int ID, string Reminder)
         {
-            await notes.Remind(model, Email);
+            await notes.Remind(Email,ID,Reminder);
             return "Reminder Sets.";
         }
         /// <summary>
@@ -201,9 +212,9 @@ namespace BusinessManager.Manager
         //    return "Profile photo Added Successfully";
         //}
 
-        public async Task<string> RemReminder(NotesModel model, string Email)
+        public async Task<string> RemReminder(int ID, string Email)
         {
-            await notes.RemoveReminder(model, Email);
+            await notes.RemoveReminder(ID, Email);
             return "Removed Reminder";
         }
         /// <summary>

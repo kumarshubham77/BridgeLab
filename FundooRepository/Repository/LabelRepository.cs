@@ -67,15 +67,9 @@ namespace FundooRepository.Repository
         /// <returns></returns>
         public Task<List<LabelModel>> Show(string Email)
         {
-            bool note = _context.labels.Any(p => p.Email == Email);
-            if (note)
-            {
-                return Task.Run(() => _context.labels.Where(p => p.Email == Email).ToList());
-            }
-            else
-            {
-                return null;
-            }
+            var result = _context.labels.Where(i => i.Email == Email).GroupBy(o => new { o.Label }).Select(o => o.FirstOrDefault());
+            var result1 = result.ToList();
+            return Task.Run(() => result1);
         }
         /// <summary>
         /// Updates the specified model.

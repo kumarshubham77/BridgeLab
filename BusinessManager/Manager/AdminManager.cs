@@ -1,5 +1,6 @@
 ﻿using BusinessManager.Interfaces;
 using Common.Models.AdminModels;
+using Common.Models.UserModels;
 using FundooRepository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,15 @@ namespace BusinessManager.Manager
         {
             return admin.LogIn(Email,Password);
         }
+        public  async Task<List<AdminUserDetails>> DisplayUserStats()
+        {
+            return await admin.DisplayUserDetails();
+        }
+        public async Task<List<UserModel>> DisplayUserDetails()
+        {
+            return await admin.DisplayUsers();
+        }
 
-       
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using Common.Models.AdminModels;
+using Common.Models.UserModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,5 +11,7 @@ namespace BusinessManager.Interfaces
     {
         Task<string> Add(AdminModel model);
         bool Logging(string Email, string Password);
+        Task<List<UserModel>> DisplayUserDetails();
+        Task<List<AdminUserDetails>> DisplayUserStats();
     }
 }

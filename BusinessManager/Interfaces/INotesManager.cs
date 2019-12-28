@@ -5,6 +5,7 @@
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
 using Common.Models.NotesModels;
+using Common.Models.NotesViewModel;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace BusinessManager.Interfaces
         /// </summary>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        Task<List<NotesModel>> Show(string Email);
+        List<NotesViewModel> Show(string Email);
         /// <summary>
         /// Archives the specified identifier.
         /// </summary>
@@ -81,6 +82,8 @@ namespace BusinessManager.Interfaces
         /// <param name="ID">The identifier.</param>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
+        List<NotesModel> GetAllPin(string Email);
+        List<NotesModel> GetAllUnPin(string Email);
         Task<string> Pin(int ID, string Email);
         /// <summary>
         /// Uns the pin.
@@ -96,14 +99,14 @@ namespace BusinessManager.Interfaces
         /// <param name="file">The file.</param>
         /// <param name="email">The email.</param>
         /// <returns></returns>
-        Task<string> ImageUpload(int Id, IFormFile file, string email);
+        Task<NotesModel> ImageUpload(int Id,IFormFile file, string email);
         /// <summary>
         /// Remindrs the specified notes.
         /// </summary>
         /// <param name="notes">The notes.</param>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        Task<string> Remindr(NotesModel notes, string Email);
+        Task<string> Remindr(string Email, int ID, string Reminder);
         /// <summary>
         /// Colours the specified model.
         /// </summary>
@@ -118,7 +121,7 @@ namespace BusinessManager.Interfaces
         /// <param name="model">The model.</param>
         /// <param name="Email">The email.</param>
         /// <returns></returns>
-        Task<string> RemReminder(NotesModel model, string Email);
+        Task<string> RemReminder(int ID, string Email);
         /// <summary>
         /// Puttings the index value.
         /// </summary>

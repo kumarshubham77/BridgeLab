@@ -15,5 +15,7 @@ namespace FundooRepository.Interfaces
         //Task<List<AdminModel>> Show(string Email);
         Task AddUserDetails(UserModel user, string logintime);
         bool LogIn(string Email, string Password);
+        Task<List<UserModel>> DisplayUsers();
+        Task<List<AdminUserDetails>> DisplayUserDetails();
     }
 }

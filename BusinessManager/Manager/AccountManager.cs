@@ -7,6 +7,7 @@
 using BusinessManager.Interfaces;
 using Common.Models.UserModels;
 using FundooRepository.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
 namespace BusinessManager.Manager
@@ -53,9 +54,9 @@ namespace BusinessManager.Manager
         /// </summary>
         /// <param name="reset">The reset.</param>
         /// <returns></returns>
-        public async Task<string> ResetPassword(ResetPasswordModel reset)
+        public async Task<string> ResetPassword(string Email,ResetPasswordModel reset)
         {
-            await _repository.ResetPassword(reset);
+            await _repository.ResetPassword(Email,reset);
             return "Successfully Reset the Password";
         }
         /// <summary>
@@ -65,8 +66,8 @@ namespace BusinessManager.Manager
         /// <returns></returns>
         public async Task<string> ForgotP(ForgotPassword forgot)
         {
-            await _repository.Forgot(forgot);
-            return "You sucessfully recieved Email for changing Password";
+            string result=await _repository.Forgot(forgot);
+            return result;
         }
         /// <summary>
         /// Finds the by email asynchronous.
@@ -97,6 +98,11 @@ namespace BusinessManager.Manager
         {
             await _repository.LoginWithGoogle(login);
             return "Login Successfull";
+        }
+        public async Task<UserModel> ProfileUpload(IFormFile file, string email)
+        {
+            var result =  await _repository.ProfilePicture(file,email);
+            return result;
         }
     }
 }

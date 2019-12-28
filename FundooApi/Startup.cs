@@ -83,10 +83,15 @@ namespace FundooApi
             services.AddMvc(options =>
             {
                 options.ReturnHttpNotAcceptable = true;
-              ///  options.RespectBrowserAcceptHeader = true;                
+                ///  options.RespectBrowserAcceptHeader = true;                
                 options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
             });
-
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
 
 
@@ -135,16 +140,16 @@ namespace FundooApi
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
-
+            app.UseCors("MyPolicy");
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SHUBHAM");
             });
-            app.UseCors(x => x
-               .AllowAnyOrigin()
-               .AllowAnyHeader().AllowAnyMethod()
-           );
+           // app.UseCors(x => x
+           //    .AllowAnyOrigin()
+           //    .AllowAnyHeader().AllowAnyMethod()
+           //);
         }
     }
 }

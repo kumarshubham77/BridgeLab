@@ -6,6 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 using BusinessManager.Interfaces;
 using Common.Models.NotesModels;
+using Common.Models.NotesViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -80,18 +81,11 @@ namespace FundooApi.Controllers
         }
         [HttpGet]
         [Route("Show")]
-        public async Task<List<NotesModel>> Show()
+        public List<NotesViewModel> Show()
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
-            try
-            {
-                var result = await manager.Show(Email);
-                return result; 
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            var result = manager.Show(Email);
+            return result;
         }
 
         [HttpGet]
@@ -218,6 +212,24 @@ namespace FundooApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet]
+        [Route("pinlist")]
+        public List<NotesModel> PinListing()
+        {
+            //Here email is extracted from generated token with the help of claim
+            string res = User.Claims.First(c => c.Type == "Email").Value;
+            var result = manager.GetAllPin(res);
+            return result;
+        }
+        [HttpGet]
+        [Route("unpinlist")]
+        public List<NotesModel> unPinListing()
+        {
+            //Here email is extracted from generated token with the help of claim
+            string res = User.Claims.First(c => c.Type == "Email").Value;
+            var result = manager.GetAllUnPin(res);
+            return result;
+        }
 
 
         [HttpPost]
@@ -252,7 +264,7 @@ namespace FundooApi.Controllers
         }
         [HttpPost]
         [Route("Image")]
-        public async Task<IActionResult> ImageUpload(int Id, IFormFile file)
+        public async Task<IActionResult> ImageUpload(int Id,IFormFile file)
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
@@ -280,14 +292,14 @@ namespace FundooApi.Controllers
         //        return BadRequest(ex.Message);
         //    }
         //}
-        [HttpPost]
+        [HttpPut]
         [Route("Reminder")]
-        public async Task<IActionResult> Reminder(NotesModel model)
+        public async Task<IActionResult> Reminder(int ID,string Reminder)
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
-                var result = await manager.Remindr(model, Email);
+                var result = await manager.Remindr(Email,ID,Reminder);
                 return Ok(new { result });
             }
             catch (Exception ex)
@@ -297,12 +309,12 @@ namespace FundooApi.Controllers
         }
         [HttpPost]
         [Route("RemoveReminder")]
-        public async Task<IActionResult> RemoveReminder(NotesModel model)
+        public async Task<IActionResult> RemoveReminder(int ID)
         {
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
-                var result = await manager.RemReminder(model, Email);
+                var result = await manager.RemReminder(ID, Email);
                 return Ok(new { result });
             }
             catch (Exception ex)

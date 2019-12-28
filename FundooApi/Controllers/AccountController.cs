@@ -7,6 +7,7 @@
 using BusinessManager.Interfaces;
 using Common.Models.UserModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -55,12 +56,12 @@ namespace FundooApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("LogIn")]
-        public async Task<Object> LogIn(LoginModel login)
+        public async Task<IActionResult> LogIn(LoginModel login)
         {
             try
             {
                 var result = await _manager.LogIn(login);
-                return result;
+                return Ok(new { result });
             }
             catch (Exception ex)
             {
@@ -76,8 +77,16 @@ namespace FundooApi.Controllers
         [Route("Reset")]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel reset)
         {
-            var result = await _manager.ResetPassword(reset);
-            return Ok(new { result });
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                var result = await _manager.ResetPassword(Email, reset);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         /// <summary>
         /// Forgots the specified forgot.
@@ -164,8 +173,41 @@ namespace FundooApi.Controllers
         [Route("LoginWithFacebook")]
         public async Task<IActionResult> LoginWithFacebook(LoginWithFacebookModel login)
         {
-            var result = await _manager.LoginWithFacebook(login);
-            return Ok(new { result });
+            try
+            {
+                var result = await _manager.FindByEmailAsync(login.Email);
+                if (result != null)
+                {
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(new Claim[]
+                        {
+                           new Claim("Email", result.Email)
+                        }),
+                        Expires = DateTime.UtcNow.AddDays(1),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var cacheKey = login.Email;
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    var token = tokenHandler.WriteToken(securityToken);
+                    //Introduction to Redis Cache with Local IP i.e., 127.0.0.1:6379.
+                    //ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                    //IDatabase database = connectionMulitplexer.GetDatabase();
+                    //database.StringSet(cacheKey, token.ToString());
+                    //database.StringGet(cacheKey);
+                    return Ok(new { token });
+                }
+                else
+                {
+                    return BadRequest(new { message = "Not valid" });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         /// <summary>
         /// Logins the with google.
@@ -176,8 +218,41 @@ namespace FundooApi.Controllers
         [Route("LoginWithGoogle")]
         public async Task<IActionResult> LoginWithGoogle(LoginWithGoogleModel login)
         {
-            var result = await _manager.LoginWithGoogle(login);
-            return Ok(new { result });
+            try
+            {
+                var result = await _manager.FindByEmailAsync(login.Email);
+                if (result != null)
+                {
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(new Claim[]
+                        {
+                           new Claim("Email", result.Email)
+                        }),
+                        Expires = DateTime.UtcNow.AddDays(1),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var cacheKey = login.Email;
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    var token = tokenHandler.WriteToken(securityToken);
+                    //Introduction to Redis Cache with Local IP i.e., 127.0.0.1:6379.
+                    //ConnectionMultiplexer connectionMulitplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                    //IDatabase database = connectionMulitplexer.GetDatabase();
+                    //database.StringSet(cacheKey, token.ToString());
+                    //database.StringGet(cacheKey);
+                    return Ok(new { token });
+                }
+                else
+                {
+                    return BadRequest(new { message = "Not valid" });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 
@@ -205,6 +280,49 @@ namespace FundooApi.Controllers
         //    }
         //    return null;
         //}
+        /// <summary>
+        /// Find method finding email
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("jwtgetToken")]
+        [Authorize]
+        public async Task<Object> Find()
+        {
+
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            var result = await _manager.FindByEmailAsync(Email);
+            return new
+            {
+                result.Email,
+                result.FirstName,
+                result.LastName,
+                result.Password,
+                result.CardType,
+                result.Status,
+                result.TotalNotes,
+                result.ID
+
+            };
+
+        }
+        [HttpPost]
+        [Route("profilepic")]
+        public async Task<IActionResult> ProfilePic(IFormFile file)
+        {
+            try
+            {
+                //Here email is extracted from generated token with the help of claim
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                var result = await _manager.ProfileUpload(file,Email);
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
 
 

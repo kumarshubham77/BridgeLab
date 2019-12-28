@@ -5,6 +5,7 @@
 // <creator name="Kumar Shubham"/>
 // --------------------------------------------------------------------------------------------------------------------
 using Common.Models.UserModels;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
 namespace FundooRepository.Interfaces
@@ -20,10 +21,11 @@ namespace FundooRepository.Interfaces
         //Passing the Models according the Task performed.
         Task Create(UserModel user);
         Task<string> LogIn(LoginModel login);
-        Task ResetPassword(ResetPasswordModel reset);
-        Task Forgot(ForgotPassword forgot);
+        Task ResetPassword(string Email,ResetPasswordModel reset);
+        Task<string> Forgot(ForgotPassword forgot);
         Task<UserModel> FindByEmailAsync(string email);
         Task LoginWithFacebook(LoginWithFacebookModel login);
         Task LoginWithGoogle(LoginWithGoogleModel login);
+        Task<UserModel> ProfilePicture(IFormFile file, string email);
     }
 }
