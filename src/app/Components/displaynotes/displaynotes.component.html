@@ -1,36 +1,98 @@
-<div class="getAllNotes" fxLayout="{{view}}" fxFlexOffset="15" >
+<div class="getAllNotes" fxLayout="{{view}}" fxFlexOffset="15">
+    <div *ngFor="let note of allpinnotess">
+        
 
-    <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}"
-    [ngClass]="{'qwerty':flag,'qwerty2':!flag}"  *ngFor="let note of allNotesData">
-       
-       
-        <div  (click)="openDialog(note)">
-            <div class="tile">
+        {{note.pinNotes}}
+    
+    </div>
+    <div *ngFor="let note of pinNotes">
+        <mat-checkbox class="matcheckbox"(click)="onClickofCHK(note)"></mat-checkbox>
+        <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}" [ngClass]="{'qwerty':flag,'qwerty2':!flag}" draggable="true">
+           
+            <!-- *ngIf="note.isPin==true && note.isTrash==false" -->
+
+
+            <div *ngIf="note.isPin">
+                <img src="../../../assets/pin.svg" (click)="onUnpin(note)">
+
+            </div>
+            <div *ngIf="!note.isPin">
+                <img src="../../../assets/unpin.svg" (click)="onPin(note)">
+            </div>
+            <div>
+                <img style="max-width: 200px;" src="{{note.images}}"/>
+                
+            </div>
+            <div class="tile" (click)="openDialog(note)">
                 {{note.title}}
+
             </div>
 
             <div class="tile">
                 {{note.description}}
             </div>
-       
-        <div *ngIf="note.reminder">
-            <mat-chip-list class = "chip" >
-                <mat-chip style="background-color:rgba(0,0,0,0.1); margin-bottom: 2%;">
-                <img src="../../../assets/clock.svg">{{note.reminder | date:'short'}}
-                <mat-icon matChipRemove (click)="removeReminder(note)" >cancel</mat-icon>
-                </mat-chip>
-            </mat-chip-list>
 
-        </div>
+            <div *ngIf="note.reminder">
+                <mat-chip-list class="chip">
+                    <mat-chip style="background-color:rgba(0,0,0,0.1); margin-bottom: 2%;">
+                        <img src="../../../assets/clock.svg">{{note.reminder | date:'short'}}
+                        <mat-icon matChipRemove (click)="removeReminder(note)">cancel</mat-icon>
+                    </mat-chip>
+                </mat-chip-list>
+
+            </div>
+
+            <div class="icon">
+                <app-iconlist [hiddenIcon]=hiddenIcon [card]="note" (event)=listenEvent()> </app-iconlist>
+            </div>
+        
+        </mat-card>
+ 
+    </div>
+    
+
+    <!--Here the Unpinned DIVISION is THERE-->
+    <div *ngFor="let note of unpinnedNotes">
+        <mat-checkbox (click)="onClickofCHK(note)"></mat-checkbox>
+        <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}" [ngClass]="{'qwerty':flag,'qwerty2':!flag}">
+
+            <!-- *ngIf="note.isPin==true && note.isTrash==false" -->
+
+
+            <div *ngIf="note.isPin">
+                <img src="../../../assets/pin.svg" (click)="onUnpin(note)">
+
+            </div>
+            <div *ngIf="!note.isPin">
+                <img src="../../../assets/unpin.svg" (click)="onPin(note)">
+            </div>
+            <div class="tile" (click)="openDialog(note)">
+                {{note.title}}
+
+            </div>
+
+            <div class="tile">
+                {{note.description}}
+            </div>
+
+            <div *ngIf="note.reminder">
+                <mat-chip-list class="chip">
+                    <mat-chip style="background-color:rgba(0,0,0,0.1); margin-bottom: 2%;">
+                        <img src="../../../assets/clock.svg">{{note.reminder | date:'short'}}
+                        <mat-icon matChipRemove (click)="removeReminder(note)">cancel</mat-icon>
+                    </mat-chip>
+                </mat-chip-list>
+
+            </div>
+
+            <div class="icon">
+                <app-iconlist [hiddenIcon]=hiddenIcon [card]="note" (event)=listenEvent()> </app-iconlist>
+            </div>
+        </mat-card>
     </div>
 
-        <div class="chu">
-                <app-iconlist [hiddenIcon]=hiddenIcon [card]="note" (event)=listenEvent()>  </app-iconlist>
-        </div>
-  
-
-
-    </mat-card>
-   
-
 </div>
+
+
+
+<!-- code for unpin notes -->

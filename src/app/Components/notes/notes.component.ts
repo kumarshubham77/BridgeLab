@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NotesService } from 'src/app/services/notesServices/notes.service';
 import { DataService } from 'src/app/services/dataService/data.service';
 
@@ -13,6 +13,7 @@ export class NotesComponent implements OnInit {
 
   allNotes=[];
   notes=[];
+  // @Output() data = new EventEmitter();
 
   constructor(private notesService: NotesService,
     private dataService: DataService) { }
@@ -20,6 +21,7 @@ export class NotesComponent implements OnInit {
   ngOnInit() {
     this.dataService.currentMessage.subscribe( data => {
       this.getAllNOtes();
+      console.log("Notes Component DATA", this.allNotes)
     })
   //  this.getAllNOtes();
   }

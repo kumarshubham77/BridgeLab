@@ -1,0 +1,29 @@
+.getNotesMat{
+    margin: 10px;
+    width: 160px;
+    border-radius: 18px;
+    box-shadow: -2px 1px 8px 1px;
+  }
+  .tile{
+    word-break: break-all;
+  }
+  
+  
+  //icons hover css
+  #Hidden {
+    margin-top: 3%;
+    visibility: hidden
+  }
+  #DivForHoverItem:hover #Hidden {
+    visibility: visible;
+  }
+  
+  //Grid and List view css
+  .qwerty
+  {
+    width:200px;
+  }
+  .qwerty2
+  {
+    width:200px;
+  }

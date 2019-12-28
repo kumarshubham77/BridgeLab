@@ -1,0 +1,74 @@
+<div fxLayout="column"  fxLayout.xs="column" fxLayoutAlign="center center">
+  <mat-card class="container">
+      <form [formGroup]='register'>
+   
+  <div fxLayout="row" fxLayoutAlign="center center" style="font-size:24px">
+                <span style="color: blue;">F</span>
+                <span style="color: red;">u</span>
+                <span style="color:#fbbc05;">n</span>
+                <span style="color: blue;">d</span>
+                <span style="color : green">o</span>
+                <span style="color: red;">o</span>
+                <span style="color: blue;">N</span>
+                <span style="color: red;">o</span>
+                <span style="color: blue;">t</span>
+                <span style="color : green">e</span>
+                <span style="color: red;">s</span>
+            </div>
+
+  <h3 class="heading3"  fxLayoutAlign="center center">Create Your Fundoo Account.</h3>
+  <div class="Insidetop" fxLayoutGap="10px"  fxLayout.xs="column"> 
+    <mat-form-field appearance="outline" fxFlex="100">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="First Name" required formControlName="firstName">
+      <mat-error *ngIf="register.get('firstName').hasError('required')">
+          Enter First Name.
+       </mat-error>
+       <mat-error *ngIf="register.get('firstName').hasError('pattern')">
+          First Name Should min 4 character.
+       </mat-error>
+    </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex="100">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" required formControlName="lastName">
+        <mat-error *ngIf="register.get('lastName').hasError('required')">
+            Enter Last Name.
+         </mat-error>
+         <mat-error *ngIf="register.get('lastName').hasError('pattern')">
+            Last Name Should min 4 character.
+         </mat-error>
+    </mat-form-field>  
+</div>
+<div class ="ForEmail">
+    <mat-form-field appearance="outline" class="matfield" fxFlex="100">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Username" required formControlName="email">
+      <mat-error *ngIf="register.get('email').hasError('required')">
+          Enter Email.
+       </mat-error>
+       <mat-error *ngIf="register.get('email').hasError('email')">
+          Enter Valid Email.
+       </mat-error>
+    </mat-form-field>
+</div>
+<div class="forpassword" fxLayout.xs="column" fxLayoutGap="10px"> 
+  <mat-form-field appearance="outline" fxFlex="100">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Password" required formControlName="password">
+    <mat-error *ngIf="register.get('password').hasError('required')">
+       Enter Password min 6 character.
+    </mat-error>
+  </mat-form-field>
+      
+</div>
+ 
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" fxLayout.xs="column" fxLayoutAlign.xs="start start" style="margin-top:5%">  
+    <div>
+        <button mat-raised-button color="primary"  [routerLink]="['/login']">SignIn Instaed</button>
+    </div>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+</div>
+</form>
+  </mat-card>
+  
+</div>

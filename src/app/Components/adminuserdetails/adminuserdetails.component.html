@@ -1,0 +1,118 @@
+<div>
+  <mat-toolbar>
+    <div fxLayout="row" fxFlex="100">
+      <div>
+        <img class="image" src="../../../assets/logoone.jpg">
+      </div>
+      <div style="margin-left: 25px;">
+        <h3 style="font-family: inherit;"> Fundoo Admin </h3>
+      </div>
+    </div>
+    <div (click)="onSignout()" class="signout">
+      Signout
+    </div>
+  </mat-toolbar>
+
+  <div fxLayout="row" fxLayoutAlign="space-around center" class="heading">
+    <div class="details" (click)="userList()">
+      UserDetails
+    </div>
+    <div class="statistics" (click)="userStatistic()">
+      UserStatistics
+    </div>
+  </div>
+  <div class="usertable" *ngIf=user>
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> FirstName </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.firstName}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> LastName </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.lastName}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="emailId">
+        <th mat-header-cell *matHeaderCellDef> EmailId </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.email}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="cardType">
+        <th mat-header-cell *matHeaderCellDef> Service </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.cardType}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.status}} </td>
+      </ng-container>
+
+
+
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="totalNotes">
+        <th mat-header-cell *matHeaderCellDef> Notes </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.totalNotes}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="DetailsColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: DetailsColumns;"></tr>
+    </table>
+
+    <!-- <mat-paginator [pageSizeOptions]="[3]" showFirstLastButtons></mat-paginator> -->
+  </div>
+
+  <!--  -->
+
+  <div class="userStatistic" *ngIf=!user>
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="sno">
+        <th mat-header-cell *matHeaderCellDef> SNo. </th>
+        <td mat-cell *matCellDef="let element" style="padding: 10px 10px 10px 0;"> {{element.sno}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="userEmailId">
+        <th mat-header-cell *matHeaderCellDef> userEmailId </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.userEmailId}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="logInTime">
+        <th mat-header-cell *matHeaderCellDef> LogInTime </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.logInTime}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="services">
+        <th mat-header-cell *matHeaderCellDef> Service </th>
+        <td mat-cell *matCellDef="let element" style="padding: 20px 20px 20px 0;"> {{element.services}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="StatisticColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: StatisticColumns;"></tr>
+    </table>
+    <!-- <mat-paginator #paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
+    [showFirstLastButtons]="true">
+</mat-paginator> -->
+    <!-- <mat-paginator [pageSizeOptions]="[3]" showFirstLastButtons></mat-paginator> -->
+  </div>
+</div>

@@ -23,7 +23,7 @@ export class ArchiveComponent implements OnInit {
       this.notesService.displayNote(this.token.result).subscribe( (response:any) => {       
         this.notes = response;
         this.notes.forEach(element => {
-          if(element.isTrash == false && element.isArchive == true){
+          if(element.isTrash == false && element.isArchive == true ){
             this.archiveNotes.push(element);
           }
         })

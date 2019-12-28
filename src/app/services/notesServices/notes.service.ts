@@ -31,6 +31,11 @@ export class NotesService {
     console.log("data",token)
     return this.http.put(this.baseUrl + '/Update',data,{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
   }
+  notesDelete(ID,token)
+  {
+    console.log("data",token)
+    return this.http.delete(this.baseUrl + '/Delete?ID='+ID,{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
+  }
   notesTrash(ID,token)
   {
     console.log("data",token)
@@ -44,6 +49,14 @@ export class NotesService {
   {
     return this.http.put(this.baseUrl + '/Reminder?ID='+ID+'&Reminder='+time,"",{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
   }
+  Search(Search,token)
+  {
+    
+    return this.http.get(this.baseUrl +'/Displays?Search='+Search,{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
+    
+
+    
+  }
   notescolor(color,ID,token)
   {
     const data=
@@ -53,6 +66,11 @@ export class NotesService {
     }
     console.log("color",color)
     return this.http.post(this.baseUrl + '/Color',data,{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
+  }
+  ImageUpload(Id,file,token)
+  {
+    
+    return this.http.post(this.baseUrl + '/Image?Id='+Id,file,{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
   }
   displayArchiveNotes(token)
   {
@@ -86,6 +104,35 @@ export class NotesService {
   {
     return this.http.post(this.baseUrl + '/RemoveReminder?ID='+id,"",{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
   }
+  getallpin(token)
+  {
+    return this.http.get(this.baseUrl + '/pinlist',{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });  
+  }
+  // getpin(ID,token)
+  // {
+  //   return this.http.post(this.baseUrl + '/IsPin?ID='+ID,"",{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
+
+  // }
+  getallunpin(token)
+  {
+    return this.http.get(this.baseUrl + '/unpinlist',{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });  
+  }
+  makepin(ID,token)
+  {
+    return this.http.post(this.baseUrl +'/IsPin?ID='+ID,"",{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
+  }
+  makeunpin(ID,token)
+  {
+    return this.http.post(this.baseUrl +'/UnPin?ID='+ID,"",{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) });
+
+  }
+  
+  
+  // ImageinNotesUpload(file,token)
+  // {
+  //   return this.http.post(this.baseUrl + '/profilepic',file,{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) } )
+  // }
+ 
   // notesDelete(token)
   // {
   //   const data=

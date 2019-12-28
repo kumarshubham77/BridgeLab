@@ -1,41 +1,32 @@
-<div fxFlex = "column" style="height: 400px;width: 300px;">
-    Edit label
-    <div>
-        <mat-chip-list>
-            <mat-chip style="border-radius: 50%;"(click)="cancel()">
-                <img src="../../../assets/cancel.svg"matTooltip="Cancel">
-            </mat-chip>
-            <input type="text" placeholder="Create New Label" [(ngModel)]="label" >
-            <mat-chip style="border-radius: 50%;"(click)="makeLabel()">
-                <img src="../../../assets/right.svg" matTooltip="Add">
-            </mat-chip>
-        </mat-chip-list>
-        <div style="margin:2%" *ngFor="let singellabel of labelArr">
-        
-            <div>
-                {{singellabel.label}}
-            </div>
-
-        
-        </div>
-        
-        
+<div fxFlex="column" class="cardDisplay" style="height: 440px;;width: 20em;">
+  <div>
+    <h4 style="margin-top: 10px;"> Edit Labels</h4>
+  </div>
+  <div class="toolbar">
+    <div matTooltip="Cancel" class="icons">
+      <img *ngIf="yes" class="cancel" src="../../../assets/cancel.svg" (click)="onChangeSymbol()">
+      <img *ngIf="!yes" class="cancel" src="../../../assets/add.svg" (click)="onChangeSymbol()">
     </div>
+    <div matTooltip="Create new Label" class="icons">
+      <input class="text" style="margin-left: 53px;" matInput type="text" placeholder="create new label"
+        required [(ngModel)]="label">
+    </div>
+    <div matTooltip="Create Label" class="icons">
+      <img src="../../../assets/check.svg" (click)="onCreateLabel()" style="float: right;">
+    </div>
+  </div>
+  <div class="toolbar" style="margin:2%" *ngFor="let singellabel of labelArr">
+    <div fxFlex="column" fxLayoutAlign="start center">
+      <div class="icons2" matTooltip="Delete Label" (click)="onDeleteLabel(singellabel.labelId)"></div>
+      <div class="icons" style="margin-left: 10px;">
+        <input style="margin-left: 5px;" class="text" matInput value={{singellabel.label}} #label>
+      </div>
+      <div class="icons" matTooltip="Rename Label">
+        <img src="../../../assets/edit.svg" (click)="onUpdateLabel(label.value,singellabel.labelId)">
+      </div>
+    </div>
+  </div>
+  <div>
+    <button (click)="onAddLabel()">Done</button>
+  </div>
 </div>
-<!-- <div>
-    <mat-card>
-      <div >
-        <input matInput  type="text" placeholder="create new label" [(ngModel)]="label">
-      </div>
-      <div style="margin:2%" *ngFor="let singellabel of labelArr">
-          <div fxFlex="column">
-            <div>
-              {{singellabel.label}}
-            </div>
-          </div>
-      </div>
-      <div>
-        <button (click)="onAddLabel()">Done</button> 
-      </div>
-    </mat-card>
-  </div> -->

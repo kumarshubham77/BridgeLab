@@ -22,6 +22,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginatorModule} from '@angular/material/paginator';
+// import {DragDropModule} from '@angular/cdk/drag-drop';
 import {SocialLoginModule,
   AuthServiceConfig,
   GoogleLoginProvider,
@@ -39,6 +43,14 @@ import { ReminderComponent } from './Components/reminder/reminder.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
 import { LabelComponent } from './Components/label/label.component';
+import { DragComponent } from './Components/drag/drag.component';
+import { UploadImageComponent } from './Components/upload-image/upload-image.component';
+import { ImageuploadComponent } from './Components/imageupload/imageupload.component';
+import { AdminloginComponent } from './Components/adminlogin/adminlogin.component';
+import { AdminregistrationComponent } from './Components/adminregistration/adminregistration.component';
+import { AdminuserdetailsComponent } from './Components/adminuserdetails/adminuserdetails.component';
+import { DisplayanothernotesComponent } from './Components/displayanothernotes/displayanothernotes.component';
+
 
 
 
@@ -74,7 +86,14 @@ import { LabelComponent } from './Components/label/label.component';
     TrashComponent,
     ReminderComponent,
     CollaboratorComponent,
-    LabelComponent
+    LabelComponent,
+    DragComponent,
+    UploadImageComponent,
+    ImageuploadComponent,
+    AdminloginComponent,
+    AdminregistrationComponent,
+    AdminuserdetailsComponent,
+    DisplayanothernotesComponent
     
   ],
   imports: [
@@ -98,7 +117,11 @@ import { LabelComponent } from './Components/label/label.component';
     FlexLayoutModule,
     MatTooltipModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule
+    // DragDropModule
   ],
   entryComponents:[EditComponent],
   providers: [{

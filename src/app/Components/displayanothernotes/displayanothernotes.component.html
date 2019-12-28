@@ -1,0 +1,36 @@
+<div class="getAllNotes" fxLayout="{{view}}" fxFlexOffset="15" >
+
+  <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}"
+  [ngClass]="{'qwerty':flag,'qwerty2':!flag}"  *ngFor="let note of allNotesData">
+     
+     
+      <div  (click)="openDialog(note)">
+          <div class="tile">
+              {{note.title}}
+          </div>
+
+          <div class="tile">
+              {{note.description}}
+          </div>
+     
+      <div *ngIf="note.reminder">
+          <mat-chip-list class = "chip" >
+              <mat-chip style="background-color:rgba(0,0,0,0.1); margin-bottom: 2%;">
+              <img src="../../../assets/clock.svg">{{note.reminder | date:'short'}}
+              <mat-icon matChipRemove (click)="removeReminder(note)" >cancel</mat-icon>
+              </mat-chip>
+          </mat-chip-list>
+
+      </div>
+  </div>
+
+      <div class="chu">
+              <app-iconlist [hiddenIcon]=hiddenIcon [card]="note" (event)=listenEvent()>  </app-iconlist>
+      </div>
+
+
+
+  </mat-card>
+ 
+
+</div>

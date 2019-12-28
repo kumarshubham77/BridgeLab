@@ -13,6 +13,13 @@ import { TrashComponent } from './Components/trash/trash.component';
 import { ReminderComponent } from './Components/reminder/reminder.component';
 import { CollaboratorComponent } from './Components/collaborator/collaborator.component';
 import { LabelComponent } from './Components/label/label.component';
+import { DragComponent } from './Components/drag/drag.component';
+import { UploadImageComponent } from './Components/upload-image/upload-image.component';
+import { ImageuploadComponent } from './Components/imageupload/imageupload.component';
+import { AdminloginComponent } from './Components/adminlogin/adminlogin.component';
+import { AdminregistrationComponent } from './Components/adminregistration/adminregistration.component';
+import { AdminuserdetailsComponent } from './Components/adminuserdetails/adminuserdetails.component';
+import { DisplayanothernotesComponent } from './Components/displayanothernotes/displayanothernotes.component';
 const routes: Routes = [
   {
     path:'', 
@@ -36,6 +43,18 @@ const routes: Routes = [
     component :ForgotComponent
   },
   {
+    path: 'adminlogin',
+    component :AdminloginComponent
+  },
+  {
+    path: 'adminregistration',
+    component :AdminregistrationComponent
+  },
+  {
+    path: 'adminuserdetails',
+    component :AdminuserdetailsComponent
+  },
+  {
     path: 'reset',
     component :ResetComponent
   },
@@ -49,6 +68,10 @@ const routes: Routes = [
       { 
         path: 'notes', 
         component: NotesComponent 
+      },
+      { 
+        path: 'displayanothernotes', 
+        component: DisplayanothernotesComponent 
       },
       { 
         path: 'createNote', 
@@ -73,8 +96,19 @@ const routes: Routes = [
       {
         path :'label',
         component : LabelComponent
+      },
+      {
+        path :'Drag',
+        component : DragComponent
+      },
+      {
+        path :'imageUpload',
+        component : UploadImageComponent
+      },
+      {
+        path :'ImageUPLOADCOMP',
+        component : ImageuploadComponent
       }
-      
       
     ]
     

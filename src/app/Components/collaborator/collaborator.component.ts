@@ -13,54 +13,50 @@ export class CollaboratorComponent implements OnInit {
   token = JSON.parse(localStorage.getItem('userData'));
   collabArr
 
-  constructor(@Inject(MAT_DIALOG_DATA)public data,
-  private userService: UserServiceService,
-  private collaboratorService: CollaboratorService)
-  { 
-    this.note=this.data.note 
-    this.collabArr = data['note']['collaborators'];    
-    console.log("data in collab array--->",this.collabArr);
+  constructor(@Inject(MAT_DIALOG_DATA) public data,
+    private userService: UserServiceService,
+    private collaboratorService: CollaboratorService) {
+    this.note = this.data.note
+    console.log("CHECKINGGGGGGGGGGGGGGGG", this.note)
+    this.collabArr = data['note']['collaborators'];
+    console.log("data in collab array--->", this.collabArr);
   }
-  userName:string;
-  email:string;
+  userName: string;
+  email: string;
 
-  senderEmail:string;
-  receiverEmail:string;
+  senderEmail: string;
+  receiverEmail: string;
 
   ngOnInit() {
-    this.userDetails();  
-   console.log("in  collab");
+    this.userDetails();
+    console.log("in  collab");
   }
-  userDetails()
-  {
-    this.userService.getUserdata(this.token.result).subscribe( response =>
-    {
+  userDetails() {
+    this.userService.getUserdata(this.token.result).subscribe(response => {
       console.log("data--->", response);
       this.userName = response['firstName'];
       this.email = response['email'];
     })
   }
-  onAddCollab()
-  { 
+  onAddCollab() {
     const data = {
-      "SenderEmail":this.email,
-      "ReceiverEmail":this.receiverEmail,
-      "Noteid":this.note.id
+      "SenderEmail": this.email,
+      "ReceiverEmail": this.receiverEmail,
+      "Noteid": this.note.id
     }
-    this.collaboratorService.addCollaborator(data,this.token.result).subscribe( response => {
-      console.log('dataa from back end',response);
+    this.collaboratorService.addCollaborator(data, this.token.result).subscribe(response => {
+      console.log('dataa from back end', response);
     })
   }
-  removeCollaborator(receiverEmail)
-  {
+  removeCollaborator(receiverEmail) {
     const data = {
-      "SenderEmail":this.email,
-      "ReceiverEmail":receiverEmail,
-      "Noteid":this.note.id      
+      "SenderEmail": this.email,
+      "ReceiverEmail": receiverEmail,
+      "Noteid": this.note.id
     }
-    console.log("this is another text",data);
-    this.collaboratorService.RemoveCollaborator(data,this.token.result).subscribe( response => {
-      console.log('Collaborator Gets Removed',response);
+    console.log("this is another text", data);
+    this.collaboratorService.RemoveCollaborator(data, this.token.result).subscribe(response => {
+      console.log('Collaborator Gets Removed', response);
     })
 
   }

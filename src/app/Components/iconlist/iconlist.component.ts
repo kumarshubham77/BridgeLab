@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NotesService } from 'src/app/services/notesServices/notes.service';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
 import { MatDialog } from '@angular/material';
+import { ImageuploadComponent } from '../imageupload/imageupload.component';
 // import { EventEmitter } from 'events';
 
 @Component({
@@ -12,6 +13,9 @@ import { MatDialog } from '@angular/material';
 export class IconlistComponent implements OnInit {
   @Input() card; 
   @Input() hiddenIcon:boolean
+  url=localStorage.getItem('ProfileLink');
+  email=localStorage.getItem('Email');
+  Image=localStorage.getItem('ProfileLink');
 
   @Output() event = new EventEmitter();
   
@@ -27,7 +31,7 @@ export class IconlistComponent implements OnInit {
   {
     console.log("data",this.token);
     console.log("note id",this.card.id);
-    this.notesService.notesTrash(this.card.id,this.token.result).subscribe( response => {
+    this.notesService.notesDelete(this.card.id,this.token.result).subscribe( response => {
       console.log('dataa from back end',response);
       this.event.emit([]);
     })
@@ -90,6 +94,7 @@ export class IconlistComponent implements OnInit {
      
     this.notesService.notescolor(color,this.card.id,this.token.result).subscribe( response => {
       console.log('dataa from back end',response);
+      window.location.reload();
       this.event.emit([]);
     })
   }
@@ -153,9 +158,13 @@ export class IconlistComponent implements OnInit {
     this.event.emit([]);
 
   }
-  onLabel()
+  onImage()
   {
-    
+    console.log("note id on Image",this.card.id);
+    localStorage.setItem('NOTEIDFORIMG',this.card.id);
+    const dialogref = this.dialog.open(ImageuploadComponent, {
+    });
+    console.log("hghdfkhgkdfhgkdfhgkdfghkdfhgkdh",Image)
   }
   
 }

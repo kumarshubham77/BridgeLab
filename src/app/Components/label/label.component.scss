@@ -1,0 +1,41 @@
+.dialogmatcard
+{
+    display: flex;
+}
+@mixin input 
+{
+  border:none;
+  outline:none;;   
+}
+.text
+{
+    @include input;
+}
+.toolbar
+{
+    display: flex;
+
+}
+.cardDisplay
+{
+    padding: 18px;
+}
+.icons
+{
+    cursor: pointer;
+}
+// .icons2
+// {
+//     cursor: pointer;
+//     background-image: url(../../../assets/flag.svg);
+//     height: 20px;
+//     width: 20px;
+// }
+// .icons2:hover
+// {
+//     background-image: url(../../../assets/delete.svg);
+//     height: 20px;
+//     width: 20px;
+// }
+
+	

@@ -7,7 +7,8 @@ export const environment = {
  baseUrl : 'https://localhost:44338/api/Account',
  baseUrl1 : 'https://localhost:44338/api/Notes',
  baseUrl2 : 'https://localhost:44338/api/Collaborator',
- baseUrl3 :'https://localhost:44338/api/Label'
+ baseUrl3 :'https://localhost:44338/api/Label',
+ baseUrl4 :'https://localhost:44338/api/Admin'
 };
 
 /*

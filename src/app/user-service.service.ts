@@ -59,5 +59,9 @@ export class UserServiceService {
   {
     return this.http.get(this.rootUrl + '/jwtgetToken',{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) } );
   }
+  ImageUpload(file,token)
+  {
+    return this.http.post(this.rootUrl + '/profilepic',file,{ headers: new HttpHeaders().set('Authorization', 'Bearer ' + token) } )
+  }
 }
 

@@ -1,0 +1,49 @@
+<div class="login_container">
+  <mat-card class="container">
+    <form [formGroup]='loginUser'>
+
+      <div class="Heading">Admin Fundoo</div>
+
+
+      <div class="heading3">Login to Your Admin Fundoo Account</div>
+      <div class="ForEmail">
+        <mat-form-field appearance="outline" class="matfield">
+          <mat-label>AdminUsername</mat-label>
+          <input matInput placeholder="Email" required formControlName="email">
+          <mat-error *ngIf="loginUser.get('email').hasError('required')">
+            Enter Email.
+          </mat-error>
+          <mat-error *ngIf="loginUser.get('email').hasError('email')">
+            Enter Valid Email.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="forpassword">
+        <mat-form-field appearance="outline" class="matfield">
+          <mat-label>Admin Password</mat-label>
+          <input matInput placeholder="Password" required formControlName="password">
+          <mat-error *ngIf="loginUser.get('password').hasError('required')">
+            Enter Password min 6 character.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+
+      <div>
+        <div class="log_For">
+          <div>
+            <button class="button" type="submit" style="vertical-align:middle"
+              (click)="onforgot()">FogotPassword</button>
+          </div>
+          <div>
+            <button class="button" type="submit" style="vertical-align:middle" (click)="onSubmit()">LOGIN</button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>
